@@ -1,4 +1,4 @@
-package com.idz.colman24class2
+package com.idz.rentIt
 
 import android.content.Context
 import android.os.Bundle
@@ -13,10 +13,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.idz.colman24class2.adapter.StudentsRecyclerAdapter
-import com.idz.colman24class2.databinding.FragmentStudentsListBinding
-import com.idz.colman24class2.model.Model
-import com.idz.colman24class2.model.Student
+import com.idz.rentIt.adapter.StudentsRecyclerAdapter
+import com.idz.rentIt.databinding.FragmentStudentsListBinding
+import com.idz.rentIt.model.Model
+import com.idz.rentIt.model.Student
 
 class StudentsListFragment : Fragment() {
 

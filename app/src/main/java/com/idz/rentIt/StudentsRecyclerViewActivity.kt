@@ -1,4 +1,4 @@
-package com.idz.colman24class2
+package com.idz.rentIt
 
 import android.os.Bundle
 import android.util.Log
@@ -8,9 +8,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.idz.colman24class2.adapter.StudentsRecyclerAdapter
-import com.idz.colman24class2.model.Model
-import com.idz.colman24class2.model.Student
+import com.idz.rentIt.adapter.StudentsRecyclerAdapter
+import com.idz.rentIt.model.Model
+import com.idz.rentIt.model.Student
 
 interface OnItemClickListener {
     fun onItemClick(position: Int)

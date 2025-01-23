@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "1087935108526",
-    "project_id": "colmanclass1-25",
-    "storage_bucket": "colmanclass1-25.firebasestorage.app"
+    "project_number": "1034929845680",
+    "project_id": "rentit-78cc7",
+    "storage_bucket": "rentit-78cc7.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1087935108526:android:968551aa96b605b12ce43f",
+        "mobilesdk_app_id": "1:1034929845680:android:c782ab8337b5c38d4ed275",
         "android_client_info": {
-          "package_name": "com.idz.colman24class2"
+          "package_name": "com.idz.rentIt"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCDmz7i63hHk6MuP4CbC_ucGvc45x49cI8"
+          "current_key": "AIzaSyCAwvAZVYpX_9E7Sbmzi7LL_sUdG0m9EQc"
         }
       ],
       "services": {

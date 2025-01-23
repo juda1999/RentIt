@@ -1,4 +1,4 @@
-package com.idz.colman24class2.model
+package com.idz.rentIt.model
 
 import android.graphics.Bitmap
 import android.util.Log
@@ -8,13 +8,12 @@ import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.firestoreSettings
 import com.google.firebase.firestore.memoryCacheSettings
 import com.google.firebase.storage.storage
-import com.idz.colman24class2.base.Constants
-import com.idz.colman24class2.base.EmptyCallback
-import com.idz.colman24class2.base.StudentsCallback
+import com.idz.rentIt.base.Constants
+import com.idz.rentIt.base.EmptyCallback
+import com.idz.rentIt.base.StudentsCallback
 import java.io.ByteArrayOutputStream
 
 class FirebaseModel {
-
     private val database = Firebase.firestore
     private val storage = Firebase.storage
 
@@ -43,7 +42,7 @@ class FirebaseModel {
     }
 
     fun add(student: Student, callback: EmptyCallback) {
-        database.collection(Constants.COLLECTIONS.STUDENTS).document(student.id)
+        database.collection(Constants.COLLECTIONS.POSTS).document(student.id)
             .set(student.json)
             .addOnCompleteListener {
                 callback()
