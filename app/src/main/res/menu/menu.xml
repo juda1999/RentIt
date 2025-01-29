@@ -9,7 +9,7 @@
         app:showAsAction="always"
         />
     <item
-        android:id="@+id/studentsListFragment"
+        android:id="@+id/filterFragment"
         android:icon="@drawable/filter"
         android:title="Properties"
         app:showAsAction="always"

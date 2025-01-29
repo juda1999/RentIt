@@ -29,4 +29,12 @@
         android:label="Add Student"
         tools:layout="@layout/fragment_add_student" />
     <action android:id="@+id/action_global_addStudentFragment" app:destination="@id/addStudentFragment" />
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.idz.colman24class2.filterFragment"
+        android:label="fragment_filter"
+        tools:layout="@layout/fragment_filter" />
+    <action
+        android:id="@+id/action_global_filterFragment"
+        app:destination="@id/filterFragment" />
 </navigation>
