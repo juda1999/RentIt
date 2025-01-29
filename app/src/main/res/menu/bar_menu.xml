@@ -4,14 +4,14 @@
 
     <item
         android:id="@+id/studentsListFragment"
-        android:icon="@android:drawable/ic_dialog_info"
-        android:title="Students" />
+        android:icon="@drawable/home"
+        android:title="Properties" />
     <item
         android:id="@+id/addStudentFragment"
         android:icon="@drawable/add"
-        android:title="Add Student" />
+        android:title="Add Property" />
     <item
         android:id="@+id/bar_menu_about"
-        android:icon="@android:drawable/alert_light_frame"
+        android:icon="@drawable/heart"
         android:title="About" />
 </menu>
