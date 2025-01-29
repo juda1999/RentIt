@@ -8,7 +8,7 @@
         android:title="Students" />
     <item
         android:id="@+id/addStudentFragment"
-        android:icon="@drawable/rentit_logo"
+        android:icon="@drawable/add"
         android:title="Add Student" />
     <item
         android:id="@+id/bar_menu_about"
