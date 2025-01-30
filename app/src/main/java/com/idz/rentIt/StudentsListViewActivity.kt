@@ -11,11 +11,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.idz.rentIt.model.Student
+import com.idz.rentIt.model.Post
 
 class StudentsListViewActivity : AppCompatActivity() {
-
-    var students: MutableList<Student>? = null
+    var posts: MutableList<Post>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +39,7 @@ class StudentsListViewActivity : AppCompatActivity() {
     }
 
     inner class StudentsAdapter(): BaseAdapter() {
-        override fun getCount(): Int = students?.size ?: 0
+        override fun getCount(): Int = posts?.size ?: 0
 
         override fun getItem(position: Int): Any {
             TODO("Not yet implemented")
@@ -60,8 +59,8 @@ class StudentsListViewActivity : AppCompatActivity() {
                 findViewById<CheckBox>(R.id.checkBox).apply {
                     setOnClickListener { view ->
                         (tag as? Int)?.let { tag ->
-                            val student = students?.get(tag)
-                            student?.isChecked = (view as? CheckBox)?.isChecked ?: false
+                            val student = posts?.get(tag)
+                            student?.isFurnished = (view as? CheckBox)?.isChecked ?: false
                         }
                     }
                 }
@@ -86,18 +85,17 @@ class StudentsListViewActivity : AppCompatActivity() {
 //                }
 //            }
 
-            val student = students?.get(position)
+            val student = posts?.get(position)
 
             val nameTextView: TextView? = view?.findViewById(R.id.nameTextView)
             val idTextView: TextView? = view?.findViewById(R.id.idTextView)
             val checkBox: CheckBox? = view?.findViewById(R.id.checkBox)
 
-            nameTextView?.text = student?.name
+            nameTextView?.text = student?.address
             idTextView?.text = student?.id
-//            checkBox?.isChecked = student?.isChecked ?: false
 
             checkBox?.apply {
-                isChecked = student?.isChecked ?: false
+                isChecked = student?.isFurnished ?: false
                 tag = position
             }
 //            checkBox.setOnClickListener {

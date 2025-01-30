@@ -1,8 +1,8 @@
 package com.idz.rentIt.base
 
-import com.idz.rentIt.model.Student
+import com.idz.rentIt.model.Post
 
-typealias StudentsCallback = (List<Student>) -> Unit
+typealias StudentsCallback = (List<Post>) -> Unit
 typealias EmptyCallback = () -> Unit
 
 object Constants {
