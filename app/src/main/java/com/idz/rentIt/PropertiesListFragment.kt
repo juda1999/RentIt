@@ -57,7 +57,7 @@ class PropertiesListFragment : Fragment() {
 //                Navigation.findNavController(view).navigate(R.id.action_studentsListFragment_to_blueFragment)
 
                 post?.let {
-                    val action = StudentsListFragmentDirections.actionStudentsListFragmentToBlueFragment(it.address)
+                    val action = PropertiesListFragmentDirections.actionStudentsListFragmentToBlueFragment(it.address)
                     binding?.root?.let {
                         Navigation.findNavController(it).navigate(action)
                     }
@@ -67,7 +67,7 @@ class PropertiesListFragment : Fragment() {
 
         binding?.recyclerView?.adapter = adapter
 
-        val action = StudentsListFragmentDirections.actionGlobalAddStudentFragment()
+        val action = PropertiesListFragmentDirections.actionGlobalAddStudentFragment()
         binding?.addStudentButton?.setOnClickListener(Navigation.createNavigateOnClickListener(action))
 
         return binding?.root

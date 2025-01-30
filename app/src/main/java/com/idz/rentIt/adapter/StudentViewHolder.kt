@@ -4,12 +4,12 @@ import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.idz.rentIt.OnItemClickListener
 import com.idz.rentIt.R
-import com.idz.rentIt.databinding.StudentListRowBinding
+import com.idz.rentIt.databinding.PropertyListRowBinding
 import com.idz.rentIt.model.Post
 import com.squareup.picasso.Picasso
 
 class StudentViewHolder(
-    private val binding: StudentListRowBinding,
+    private val binding: PropertyListRowBinding,
     listener: OnItemClickListener?
     ): RecyclerView.ViewHolder(binding.root) {
 

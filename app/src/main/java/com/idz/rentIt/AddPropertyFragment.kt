@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.Navigation
-import com.idz.rentIt.databinding.FragmentAddStudentBinding
+import com.idz.rentIt.databinding.FragmentAddPropertyBinding
 import com.idz.rentIt.model.Model
 import com.idz.rentIt.model.Post
 
@@ -19,7 +19,7 @@ class AddPropertyFragment : Fragment() {
 
     private var cameraLauncher: ActivityResultLauncher<Void?>? = null
 
-    private var binding: FragmentAddStudentBinding? = null
+    private var binding: FragmentAddPropertyBinding? = null
     private var didSetProfileImage = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +31,7 @@ class AddPropertyFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAddStudentBinding.inflate(inflater, container, false)
+        binding = FragmentAddPropertyBinding.inflate(inflater, container, false)
         binding?.cancelButton?.setOnClickListener(::onCancelClicked)
         binding?.saveButton?.setOnClickListener(::onSaveClicked)
 

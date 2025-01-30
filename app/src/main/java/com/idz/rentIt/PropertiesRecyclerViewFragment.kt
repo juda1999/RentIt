@@ -8,12 +8,13 @@ import android.view.ViewGroup
 import com.idz.rentIt.model.Model
 import com.idz.rentIt.model.Post
 
-class PropertiesRecyclerViewFragment : Fragment() {
+interface OnItemClickListener {
+    fun onItemClick(position: Int)
+    fun onItemClick(student: Post?)
+}
 
-    interface OnItemClickListener {
-        fun onItemClick(position: Int)
-        fun onItemClick(student: Post?)
-    }
+
+class PropertiesRecyclerViewFragment : Fragment() {
     private var students: MutableList<Post>? = null
 
     override fun onCreateView(
