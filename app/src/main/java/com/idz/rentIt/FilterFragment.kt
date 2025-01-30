@@ -13,6 +13,7 @@ class FilterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_filter, container, false)
+        val view = inflater.inflate(R.layout.fragment_filter, container, false)
+        return view
     }
 }
