@@ -1,4 +1,4 @@
-package com.idz.colman24class2
+package com.idz.rentIt
 
 import android.os.Bundle
 import android.util.Log
@@ -6,20 +6,16 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.idz.colman24class2.adapter.StudentsRecyclerAdapter
-import com.idz.colman24class2.model.Model
-import com.idz.colman24class2.model.Student
+import com.idz.rentIt.model.Post
 
 interface OnItemClickListener {
     fun onItemClick(position: Int)
-    fun onItemClick(student: Student?)
+    fun onItemClick(student: Post?)
 }
 
 class StudentsRecyclerViewActivity : AppCompatActivity() {
 
-    private var students: MutableList<Student>? = null
+    private var students: MutableList<Post>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

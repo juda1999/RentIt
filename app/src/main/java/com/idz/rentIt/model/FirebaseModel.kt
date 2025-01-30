@@ -1,20 +1,17 @@
-package com.idz.colman24class2.model
+package com.idz.rentIt.model
 
 import android.graphics.Bitmap
-import android.util.Log
 import com.google.firebase.Firebase
-import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.firestoreSettings
 import com.google.firebase.firestore.memoryCacheSettings
 import com.google.firebase.storage.storage
-import com.idz.colman24class2.base.Constants
-import com.idz.colman24class2.base.EmptyCallback
-import com.idz.colman24class2.base.StudentsCallback
+import com.idz.rentIt.base.Constants
+import com.idz.rentIt.base.EmptyCallback
+import com.idz.rentIt.base.StudentsCallback
 import java.io.ByteArrayOutputStream
 
 class FirebaseModel {
-
     private val database = Firebase.firestore
     private val storage = Firebase.storage
 
@@ -27,13 +24,13 @@ class FirebaseModel {
     }
 
     fun getAllStudents(callback: StudentsCallback) {
-        database.collection(Constants.COLLECTIONS.STUDENTS).get()
+        database.collection(Constants.COLLECTIONS.POSTS).get()
             .addOnCompleteListener {
                 when (it.isSuccessful) {
                     true -> {
-                        val students: MutableList<Student> = mutableListOf()
+                        val students: MutableList<Post> = mutableListOf()
                         for (json in it.result) {
-                            students.add(Student.fromJSON(json.data))
+                            students.add(Post.fromJSON(json.data))
                         }
                         callback(students)
                     }
@@ -42,8 +39,9 @@ class FirebaseModel {
             }
     }
 
-    fun add(student: Student, callback: EmptyCallback) {
-        database.collection(Constants.COLLECTIONS.STUDENTS).document(student.id)
+    fun add(student: Post, callback: EmptyCallback) {
+        database.collection(Constants.COLLECTIONS.POSTS)
+            .document(student.id)
             .set(student.json)
             .addOnCompleteListener {
                 callback()

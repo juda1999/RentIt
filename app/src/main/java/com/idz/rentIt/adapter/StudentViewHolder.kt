@@ -1,14 +1,11 @@
-package com.idz.colman24class2.adapter
+package com.idz.rentIt.adapter
 
-import android.view.View
 import android.widget.CheckBox
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.idz.colman24class2.OnItemClickListener
-import com.idz.colman24class2.R
-import com.idz.colman24class2.databinding.ActivityStudentsListViewBinding
-import com.idz.colman24class2.databinding.StudentListRowBinding
-import com.idz.colman24class2.model.Student
+import com.idz.rentIt.OnItemClickListener
+import com.idz.rentIt.R
+import com.idz.rentIt.databinding.StudentListRowBinding
+import com.idz.rentIt.model.Post
 import com.squareup.picasso.Picasso
 
 class StudentViewHolder(
@@ -16,34 +13,34 @@ class StudentViewHolder(
     listener: OnItemClickListener?
     ): RecyclerView.ViewHolder(binding.root) {
 
-    private var student: Student? = null
+    private var post: Post? = null
 
         init {
 
             binding.checkBox.apply {
                 setOnClickListener { view ->
                     (tag as? Int)?.let { tag ->
-                        student?.isChecked = (view as? CheckBox)?.isChecked ?: false
+                        post?.isFurnished = (view as? CheckBox)?.isChecked ?: false
                     }
                 }
             }
 
             itemView.setOnClickListener {
                 listener?.onItemClick(adapterPosition)
-                listener?.onItemClick(student)
+                listener?.onItemClick(post)
             }
         }
 
-        fun bind(student: Student?, position: Int) {
-            this.student = student
-            binding.nameTextView.text = student?.name
-            binding.idTextView.text = student?.id
+        fun bind(post: Post?, position: Int) {
+            this.post = this.post
+            binding.nameTextView.text = this.post?.address
+            binding.idTextView.text = this.post?.id
             binding.checkBox.apply {
-                isChecked = student?.isChecked ?: false
+                isChecked = this@StudentViewHolder.post?.isFurnished ?: false
                 tag = position
             }
 
-            student?.avatarUrl?.let { avatarUrl ->
+            this.post?.photoUrl?.let { avatarUrl ->
                 val url = avatarUrl.ifBlank { return }
                 Picasso.get()
                     .load(url)

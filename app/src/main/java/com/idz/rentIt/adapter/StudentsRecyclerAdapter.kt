@@ -1,18 +1,17 @@
-package com.idz.colman24class2.adapter
+package com.idz.rentIt.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.idz.colman24class2.OnItemClickListener
-import com.idz.colman24class2.R
-import com.idz.colman24class2.databinding.StudentListRowBinding
-import com.idz.colman24class2.model.Student
+import com.idz.rentIt.OnItemClickListener
+import com.idz.rentIt.databinding.StudentListRowBinding
+import com.idz.rentIt.model.Post
 
-class StudentsRecyclerAdapter(private var students: List<Student>?): RecyclerView.Adapter<StudentViewHolder>() {
+class StudentsRecyclerAdapter(private var students: List<Post>?): RecyclerView.Adapter<StudentViewHolder>() {
 
         var listener: OnItemClickListener? = null
 
-        fun set(students: List<Student>?) {
+        fun set(students: List<Post>?) {
             this.students = students
         }
 

@@ -1,4 +1,4 @@
-package com.idz.colman24class2.model
+package com.idz.rentIt.model
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -7,7 +7,7 @@ import com.cloudinary.android.callback.ErrorInfo
 import com.cloudinary.android.callback.UploadCallback
 import com.cloudinary.android.policy.GlobalUploadPolicy
 import com.cloudinary.android.policy.UploadPolicy
-import com.idz.colman24class2.base.MyApplication
+import com.idz.rentIt.base.MyApplication
 import java.io.File
 import java.io.FileOutputStream
 import java.lang.Error

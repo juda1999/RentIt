@@ -10,8 +10,7 @@
         android:icon="@drawable/rentit_logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/rentit_logo"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.Colman24Class2"
+        android:theme="@style/Theme.RentIt"
         tools:targetApi="31">
         <activity
             android:name=".StudentsRecyclerViewActivity"

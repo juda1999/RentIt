@@ -1,4 +1,4 @@
-package com.idz.colman24class2
+package com.idz.rentIt
 
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
@@ -8,15 +8,12 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.Navigation
-import com.idz.colman24class2.databinding.FragmentAddStudentBinding
-import com.idz.colman24class2.model.Model
-import com.idz.colman24class2.model.Student
+import com.idz.rentIt.databinding.FragmentAddStudentBinding
+import com.idz.rentIt.model.Model
+import com.idz.rentIt.model.Post
 
 class AddStudentFragment : Fragment() {
 
@@ -62,11 +59,13 @@ class AddStudentFragment : Fragment() {
 
     private fun onSaveClicked(view: View) {
 
-        val student = Student(
-            name = binding?.nameEditText?.text?.toString() ?: "",
-            id = binding?.idEditText?.text?.toString() ?: "",
-            avatarUrl = "",
-            isChecked = false
+        val post = Post(
+            address = binding?.nameEditText?.text?.toString() ?: "",
+            id = binding?.idEditText?.text?.toString() ?: "one",
+            photoUrl = "",
+            price = 0,
+            hasShelter = false,
+            isFurnished = false
         )
 
         binding?.progressBar?.visibility = View.VISIBLE
@@ -75,12 +74,12 @@ class AddStudentFragment : Fragment() {
             binding?.imageView?.isDrawingCacheEnabled = true
             binding?.imageView?.buildDrawingCache()
             val bitmap = (binding?.imageView?.drawable as BitmapDrawable).bitmap
-            Model.shared.add(student, bitmap, Model.Storage.CLOUDINARY) {
+            Model.shared.add(post, bitmap, Model.Storage.CLOUDINARY) {
                 binding?.progressBar?.visibility = View.GONE
                 Navigation.findNavController(view).popBackStack()
             }
         } else {
-            Model.shared.add(student, null, Model.Storage.CLOUDINARY) {
+            Model.shared.add(post, null, Model.Storage.FIREBASE) {
                 binding?.progressBar?.visibility = View.GONE
                 Navigation.findNavController(view).popBackStack()
             }
