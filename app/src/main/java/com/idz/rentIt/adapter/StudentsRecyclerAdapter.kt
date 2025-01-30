@@ -4,15 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.idz.rentIt.OnItemClickListener
-import com.idz.rentIt.R
 import com.idz.rentIt.databinding.StudentListRowBinding
-import com.idz.rentIt.model.Student
+import com.idz.rentIt.model.Post
 
-class StudentsRecyclerAdapter(private var students: List<Student>?): RecyclerView.Adapter<StudentViewHolder>() {
+class StudentsRecyclerAdapter(private var students: List<Post>?): RecyclerView.Adapter<StudentViewHolder>() {
 
         var listener: OnItemClickListener? = null
 
-        fun set(students: List<Student>?) {
+        fun set(students: List<Post>?) {
             this.students = students
         }
 

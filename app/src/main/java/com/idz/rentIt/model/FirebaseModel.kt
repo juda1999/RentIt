@@ -1,9 +1,7 @@
 package com.idz.rentIt.model
 
 import android.graphics.Bitmap
-import android.util.Log
 import com.google.firebase.Firebase
-import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.firestoreSettings
 import com.google.firebase.firestore.memoryCacheSettings
@@ -26,13 +24,13 @@ class FirebaseModel {
     }
 
     fun getAllStudents(callback: StudentsCallback) {
-        database.collection(Constants.COLLECTIONS.STUDENTS).get()
+        database.collection(Constants.COLLECTIONS.POSTS).get()
             .addOnCompleteListener {
                 when (it.isSuccessful) {
                     true -> {
-                        val students: MutableList<Student> = mutableListOf()
+                        val students: MutableList<Post> = mutableListOf()
                         for (json in it.result) {
-                            students.add(Student.fromJSON(json.data))
+                            students.add(Post.fromJSON(json.data))
                         }
                         callback(students)
                     }
@@ -41,8 +39,9 @@ class FirebaseModel {
             }
     }
 
-    fun add(student: Student, callback: EmptyCallback) {
-        database.collection(Constants.COLLECTIONS.POSTS).document(student.id)
+    fun add(student: Post, callback: EmptyCallback) {
+        database.collection(Constants.COLLECTIONS.POSTS)
+            .document(student.id)
             .set(student.json)
             .addOnCompleteListener {
                 callback()

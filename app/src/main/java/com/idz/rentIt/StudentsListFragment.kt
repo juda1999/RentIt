@@ -7,19 +7,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.ProgressBar
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.idz.rentIt.adapter.StudentsRecyclerAdapter
 import com.idz.rentIt.databinding.FragmentStudentsListBinding
 import com.idz.rentIt.model.Model
-import com.idz.rentIt.model.Student
+import com.idz.rentIt.model.Post
 
 class StudentsListFragment : Fragment() {
-
     private var adapter: StudentsRecyclerAdapter? = null
     private var binding: FragmentStudentsListBinding? = null
     private var viewModel: StudentsListViewModel? = null
@@ -48,20 +44,20 @@ class StudentsListFragment : Fragment() {
         val layoutManager = LinearLayoutManager(context)
         binding?.recyclerView?.layoutManager = layoutManager
 
-        adapter = StudentsRecyclerAdapter(viewModel?.students)
+        adapter = StudentsRecyclerAdapter(viewModel?.posts)
 
         adapter?.listener = object : OnItemClickListener {
             override fun onItemClick(position: Int) {
                 Log.d("TAG", "On click Activity listener on position $position")
             }
 
-            override fun onItemClick(student: Student?) {
-                Log.d("TAG", "On student clicked name: ${student?.name}")
+            override fun onItemClick(post: Post?) {
+                Log.d("TAG", "On student clicked name: ${post?.address}")
 
 //                Navigation.findNavController(view).navigate(R.id.action_studentsListFragment_to_blueFragment)
 
-                student?.let {
-                    val action = StudentsListFragmentDirections.actionStudentsListFragmentToBlueFragment(it.name)
+                post?.let {
+                    val action = StudentsListFragmentDirections.actionStudentsListFragmentToBlueFragment(it.address)
                     binding?.root?.let {
                         Navigation.findNavController(it).navigate(action)
                     }
@@ -88,7 +84,6 @@ class StudentsListFragment : Fragment() {
     }
 
     private fun getAllStudents() {
-
         binding?.progressBar?.visibility = View.VISIBLE
 
         Model.shared.getAllStudents {

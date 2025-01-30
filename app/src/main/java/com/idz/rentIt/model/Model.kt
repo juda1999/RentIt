@@ -21,17 +21,17 @@ class Model private constructor() {
         firebaseModel.getAllStudents(callback)
     }
 
-    fun add(student: Student, profileImage: Bitmap?, storage: Storage, callback: EmptyCallback) {
-        firebaseModel.add(student) {
+    fun add(post: Post, profileImage: Bitmap?, storage: Storage, callback: EmptyCallback) {
+        firebaseModel.add(post) {
             profileImage?.let {
 
                 when (storage) {
                     Storage.FIREBASE -> {
                         uploadImageToFirebase(
                             image = it,
-                            name = student.id) { url ->
+                            name = post.id) { url ->
                             url?.let {
-                                val st = student.copy(avatarUrl = it)
+                                val st = post.copy(photoUrl = it)
                                 firebaseModel.add(st, callback)
                             } ?: callback()
                         }
@@ -39,9 +39,9 @@ class Model private constructor() {
                     Storage.CLOUDINARY -> {
                         uploadImageToCloudinary(
                             image = it,
-                            name = student.id,
+                            name = post.id,
                             onSuccess = { url ->
-                                val st = student.copy(avatarUrl = url)
+                                val st = post.copy(photoUrl = url)
                                 firebaseModel.add(st, callback)
                             },
                             onError = { callback() }

@@ -46,7 +46,9 @@ data class Post(
             return hashMapOf(
                 ID_KEY to id,
                 ADDRESS_KEY to address,
-                PHo_URL_KEY to avatarUrl,
-                IS_CHECKED_KEY to isChecked)
+                PHOTO_URL_KEY to photoUrl,
+                PRICE_KEY to price,
+                IS_FURNISHED_KEY to isFurnished,
+                HAS_SHELTER_KEY to hasShelter)
         }
 }
