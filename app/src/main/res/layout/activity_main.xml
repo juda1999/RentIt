@@ -41,7 +41,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bar_menu"
-        android:background="@color/white"/>
+        app:menu="@menu/bar_menu"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

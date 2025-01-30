@@ -15,7 +15,7 @@ import com.idz.rentIt.databinding.FragmentAddStudentBinding
 import com.idz.rentIt.model.Model
 import com.idz.rentIt.model.Post
 
-class AddStudentFragment : Fragment() {
+class AddPropertyFragment : Fragment() {
 
     private var cameraLauncher: ActivityResultLauncher<Void?>? = null
 

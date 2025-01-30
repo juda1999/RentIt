@@ -13,14 +13,6 @@
         android:theme="@style/Theme.RentIt"
         tools:targetApi="31">
         <activity
-            android:name=".StudentsRecyclerViewActivity"
-            android:exported="true">
-        </activity>
-        <activity
-            android:name=".StudentsListViewActivity"
-            android:exported="true">
-        </activity>
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

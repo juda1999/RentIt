@@ -1,41 +1,29 @@
 package com.idz.rentIt
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.CheckBox
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.idz.rentIt.model.Post
 
-class StudentsListViewActivity : AppCompatActivity() {
+
+class PropertiesListViewFragment : Fragment() {
     var posts: MutableList<Post>? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_students_list_view)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
-        // TODO: 1. Set xml layout ✅
-        // TODO: 2. Set instance of list view in activity ✅
-        // TODO: 3. Set adapter ✅
-        // TODO: 4. Create rows layout ✅
-        // TODO: 5. Set dynamic data (MVP) 👨‍🎓
-        // TODO: 6. On click on checkbox
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
 
 //        students = Model.shared.students
 //        val listView: ListView = findViewById(R.id.students_list_view)
 //        listView.adapter = StudentsAdapter()
+        return inflater.inflate(R.layout.fragment_properties_list_view, container, false)
     }
 
     inner class StudentsAdapter(): BaseAdapter() {
@@ -52,7 +40,7 @@ class StudentsListViewActivity : AppCompatActivity() {
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val inflation = LayoutInflater.from(parent?.context)
             val view = convertView ?: inflation.inflate(
-                R.layout.student_list_row,
+                R.layout.property_list_row,
                 parent,
                 false
             ).apply {

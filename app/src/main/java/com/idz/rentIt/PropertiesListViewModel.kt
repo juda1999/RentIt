@@ -3,7 +3,7 @@ package com.idz.rentIt
 import androidx.lifecycle.ViewModel
 import com.idz.rentIt.model.Post
 
-class StudentsListViewModel : ViewModel() {
+class PropertiesListViewModel : ViewModel() {
 
     private var _posts: List<Post>? = null
     var posts: List<Post>?
