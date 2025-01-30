@@ -15,14 +15,14 @@ import com.idz.rentIt.databinding.FragmentStudentsListBinding
 import com.idz.rentIt.model.Model
 import com.idz.rentIt.model.Post
 
-class StudentsListFragment : Fragment() {
+class PropertiesListFragment : Fragment() {
     private var adapter: StudentsRecyclerAdapter? = null
     private var binding: FragmentStudentsListBinding? = null
-    private var viewModel: StudentsListViewModel? = null
+    private var viewModel: PropertiesListViewModel? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        viewModel = ViewModelProvider(this)[StudentsListViewModel::class.java]
+        viewModel = ViewModelProvider(this)[PropertiesListViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -57,7 +57,7 @@ class StudentsListFragment : Fragment() {
 //                Navigation.findNavController(view).navigate(R.id.action_studentsListFragment_to_blueFragment)
 
                 post?.let {
-                    val action = StudentsListFragmentDirections.actionStudentsListFragmentToBlueFragment(it.address)
+                    val action = PropertiesListFragmentDirections.actionStudentsListFragmentToBlueFragment(it.address)
                     binding?.root?.let {
                         Navigation.findNavController(it).navigate(action)
                     }
@@ -67,7 +67,7 @@ class StudentsListFragment : Fragment() {
 
         binding?.recyclerView?.adapter = adapter
 
-        val action = StudentsListFragmentDirections.actionGlobalAddStudentFragment()
+        val action = PropertiesListFragmentDirections.actionGlobalAddStudentFragment()
         binding?.addStudentButton?.setOnClickListener(Navigation.createNavigateOnClickListener(action))
 
         return binding?.root

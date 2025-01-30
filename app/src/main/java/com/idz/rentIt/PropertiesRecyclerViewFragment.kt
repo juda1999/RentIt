@@ -1,11 +1,11 @@
 package com.idz.rentIt
 
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.idz.rentIt.model.Model
 import com.idz.rentIt.model.Post
 
 interface OnItemClickListener {
@@ -13,24 +13,16 @@ interface OnItemClickListener {
     fun onItemClick(student: Post?)
 }
 
-class StudentsRecyclerViewActivity : AppCompatActivity() {
 
+class PropertiesRecyclerViewFragment : Fragment() {
     private var students: MutableList<Post>? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_students_recycler_view)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
-        // TODO: 1. Create layout ✅
-        // TODO: 2. Create adapter ✅
-        // TODO: 3. Create ViewHolder ✅
-//
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_properties_recycler_view, container, false)
 //        students = Model.shared.students
 //        val recyclerView: RecyclerView = findViewById(R.id.students_list_activity_recycler_view)
 //        recyclerView.setHasFixedSize(true)
@@ -51,6 +43,7 @@ class StudentsRecyclerViewActivity : AppCompatActivity() {
 //        }
 //
 //        recyclerView.adapter = adapter
-
+        return view
     }
+
 }

@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/studentsListFragment">
+    app:startDestination="@id/propertiesListFragment">
 
     <fragment
-        android:id="@+id/studentsListFragment"
-        android:name="com.idz.rentIt.StudentsListFragment"
+        android:id="@+id/propertiesListFragment"
+        android:name="com.idz.rentIt.PropertiesListFragment"
         android:label="Students List"
         tools:layout="@layout/fragment_students_list">
         <action
@@ -24,9 +24,17 @@
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/addStudentFragment"
-        android:name="com.idz.rentIt.AddStudentFragment"
-        android:label="Add Student"
-        tools:layout="@layout/fragment_add_student" />
-    <action android:id="@+id/action_global_addStudentFragment" app:destination="@id/addStudentFragment" />
+        android:id="@+id/addPropertyFragment"
+        android:name="com.idz.rentIt.AddPropertyFragment"
+        android:label="Add Property"
+        tools:layout="@layout/fragment_add_property" />
+    <action android:id="@+id/action_global_addStudentFragment" app:destination="@id/addPropertyFragment" />
+    <fragment
+        android:id="@+id/FilterFragment"
+        android:name="com.idz.rentIt.FilterFragment"
+        android:label="Filter"
+        tools:layout="@layout/fragment_filter" />
+    <action
+        android:id="@+id/action_global_filterFragment"
+        app:destination="@id/FilterFragment" />
 </navigation>
