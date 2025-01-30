@@ -1,4 +1,4 @@
-package com.idz.colman24class2
+package com.idz.rentIt
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.idz.colman24class2.model.Student
+import com.idz.rentIt.model.Student
 
 class StudentsListViewActivity : AppCompatActivity() {
 

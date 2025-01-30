@@ -1,7 +1,7 @@
-package com.idz.colman24class2
+package com.idz.rentIt
 
 import androidx.lifecycle.ViewModel
-import com.idz.colman24class2.model.Student
+import com.idz.rentIt.model.Student
 
 class StudentsListViewModel : ViewModel() {
 

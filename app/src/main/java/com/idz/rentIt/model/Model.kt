@@ -1,11 +1,10 @@
-package com.idz.colman24class2.model
+package com.idz.rentIt.model
 
 import android.graphics.Bitmap
-import com.idz.colman24class2.base.EmptyCallback
-import com.idz.colman24class2.base.StudentsCallback
+import com.idz.rentIt.base.EmptyCallback
+import com.idz.rentIt.base.StudentsCallback
 
 class Model private constructor() {
-
     enum class Storage {
         FIREBASE,
         CLOUDINARY

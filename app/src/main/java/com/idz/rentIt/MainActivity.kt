@@ -1,4 +1,4 @@
-package com.idz.colman24class2
+package com.idz.rentIt
 
 import android.graphics.Color
 import android.os.Bundle
@@ -36,9 +36,6 @@ class MainActivity : AppCompatActivity() {
         // TODO: 2 - Create nav_graph.xml and connect to nav host
         // TODO: 3 - Connect list fragment with blue fragment action with back button
         // TODO: 4 - Set navArgs for blue fragment
-        // TODO: 5 -
-        // TODO: 6 -
-        // TODO: 7 -
 
         val toolbar: Toolbar = findViewById(R.id.main_toolbar)
         toolbar.setBackgroundColor(Color.parseColor("#333333"))

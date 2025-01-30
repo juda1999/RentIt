@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.idz.colman24class2"
+    namespace = "com.idz.rentIt"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.idz.colman24class2"
+        applicationId = "com.idz.rentIt"
         minSdk = 29
         targetSdk = 34
         versionCode = 1
