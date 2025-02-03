@@ -1,4 +1,4 @@
-package com.idz.rentIt
+package com.example.rentit
 
 import org.junit.Test
 

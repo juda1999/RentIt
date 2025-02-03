@@ -3,8 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/addStudentFragment"
-        android:icon="@android:drawable/ic_input_add"
-        android:title="Add"
-        app:showAsAction="always" />
+        android:id="@+id/userProfileFragment"
+        android:title="profile"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/logoutMenuItem"
+        android:icon="@drawable/logout_image"
+        android:title="logout"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/userCommentAdditionFragment"
+        android:icon="@drawable/add_image"
+        android:title="Add movie comment"
+        app:showAsAction="ifRoom" />
 </menu>
