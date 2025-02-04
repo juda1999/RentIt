@@ -1,4 +1,4 @@
-package com.example.rentit.viewmodels
+package com.idz.rentit.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController

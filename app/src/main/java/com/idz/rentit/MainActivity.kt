@@ -1,4 +1,4 @@
-package com.example.rentit
+package com.idz.rentit
 
 import android.os.Bundle
 import android.view.Menu
@@ -6,13 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.idz.rentIt.R
 
-class GuestsActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_guests)
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.guest_navhost) as NavHostFragment
+        setContentView(R.layout.activity_main)
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.main_navhost) as NavHostFragment
         val navController: NavController = navHostFragment.navController
         NavigationUI.setupActionBarWithNavController(this, navController)
     }
@@ -21,4 +22,5 @@ class GuestsActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
 }

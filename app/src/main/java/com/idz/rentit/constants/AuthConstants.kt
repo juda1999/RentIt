@@ -1,4 +1,4 @@
-package com.example.rentIt.constants
+package com.idz.rentit.constants
 
 object AuthConstants {
     const val REGISTER_INVALID_PASSWORD = "Password must be at least 8 characters"

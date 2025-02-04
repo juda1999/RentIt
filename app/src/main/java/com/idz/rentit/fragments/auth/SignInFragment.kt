@@ -1,4 +1,4 @@
-package com.example.rentit.fragments.auth
+package com.idz.rentit.fragments.auth
 
 import android.content.Context
 import android.content.Intent
@@ -17,12 +17,14 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.rentit.MainActivity
-import com.example.rentit.databinding.FragmentSignInBinding
-import com.example.rentit.repository.Repository
-import com.example.rentit.utils.UserUtils
-import com.example.rentit.viewmodels.SignInFragmentViewModel
+import com.idz.rentit.MainActivity
+import com.idz.rentit.repository.Repository
+import com.idz.rentit.utils.UserUtils
 import com.google.android.material.snackbar.Snackbar
+import com.idz.rentIt.R
+import com.idz.rentit.viewModels.SignInFragmentViewModel
+import com.idz.rentit.databinding.FragmentSignInBinding;
+
 
 class SignInFragment : Fragment() {
     private lateinit var viewBindings: FragmentSignInBinding

@@ -1,4 +1,4 @@
-package com.example.rentit.utils
+package com.idz.rentit.utils
 
 import com.example.movieshare.constants.AuthConstants.*
 import com.example.movieshare.constants.MovieCommentConstants.MOVIE_COMMENT_RATING_INVALID
