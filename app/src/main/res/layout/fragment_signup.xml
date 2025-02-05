@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.idz.rentit.fragments.auth.SignUpFragment">
+    tools:context="com.idz.rentit.fragments.SignUpFragment">
 
     <TextView
         android:id="@+id/sign_up_fragment_headline"

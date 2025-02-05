@@ -1,18 +1,7 @@
-package com.idz.rentit.fragments.auth
+package com.idz.rentit.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.Lifecycle
-import androidx.navigation.Navigation.findNavController
-import com.idz.rentIt.R
 
 
 class SignUpFragment : Fragment() {

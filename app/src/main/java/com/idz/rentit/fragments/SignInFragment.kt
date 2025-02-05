@@ -1,4 +1,4 @@
-package com.idz.rentit.fragments.auth
+package com.idz.rentit.fragments
 
 import android.content.Context
 import android.content.Intent
@@ -24,6 +24,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.idz.rentIt.R
 import com.idz.rentit.viewModels.SignInFragmentViewModel
 import com.idz.rentit.databinding.FragmentSignInBinding;
+import com.idz.rentit.fragment.SignInFragmentDirections
 
 
 class SignInFragment : Fragment() {
@@ -90,7 +91,8 @@ class SignInFragment : Fragment() {
 
     private fun setRegisterButtonOnClickListener() {
         viewBindings.signInFragmentRegisterBtn.setOnClickListener {
-            val action: NavDirections = SignInFragmentDirections.actionSignInFragmentToSignUpFragment()
+            val action: NavDirections =
+                SignInFragmentDirections.actionSignInFragmentToSignUpFragment()
             viewModel.getNavController()?.navigate(action)
         }
     }
