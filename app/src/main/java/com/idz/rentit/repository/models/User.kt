@@ -16,7 +16,7 @@ import java.util.Objects
 @Entity
 class User {
     @PrimaryKey
-    private var userId: String? = null
+    private lateinit var userId: String
     var firstName: String
     var lastName: String
     var email: String

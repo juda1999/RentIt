@@ -22,20 +22,21 @@ import com.idz.rentit.repository.Repository
 import com.idz.rentit.utils.UserUtils
 import com.google.android.material.snackbar.Snackbar
 import com.idz.rentIt.R
+import com.idz.rentIt.databinding.FragmentSigninBinding
 import com.idz.rentit.viewModels.SignInFragmentViewModel
-import com.idz.rentit.databinding.FragmentSignInBinding;
-import com.idz.rentit.fragment.SignInFragmentDirections
+import com.idz.rentit.listeners.authentication.LoginOnFailureListener
+import com.idz.rentit.listeners.authentication.LoginOnSuccessListener
 
 
 class SignInFragment : Fragment() {
-    private lateinit var viewBindings: FragmentSignInBinding
+    private lateinit var viewBindings: FragmentSigninBinding
     private lateinit var viewModel: SignInFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewBindings = FragmentSignInBinding.inflate(inflater, container, false)
+        viewBindings = FragmentSigninBinding.inflate(inflater, container, false)
         configureMenuOptions(viewBindings.root)
         initializeDataMembers()
         setListeners()
@@ -62,26 +63,34 @@ class SignInFragment : Fragment() {
         viewBindings.signInFragmentLoginBtn.setOnClickListener { view ->
             UserUtils.setErrorIfEmailIsInvalid(viewBindings.signInFragmentEmailInputEt)
             UserUtils.setErrorIfPasswordIsInvalid(viewBindings.signInFragmentPasswordInputEt)
+
+            val loginSuccessListener =  LoginOnSuccessListener {
+                 fun onSuccess() {
+                    val intent = Intent(activity, MainActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    }
+                    startActivity(intent)
+                }
+            }
+
+            val loginFailListener= LoginOnFailureListener {
+                 fun onFailure(errorMessage: String) {
+                    Snackbar.make(view, errorMessage, Snackbar.LENGTH_SHORT).show()
+                    viewBindings.signInFragmentLoginBtn.isEnabled = true
+                    viewBindings.signInFragmentRegisterBtn.isEnabled = true
+                }
+            }
+
             if (isFormValid()) {
                 viewBindings.signInFragmentLoginBtn.isEnabled = false
                 viewBindings.signInFragmentRegisterBtn.isEnabled = false
-                Repository.getRepositoryInstance().authModel.login(
+                Repository.repositoryInstance.getAuthModel().login(
                     viewBindings.signInFragmentEmailInputEt.text.toString(),
                     viewBindings.signInFragmentPasswordInputEt.text.toString(),
-                    {
-                        val intent = Intent(activity, MainActivity::class.java).apply {
-                            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        }
-                        startActivity(intent)
-                    },
-                    { errorMessage ->
-                        Snackbar.make(view, errorMessage, Snackbar.LENGTH_SHORT).show()
-                        viewBindings.signInFragmentLoginBtn.isEnabled = true
-                        viewBindings.signInFragmentRegisterBtn.isEnabled = true
-                    }
-                )
+                    loginSuccessListener,
+                    loginFailListener)
             }
-        }
+            }
     }
 
     private fun isFormValid(): Boolean {
@@ -111,7 +120,7 @@ class SignInFragment : Fragment() {
         }
     }
 
-    override fun configureMenuOptions(view: View) {
+     fun configureMenuOptions(view: View) {
         val parentActivity: FragmentActivity = requireActivity()
         parentActivity.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {

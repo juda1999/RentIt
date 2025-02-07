@@ -12,11 +12,11 @@ interface IsEmailExistOnSuccessListener {
     fun onComplete(emailExist: Boolean)
 }
 
-interface LoginOnFailureListener {
+fun interface LoginOnFailureListener {
     fun onComplete(errorMessage: String?)
 }
 
-interface LoginOnSuccessListener {
+fun interface LoginOnSuccessListener {
     fun onComplete()
 }
 

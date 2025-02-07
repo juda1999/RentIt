@@ -9,7 +9,7 @@
         android:id="@+id/signInFragment"
         android:name="com.idz.rentit.fragments.SignInFragment"
         android:label="Sign In"
-        tools:layout="@layout/fragment_sign_in">
+        tools:layout="@layout/fragment_signin">
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
@@ -19,9 +19,9 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.rentit.fragments.auth.SignUpFragment"
+        android:name="com.idz.rentit.fragments.SignUpFragment"
         android:label="Sign Up"
-        tools:layout="@layout/fragment_sign_up">
+        tools:layout="@layout/fragment_signup">
         <action
             android:id="@+id/action_signUpFragment_to_nav_graph"
             app:destination="@id/nav_graph" />

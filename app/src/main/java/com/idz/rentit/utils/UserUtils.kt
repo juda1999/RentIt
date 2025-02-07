@@ -1,9 +1,9 @@
 package com.idz.rentit.utils
 
-import com.example.movieshare.constants.AuthConstants.*
-import com.example.movieshare.constants.MovieCommentConstants.MOVIE_COMMENT_RATING_INVALID
-import com.example.movieshare.constants.MovieCommentConstants.MOVIE_COMMENT_COMMENT_INVALID
+import com.idz.rentit.constants.AuthConstants.REGISTER_INVALID_NAME
 import com.google.android.material.textfield.TextInputEditText
+import com.idz.rentit.constants.AuthConstants.REGISTER_INVALID_EMAIL
+import com.idz.rentit.constants.AuthConstants.REGISTER_INVALID_PASSWORD
 
 object UserUtils {
 
@@ -46,7 +46,7 @@ object UserUtils {
     fun setErrorIfBiggerThan(rating: TextInputEditText, maxRating: Int): Boolean {
         val ratingValue = rating.text.toString().toIntOrNull()
         return if (ratingValue == null || ratingValue < 0 || ratingValue > maxRating) {
-            rating.error = MOVIE_COMMENT_COMMENT_INVALID
+//            rating.error = MOVIE_COMMENT_COMMENT_INVALID
             false
         } else {
             rating.error = null
@@ -56,7 +56,7 @@ object UserUtils {
 
     fun setErrorIfEmpty(rating: TextInputEditText): Boolean {
         return if (InputValidator.isFieldEmpty(rating.text)) {
-            rating.error = MOVIE_COMMENT_RATING_INVALID
+//            rating.error = MOVIE_COMMENT_RATING_INVALID
             false
         } else {
             rating.error = null

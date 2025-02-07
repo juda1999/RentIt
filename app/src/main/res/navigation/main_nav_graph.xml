@@ -1,113 +1,114 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!--<?xml version="1.0" encoding="utf-8"?>-->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/movieHomeFragment">
+    app:startDestination="@layout/fragment_signup">
+<!--    app:startDestination="@id/movieHomeFragment">-->
 
-    <fragment
-        android:id="@+id/userProfileFragment"
-        android:name="com.idz.rentit.fragments.UserProfileFragment"
-        android:label="My Profile"
-        tools:layout="@layout/fragment_user_profile">
-        <action
-            android:id="@+id/action_profileFragment_to_userCommentListFragment"
-            app:destination="@id/userCommentListFragment" />
-        <action
-            android:id="@+id/action_userProfileFragment_to_userProfileEditionFragment"
-            app:destination="@id/userProfileEditionFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/userCommentListFragment"
-        android:name="com.example.movieshare.fragments.user.UserCommentListFragment"
-        android:label="My Comments"
-        tools:layout="@layout/fragment_user_comment_list">
-        <action
-            android:id="@+id/action_userCommentListFragment_to_userCommentEditionFragment"
-            app:destination="@id/userCommentEditionFragment" />
-        <argument
-            android:name="userId"
-            app:argType="string" />
-    </fragment>
-    <fragment
-        android:id="@+id/userCommentEditionFragment"
-        android:name="com.example.movieshare.fragments.user.UserCommentEditionFragment"
-        android:label="Edit Comment"
-        tools:layout="@layout/fragment_user_comment_edition">
-        <argument
-            android:name="movieCommentPosition"
-            app:argType="integer" />
-        <argument
-            android:name="userId"
-            app:argType="string" />
-    </fragment>
-    <fragment
-        android:id="@+id/userCommentAdditionFragment"
-        android:name="com.example.movieshare.fragments.user.UserCommentAdditionFragment"
-        android:label="Add Comment"
-        tools:layout="@layout/fragment_user_comment_addition">
-        <argument
-            android:name="movieName"
-            app:argType="string" />
-    </fragment>
-    <fragment
-        android:id="@+id/movieHomeFragment"
-        android:name="com.example.movieshare.fragments.movie.MovieHomeFragment"
-        android:label="Categories"
-        tools:layout="@layout/fragment_movie_home">
-        <action
-            android:id="@+id/action_movieHomeFragment_to_movieListFragment"
-            app:destination="@id/movieListFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/movieListFragment"
-        android:name="com.example.movieshare.fragments.movie.MovieListFragment"
-        android:label="Movie List"
-        tools:layout="@layout/fragment_movie_list">
-        <argument
-            android:name="movieCategoryPosition"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_movieListFragment_to_movieProfileFragment"
-            app:destination="@id/movieProfileFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/movieProfileFragment"
-        android:name="com.example.movieshare.fragments.movie.MovieProfileFragment"
-        android:label="Movie Profile"
-        tools:layout="@layout/fragment_movie_profile">
-        <argument
-            android:name="moviePosition"
-            app:argType="integer" />
-        <action
-            android:id="@+id/action_movieProfileFragment_to_movieCommentListFragment"
-            app:destination="@id/movieCommentListFragment" />
-        <argument
-            android:name="movieCategoryId"
-            app:argType="string" />
-        <action
-            android:id="@+id/action_movieProfileFragment_to_userCommentAdditionFragment"
-            app:destination="@id/userCommentAdditionFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/movieCommentListFragment"
-        android:name="com.example.movieshare.fragments.movie.MovieCommentListFragment"
-        android:label="Comments"
-        tools:layout="@layout/fragment_movie_comment_list">
-        <argument
-            android:name="movieId"
-            app:argType="string" />
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/userProfileFragment"-->
+<!--        android:name="com.idz.rentit.fragments.UserProfileFragment"-->
+<!--        android:label="My Profile"-->
+<!--        tools:layout="@layout/fragment_user_profile">-->
+<!--        <action-->
+<!--            android:id="@+id/action_profileFragment_to_userCommentListFragment"-->
+<!--            app:destination="@id/userCommentListFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_userProfileFragment_to_userProfileEditionFragment"-->
+<!--            app:destination="@id/userProfileEditionFragment" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/userCommentListFragment"-->
+<!--        android:name="com.idz.rentit.fragments.UserCommentListFragment"-->
+<!--        android:label="My Comments"-->
+<!--        tools:layout="@layout/fragment_user_comment_list">-->
+<!--        <action-->
+<!--            android:id="@+id/action_userCommentListFragment_to_userCommentEditionFragment"-->
+<!--            app:destination="@id/userCommentEditionFragment" />-->
+<!--        <argument-->
+<!--            android:name="userId"-->
+<!--            app:argType="string" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/userCommentEditionFragment"-->
+<!--        android:name="com.idz.rentit.fragments.UserCommentEditionFragment"-->
+<!--        android:label="Edit Comment"-->
+<!--        tools:layout="@layout/fragment_user_comment_edition">-->
+<!--        <argument-->
+<!--            android:name="movieCommentPosition"-->
+<!--            app:argType="integer" />-->
+<!--        <argument-->
+<!--            android:name="userId"-->
+<!--            app:argType="string" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/userCommentAdditionFragment"-->
+<!--        android:name="com.example.movieshare.fragments.user.UserCommentAdditionFragment"-->
+<!--        android:label="Add Comment"-->
+<!--        tools:layout="@layout/fragment_user_comment_addition">-->
+<!--        <argument-->
+<!--            android:name="movieName"-->
+<!--            app:argType="string" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/movieHomeFragment"-->
+<!--        android:name="com.example.movieshare.fragments.movie.MovieHomeFragment"-->
+<!--        android:label="Categories"-->
+<!--        tools:layout="@layout/fragment_movie_home">-->
+<!--        <action-->
+<!--            android:id="@+id/action_movieHomeFragment_to_movieListFragment"-->
+<!--            app:destination="@id/movieListFragment" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/movieListFragment"-->
+<!--        android:name="com.example.movieshare.fragments.movie.MovieListFragment"-->
+<!--        android:label="Movie List"-->
+<!--        tools:layout="@layout/fragment_movie_list">-->
+<!--        <argument-->
+<!--            android:name="movieCategoryPosition"-->
+<!--            app:argType="integer" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_movieListFragment_to_movieProfileFragment"-->
+<!--            app:destination="@id/movieProfileFragment" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/movieProfileFragment"-->
+<!--        android:name="com.example.movieshare.fragments.movie.MovieProfileFragment"-->
+<!--        android:label="Movie Profile"-->
+<!--        tools:layout="@layout/fragment_movie_profile">-->
+<!--        <argument-->
+<!--            android:name="moviePosition"-->
+<!--            app:argType="integer" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_movieProfileFragment_to_movieCommentListFragment"-->
+<!--            app:destination="@id/movieCommentListFragment" />-->
+<!--        <argument-->
+<!--            android:name="movieCategoryId"-->
+<!--            app:argType="string" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_movieProfileFragment_to_userCommentAdditionFragment"-->
+<!--            app:destination="@id/userCommentAdditionFragment" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/movieCommentListFragment"-->
+<!--        android:name="com.idz.rentit.fragments.MovieCommentListFragment"-->
+<!--        android:label="Comments"-->
+<!--        tools:layout="@layout/fragment_movie_comment_list">-->
+<!--        <argument-->
+<!--            android:name="movieId"-->
+<!--            app:argType="string" />-->
+<!--    </fragment>-->
     <action
         android:id="@+id/action_global_userProfileFragment"
         app:destination="@id/userProfileFragment" />
-    <fragment
-        android:id="@+id/userProfileEditionFragment"
-        android:name="com.example.movieshare.fragments.user.UserProfileEditionFragment"
-        android:label="Edit Profile"
-        tools:layout="@layout/fragment_user_profile_edition">
-        <argument
-            android:name="userId"
-            app:argType="string" />
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/userProfileEditionFragment"-->
+<!--        android:name="com.idz.rentit.fragments.UserProfileEditionFragment"-->
+<!--        android:label="Edit Profile"-->
+<!--        tools:layout="@layout/fragment_user_profile_edition">-->
+<!--        <argument-->
+<!--            android:name="userId"-->
+<!--            app:argType="string" />-->
+<!--    </fragment>-->
 </navigation>
