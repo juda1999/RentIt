@@ -4,6 +4,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.core.os.HandlerCompat
 import com.idz.rentit.enums.LoadingState.*
+import com.idz.rentit.listeners.authentication.AddUserListener
 import com.idz.rentit.repository.firebase.AuthModel
 import com.idz.rentit.repository.firebase.FirebaseModel
 import com.idz.rentit.repository.models.*
@@ -130,12 +131,12 @@ class Repository private constructor() {
 //            }
 //    }
 
-//    fun register(addUserListener: AddUserListener?, user: User, password: String?) {
-//        authModel.register(user.getEmail(), password) { uid ->
-//            user.setUserId(uid)
-//            firebaseModel.getUserExecutor().addUser(user, addUserListener)
-//        }
-//    }
+    fun register(addUserListener: AddUserListener?, user: User, password: String?) {
+        authModel.register(user.email, password) { uid ->
+            user.setUserId(uid)
+            firebaseModel.userExecutor.addUser(user, addUserListener)
+        }
+    }
 
     companion object {
         val repositoryInstance: Repository = Repository()
