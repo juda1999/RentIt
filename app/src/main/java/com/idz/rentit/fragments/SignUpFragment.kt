@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.view.LayoutInflater
 import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +42,7 @@ class SignUpFragment : Fragment() {
         viewModel.setCameraLauncher(registerForActivityResult(
             ActivityResultContracts.TakePicturePreview()
         ) { result ->
-            if (Objects.nonNull(result)) {
+            if (result != null) {
                 viewBindings.signUpFragmentImg.setImageBitmap(result)
                 viewBindings.cameraButton.setVisibility(View.GONE)
                 viewModel.setProfilePictureSelected(true)
@@ -98,12 +99,12 @@ class SignUpFragment : Fragment() {
             }
         }
     }
-//
+
     private fun registerIfValid(view: View) {
         Repository.repositoryInstance.getAuthModel()
             .isEmailExists(
                 viewBindings.signUpFragmentEmailInputEt.getText().toString(),
-                { emailExist ->
+                { emailExist: Boolean ->
                     if (emailExist) {
                         viewBindings.signUpFragmentEmailInputEt
                             .setError(AuthConstants.REGISTER_EMAIL_ALREADY_EXIST)
@@ -111,7 +112,7 @@ class SignUpFragment : Fragment() {
                         this.registerUserProcess()
                     }
                 },
-                { errorMessage -> Snackbar.make(view, errorMessage, Snackbar.LENGTH_SHORT).show() })
+                { errorMessage: String? -> Snackbar.make(view, errorMessage ?: "", Snackbar.LENGTH_SHORT).show() })
     }
 
     private fun registerUserProcess() {
@@ -133,7 +134,7 @@ class SignUpFragment : Fragment() {
 
     private fun uploadUserProfilePhoto(profileImage: Bitmap, user: User) {
         Repository.repositoryInstance.getFirebaseModel().userExecutor
-            .uploadUserImage(profileImage, user.email + UserConstants.USER_IMAGE_PROFILE_EXTENSION) { url: String ->
+            .uploadUserImage(profileImage, user.email + UserConstants.USER_IMAGE_PROFILE_EXTENSION) { url: String? ->
                 if (Objects.nonNull(url)) {
                     user.imageUrl = url
                 }
@@ -196,14 +197,14 @@ class SignUpFragment : Fragment() {
     protected fun configureMenuOptions(view: View?) {
         val parentActivity: FragmentActivity? = getActivity()
         parentActivity?.addMenuProvider(object : MenuProvider {
-            fun onCreateMenu(menu: Menu) {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menu.removeItem(R.id.userCommentAdditionFragment)
                 menu.removeItem(R.id.userProfileFragment)
                 menu.removeItem(R.id.logoutMenuItem)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                if (menuItem.itemId == R.id.home) {
+                if (menuItem.itemId == android.R.id.home) {
                     findNavController().popBackStack()
                     return true
                 }

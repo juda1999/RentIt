@@ -3,8 +3,6 @@ package com.idz.rentit.repository
 import android.os.Handler
 import android.os.Looper
 import androidx.core.os.HandlerCompat
-import com.idz.rentit.enums.LoadingState.*
-import com.idz.rentit.listeners.authentication.AddUserListener
 import com.idz.rentit.repository.firebase.AuthModel
 import com.idz.rentit.repository.firebase.FirebaseModel
 import com.idz.rentit.repository.models.*
@@ -131,8 +129,8 @@ class Repository private constructor() {
 //            }
 //    }
 
-    fun register(addUserListener: AddUserListener?, user: User, password: String?) {
-        authModel.register(user.email, password) { uid ->
+    fun register(addUserListener: () -> Unit, user: User, password: String) {
+        authModel.register(user.email, password) { uid: String ->
             user.setUserId(uid)
             firebaseModel.userExecutor.addUser(user, addUserListener)
         }

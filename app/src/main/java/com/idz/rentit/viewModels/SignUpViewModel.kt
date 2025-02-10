@@ -6,7 +6,7 @@ import androidx.navigation.NavController
 
 class SignUpFragmentViewModel : ViewModel() {
     private var navController: NavController? = null
-    private var cameraLauncher: ActivityResultLauncher<Void>? = null
+    private var cameraLauncher: ActivityResultLauncher<Void?>? = null
     private var isProfilePictureSelected: Boolean = false
 
     fun getNavController(): NavController? {
@@ -17,11 +17,11 @@ class SignUpFragmentViewModel : ViewModel() {
         this.navController = navController
     }
 
-    fun getCameraLauncher(): ActivityResultLauncher<Void>? {
+    fun getCameraLauncher(): ActivityResultLauncher<Void?>? {
         return cameraLauncher
     }
 
-    fun setCameraLauncher(cameraLauncher: ActivityResultLauncher<Void?>) {
+    fun setCameraLauncher(cameraLauncher: ActivityResultLauncher<Void?>?) {
         this.cameraLauncher = cameraLauncher
     }
 

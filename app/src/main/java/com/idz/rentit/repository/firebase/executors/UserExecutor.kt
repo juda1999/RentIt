@@ -18,25 +18,25 @@ class UserExecutor private constructor() {
     private val db = FirebaseFirestore.getInstance()
     private val storage = FirebaseStorage.getInstance()
 
-    fun getUserById(id: String?, listener: GetMovieItemListener<User?>) {
-        db.collection(UserConstants.USER_COLLECTION_NAME)
-            .whereEqualTo(FieldPath.documentId(), id)
-            .get()
-            .addOnSuccessListener { task: QuerySnapshot ->
-                var user: User? = null
-                val jsonDocument = task.documents
-                if (!jsonDocument.isEmpty()) {
-                    user = User.fromJson(jsonDocument[0].data)
-                }
-                listener.onComplete(user)
-            }
-    }
+//    fun getUserById(id: String?, listener: GetMovieItemListener<User?>) {
+//        db.collection(UserConstants.USER_COLLECTION_NAME)
+//            .whereEqualTo(FieldPath.documentId(), id)
+//            .get()
+//            .addOnSuccessListener { task: QuerySnapshot ->
+//                var user: User? = null
+//                val jsonDocument = task.documents
+//                if (!jsonDocument.isEmpty()) {
+//                    user = User.fromJson(jsonDocument[0].data)
+//                }
+//                listener.onComplete(user)
+//            }
+//    }
 
-    fun addUser(user: User, listener: AddUserListener) {
+    fun addUser(user: User, listener: () -> Unit) {
         db.collection(UserConstants.USER_COLLECTION_NAME)
             .document(user.getUserId())
             .set(user.toJson())
-            .addOnCompleteListener { task: Task<Void?>? -> listener.onComplete() }
+            .addOnCompleteListener { task: Task<Void?>? -> listener() }
     }
 
     fun updateUser(user: User, listener: UpdateUserListener) {
@@ -46,7 +46,7 @@ class UserExecutor private constructor() {
             .addOnCompleteListener { task: Task<Void?>? -> listener.onComplete() }
     }
 
-    fun uploadUserImage(imageBmp: Bitmap, name: String, listener: UploadUserImageListener) {
+    fun uploadUserImage(imageBmp: Bitmap, name: String, listener: (String?) -> Unit) {
         val imagesRef = storage.reference.child(IMAGE_FOLDER).child(name)
 
         val byteArrayOutputStream = ByteArrayOutputStream()
@@ -55,14 +55,12 @@ class UserExecutor private constructor() {
 
         val uploadTask = imagesRef.putBytes(data)
         uploadTask.addOnFailureListener { exception: Exception? ->
-            listener.onComplete(
-                null
-            )
+            listener(null)
         }
             .addOnSuccessListener { taskSnapshot: UploadTask.TaskSnapshot? ->
                 imagesRef.downloadUrl
-                    .addOnFailureListener { uri: Exception? -> listener.onComplete(null) }
-                    .addOnSuccessListener { uri: Uri -> listener.onComplete(uri.toString()) }
+                    .addOnFailureListener { uri: Exception? -> listener(null) }
+                    .addOnSuccessListener { uri: Uri -> listener(uri.toString()) }
             }
     }
 

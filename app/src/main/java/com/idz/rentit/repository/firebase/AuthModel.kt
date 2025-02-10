@@ -10,11 +10,11 @@ import java.util.Objects
 class AuthModel {
     private val firebaseAuth = FirebaseAuth.getInstance()
 
-    fun register(email: String, password: String, registerListener: RegisterListener) {
+    fun register(email: String, password: String, registerListener: (String) -> Unit) {
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task: Task<AuthResult> ->
                 if (task.isSuccessful && task.result.user != null) {
-                    registerListener.onComplete(task.result.user!!.uid)
+                    registerListener(task.result.user!!.uid)
                 }
             }
     }
@@ -54,20 +54,18 @@ class AuthModel {
 
     fun isEmailExists(
         email: String,
-        onSuccessListener: IsEmailExistOnSuccessListener,
-        onFailureListener: IsEmailExistOnFailureListener
+        onSuccessListenerComplete: (Boolean) -> Unit,
+        onFailureListenerComplete: (String?) -> Unit
     ) {
         firebaseAuth.fetchSignInMethodsForEmail(email)
             .addOnSuccessListener { task: SignInMethodQueryResult ->
                 if (task.signInMethods != null) {
                     val isNewUser = task.signInMethods!!.isEmpty()
-                    onSuccessListener.onComplete(!isNewUser)
+                    onSuccessListenerComplete(!isNewUser)
                 }
             }
             .addOnFailureListener { command: Exception ->
-                onFailureListener.onComplete(
-                    command.message
-                )
+                onFailureListenerComplete(command.message)
             }
     }
 }
