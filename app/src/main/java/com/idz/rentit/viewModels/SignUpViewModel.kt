@@ -1,4 +1,4 @@
-package com.idz.rentit.viewmodels
+package com.idz.rentit.viewModels
 
 import androidx.activity.result.ActivityResultLauncher
 import androidx.lifecycle.ViewModel

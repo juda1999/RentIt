@@ -13,8 +13,10 @@ class GuestsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_guests)
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.guest_navhost) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.guests_nav_graph) as NavHostFragment
         val navController: NavController = navHostFragment.navController
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.main_toolbar)
+        setSupportActionBar(toolbar)
         NavigationUI.setupActionBarWithNavController(this, navController)
     }
 

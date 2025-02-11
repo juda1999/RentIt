@@ -1,42 +1,42 @@
-//package com.idz.rentit.fragments
-//
-//import android.R
-//import android.content.Context
-//import android.os.Bundle
-//import android.view.LayoutInflater
-//import android.view.Menu
-//import android.view.MenuInflater
+package com.idz.rentit.fragments
+
+import android.R
+import android.content.Context
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 //import android.view.MenuItem
-//import android.view.View
-//import android.view.ViewGroup
+import android.view.View
+import android.view.ViewGroup
 //import androidx.core.view.MenuProvider
-//import androidx.fragment.app.Fragment
+import androidx.fragment.app.Fragment
 //import androidx.fragment.app.FragmentActivity
 //import androidx.lifecycle.Lifecycle
 //import androidx.lifecycle.ViewModelProvider
 //import androidx.navigation.NavDirections
 //import androidx.navigation.Navigation.findNavController
-//import com.idz.rentIt.databinding.FragmentUserProfileBinding
+import com.idz.rentIt.databinding.FragmentUserProfileBinding
 //import com.idz.rentit.repository.Repository
-//import com.idz.rentit.viewmodels.UserProfileFragmentViewModel
+//import com.idz.rentit.viewModels.UserProfileFragmentViewModel
 //import com.squareup.picasso.Picasso
 //import java.util.Objects
 //
-//class UserProfileFragment : Fragment() {
-//    private lateinit var viewBindings: FragmentUserProfileBinding
+class UserProfileFragment : Fragment() {
+    private lateinit var viewBindings: FragmentUserProfileBinding
 //    private var userId: String? = null
 //    private var viewModel: UserProfileFragmentViewModel? = null
 //
-//    override fun onCreateView(
-//        inflater: LayoutInflater, container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View {
-//        this.viewBindings = FragmentUserProfileBinding.inflate(inflater, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        this.viewBindings = FragmentUserProfileBinding.inflate(inflater, container, false)
 //        this.configureMenuOptions(viewBindings.getRoot())
 //        initializeUser()
 //        activateButtonsListeners()
-//        return viewBindings.getRoot()
-//    }
+        return viewBindings.getRoot()
+    }
 //
 //    override fun onAttach(context: Context) {
 //        super.onAttach(context)
@@ -126,4 +126,4 @@
 //            }
 //        }, getViewLifecycleOwner(), Lifecycle.State.RESUMED)
 //    }
-//}
+}

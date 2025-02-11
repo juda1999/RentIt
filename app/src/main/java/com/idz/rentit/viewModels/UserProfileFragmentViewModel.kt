@@ -1,4 +1,4 @@
-package com.idz.rentit.viewmodels
+package com.idz.rentit.viewModels
 
 import androidx.lifecycle.ViewModel
 import com.idz.rentit.repository.models.User

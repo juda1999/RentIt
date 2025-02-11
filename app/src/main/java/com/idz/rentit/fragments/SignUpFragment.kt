@@ -29,7 +29,7 @@ import com.idz.rentit.repository.Repository
 import com.idz.rentit.repository.models.User
 import com.idz.rentit.utils.InputValidator
 import com.idz.rentit.utils.UserUtils
-import com.idz.rentit.viewmodels.SignUpFragmentViewModel
+import com.idz.rentit.viewModels.SignUpFragmentViewModel
 import java.util.Objects
 
 
