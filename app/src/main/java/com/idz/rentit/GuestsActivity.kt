@@ -6,6 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.google.firebase.Firebase
+import com.google.firebase.appcheck.appCheck
+import com.google.firebase.appcheck.playintegrity.PlayIntegrityAppCheckProviderFactory
+import com.google.firebase.initialize
 import com.idz.rentIt.R
 
 class GuestsActivity : AppCompatActivity() {
@@ -17,6 +21,10 @@ class GuestsActivity : AppCompatActivity() {
         val navController: NavController = navHostFragment.navController
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.main_toolbar)
         setSupportActionBar(toolbar)
+//        Firebase.initialize(context = this)
+//        Firebase.appCheck.installAppCheckProviderFactory(
+//            PlayIntegrityAppCheckProviderFactory.getInstance(),
+//        )
         NavigationUI.setupActionBarWithNavController(this, navController)
     }
 
