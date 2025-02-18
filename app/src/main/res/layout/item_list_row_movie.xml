@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="137dp"
+    android:layout_height="230dp"
+    android:orientation="horizontal">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="@color/grey"
+        app:cardCornerRadius="1dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:id="@+id/item_list_row_img_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/item_list_row_img"
+                android:layout_width="fill_parent"
+                android:layout_height="170dp"
+                app:srcCompat="@drawable/avatar" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/item_list_row_name_tv"
+                    android:layout_width="fill_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/item_list_row_img"
+                    app:layout_constraintTop_toBottomOf="@+id/item_list_row_img" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/item_list_row_rating_tv_star"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginStart="4dp"
+                        android:src="@drawable/ic_baseline_star_rate_24"
+                        app:layout_constraintHorizontal_bias="1.0" />
+
+                    <TextView
+                        android:id="@+id/item_list_row_rating_tv"
+                        android:layout_width="25dp"
+                        android:layout_height="15dp"
+                        android:layout_marginStart="1dp"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        app:layout_constraintHorizontal_bias="1.0" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/item_list_row_comment_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/item_list_row_comment_tv_star"
+                    app:layout_constraintTop_toBottomOf="@+id/item_list_row_comment_tv_star" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

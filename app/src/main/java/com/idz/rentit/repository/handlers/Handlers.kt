@@ -7,18 +7,18 @@ import androidx.lifecycle.LiveData
 import com.idz.rentit.listeners.authentication.GetPropertyItemListListener
 import com.idz.rentit.listeners.authentication.GetPropertyItemListener
 import com.idz.rentit.repository.models.Property
-//import com.idz.rentit.repository.room.localdb.AppLocalDB
-//import com.idz.rentit.repository.room.localdb.AppLocalDbRepository
+import com.idz.rentit.repository.room.database.AppLocalDB
+import com.idz.rentit.repository.room.database.AppLocalDbRepository
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
 class PropertyHandler private constructor() {
     private val executor: Executor = Executors.newSingleThreadExecutor()
     private val mainThreadHandler = HandlerCompat.createAsync(Looper.getMainLooper())
-//    private val localDB: AppLocalDbRepository = AppLocalDB.appDB
+    private val localDB: AppLocalDbRepository = AppLocalDB.getAppDB()
 
-//    val allProperties: LiveData<List<Property>>?
-//        get() = localDB.propertyDao()?.allProperties
+    val allProperties: LiveData<List<Property>>
+        get() = localDB.propertyDao().getAllProperties()
 
     fun getAllPropertiesByFilter(filter: String, listener: GetPropertyItemListListener<Property?>) {
         executor.execute {
@@ -37,16 +37,16 @@ class PropertyHandler private constructor() {
 
     fun addProperty(property: Property) {
         try {
-//            localDB.propertyDao().insertAll(property)
+            localDB.propertyDao().insertAll(property)
         } catch (e: Exception) {
             Log.d("TAG", e.message!!)
         }
     }
 
     companion object {
-        private val movieHandlerInstance = PropertyHandler()
+        private val propertyHandlerInstance = PropertyHandler()
         fun instance(): PropertyHandler {
-            return movieHandlerInstance
+            return propertyHandlerInstance
         }
     }
 }

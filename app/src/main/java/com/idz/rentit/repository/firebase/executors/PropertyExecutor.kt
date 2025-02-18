@@ -2,6 +2,7 @@ package com.example.movieshare.repository.firebase.executors
 
 import android.graphics.Bitmap
 import android.net.Uri
+import android.util.Log
 import com.idz.rentit.constants.UserConstants
 import com.idz.rentit.listeners.authentication.*
 import com.idz.rentit.repository.models.User
@@ -9,30 +10,35 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
+import com.idz.rentit.constants.PropertyConstants
+import com.idz.rentit.repository.models.Property
 import java.io.ByteArrayOutputStream
 
-class UserExecutor private constructor() {
+class PropertyExecutor private constructor() {
     private val db = FirebaseFirestore.getInstance()
     private val storage = FirebaseStorage.getInstance()
 
-//    fun getUserById(id: String?, listener: GetMovieItemListener<User?>) {
-//        db.collection(UserConstants.USER_COLLECTION_NAME)
-//            .whereEqualTo(FieldPath.documentId(), id)
-//            .get()
-//            .addOnSuccessListener { task: QuerySnapshot ->
-//                var user: User? = null
-//                val jsonDocument = task.documents
-//                if (!jsonDocument.isEmpty()) {
-//                    user = User.fromJson(jsonDocument[0].data)
-//                }
-//                listener.onComplete(user)
-//            }
-//    }
+    fun getProperties(listener: (properties: MutableList<Property>) -> Unit) {
+        db.collection(PropertyConstants.PROPERTY_COLLECTION_NAME)
+            .get()
+            .addOnSuccessListener { task ->
+                val properties = mutableListOf<Property>()
+                for (document in task.documents) {
+                    val property = Property.fromJson(document.data!!)
+                    property.propertyId = document.id
+                    properties.add(property)
+                }
+                listener(properties)
+            }
+            .addOnFailureListener { exception ->
+                Log.d("Error", exception.message.orEmpty())
+            }
+    }
 
-    fun addUser(user: User, listener: () -> Unit) {
-        db.collection(UserConstants.USER_COLLECTION_NAME)
-            .document(user.userId)
-            .set(user.toJson())
+    fun addProperty(property: Property, listener: () -> Unit) {
+        db.collection(PropertyConstants.PROPERTY_COLLECTION_NAME)
+            .document(property.propertyId)
+            .set(property.toJson())
             .addOnCompleteListener { task: Task<Void?>? -> listener() }
     }
 
@@ -43,7 +49,7 @@ class UserExecutor private constructor() {
             .addOnCompleteListener { task: Task<Void?>? -> listener.onComplete() }
     }
 
-    fun uploadUserImage(imageBmp: Bitmap, name: String, listener: (String?) -> Unit) {
+    fun uploadPropertyImage(imageBmp: Bitmap, name: String, listener: (String?) -> Unit) {
         val imagesRef = storage.reference.child(IMAGE_FOLDER).child(name)
 
         val byteArrayOutputStream = ByteArrayOutputStream()
@@ -62,10 +68,10 @@ class UserExecutor private constructor() {
     }
 
     companion object {
-        private val userExecutorInstance = UserExecutor()
-        const val IMAGE_FOLDER: String = "users"
-        fun instance(): UserExecutor {
-            return userExecutorInstance
+        private val propertyExecutorInstance = PropertyExecutor()
+        const val IMAGE_FOLDER: String = "properties"
+        fun instance(): PropertyExecutor {
+            return propertyExecutorInstance
         }
     }
 }

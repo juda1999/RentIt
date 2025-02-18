@@ -12,59 +12,35 @@ import com.idz.rentit.constants.PropertyConstants.IMAGE_URL
 import com.idz.rentit.constants.PropertyConstants.LAST_UPDATE
 import com.idz.rentit.constants.PropertyConstants.LOCATION
 import com.idz.rentit.constants.PropertyConstants.NUMBER_OF_ROOMS
-import com.idz.rentit.constants.PropertyConstants.OWNER_ID
 import com.idz.rentit.constants.PropertyConstants.PRICE
 import com.idz.rentit.constants.PropertyConstants.PROPERTY_ID
+import com.idz.rentit.constants.UserConstants
 
 @Entity(
+    tableName = "property",
     foreignKeys = [
         ForeignKey(
             entity = User::class,
-            parentColumns = ["user_id"],
+            parentColumns = ["userId"],
             childColumns = ["userId"],
             onDelete = ForeignKey.CASCADE
         )
     ]
 )
-class Property {
+data class Property(
     @PrimaryKey
-    private lateinit var propertyId: String
+    var propertyId: String,
 
     @ColumnInfo(index = true)
-    var location: String
-    var numberOfRooms: Int
-    var price: Int
-    var description: String
-    var ownerId: String
-    var lastUpdate: Long? = null
-    private var imageUrl: String
-
-    constructor(
-        location: String, numberOfRooms: Int,
-        price: Int, description: String, ownerId: String, imageUrl: String
-    ) {
-        this.location = location
-        this.numberOfRooms = numberOfRooms
-        this.price = price
-        this.description = description
-        this.ownerId = ownerId
-        this.imageUrl = imageUrl
-    }
-
-    @Ignore
-    constructor(
-        propertyId: String, location: String,
-        numberOfRooms: Int, price: Int, description: String, ownerId: String, imageUrl: String
-    ) {
-        this.propertyId = propertyId
-        this.location = location
-        this.numberOfRooms = numberOfRooms
-        this.price = price
-        this.description = description
-        this.ownerId = ownerId
-        this.imageUrl = imageUrl
-    }
-
+    var location: String,
+    var numberOfRooms: Int,
+    var price: Int,
+    var description: String,
+    @ColumnInfo(index = true)
+    var userId: String,
+    var imageUrl: String,
+    var lastUpdate: Long? = null,
+) {
     fun toJson(): Map<String, Any> {
         val propertyJSON: MutableMap<String, Any> = HashMap()
         propertyJSON[PROPERTY_ID] = this.propertyId
@@ -72,7 +48,7 @@ class Property {
         propertyJSON[NUMBER_OF_ROOMS] = numberOfRooms
         propertyJSON[PRICE] = price
         propertyJSON[DESCRIPTION] = description
-        propertyJSON[OWNER_ID] = ownerId
+        propertyJSON[UserConstants.USER_ID] = userId
         propertyJSON[LAST_UPDATE] = FieldValue.serverTimestamp()
         propertyJSON[IMAGE_URL] = imageUrl
         return propertyJSON
@@ -85,10 +61,10 @@ class Property {
             val numberOfRooms = json[NUMBER_OF_ROOMS] as Int
             val price = json[PRICE] as Int
             val description = json[DESCRIPTION].toString()
-            val ownerId = json[OWNER_ID].toString()
+            val userId = json[UserConstants.USER_ID].toString()
             val imageUrl = json[IMAGE_URL].toString()
 
-            val property = Property(propertyId, location, numberOfRooms, price, description, ownerId, imageUrl)
+            val property = Property(propertyId, location, numberOfRooms, price, description, userId, imageUrl)
             val lastUpdate = json[LAST_UPDATE] as Timestamp?
             property.lastUpdate = lastUpdate!!.seconds
             return property

@@ -118,6 +118,7 @@ class SignUpFragment : Fragment() {
     private fun registerUserProcess() {
         viewBindings.signUpFragmentRegisterBtn.setEnabled(false)
         val user = User(
+            "",
             viewBindings.signUpFragmentFirstNameInputEt.getText().toString(),
             viewBindings.signUpFragmentLastNameInputEt.getText().toString(),
             viewBindings.signUpFragmentEmailInputEt.getText().toString()
