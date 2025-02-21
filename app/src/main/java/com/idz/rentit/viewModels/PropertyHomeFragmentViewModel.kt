@@ -1,4 +1,4 @@
-package com.idz.rentit.viewmodels
+package com.idz.rentit.viewModels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel

@@ -12,6 +12,6 @@ interface PropertyDao {
     @Query("SELECT * FROM Property")
     fun getAllProperties(): LiveData<List<Property>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertAll(vararg properties: Property)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(properties: Property)
 }

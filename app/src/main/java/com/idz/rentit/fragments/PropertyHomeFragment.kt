@@ -13,7 +13,7 @@ import com.idz.rentIt.fragments.PropertyBaseFragment
 import com.idz.rentit.adapters.PropertyAdapter
 import com.idz.rentit.enums.LoadingState
 import com.idz.rentit.notifications.NotificationManager
-import com.idz.rentit.viewmodels.PropertyHomeFragmentViewModel
+import com.idz.rentit.viewModels.PropertyHomeFragmentViewModel
 
 class PropertyHomeFragment : PropertyBaseFragment() {
     private lateinit var viewBindings: FragmentPropertyHomeBinding

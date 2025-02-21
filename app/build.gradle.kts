@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.androidx.navigation.safeargs)
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
     alias(libs.plugins.google.services)
 }
 
@@ -19,6 +19,18 @@ android {
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         signingConfig = signingConfigs.getByName("debug")
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                annotationProcessorOptions {
+                    arguments += mapOf(
+                        "room.schemaLocation" to "$projectDir/schemas",
+                        "room.incremental" to "true",
+                        "room.generateKotlin" to "true"
+                    )
+                }
+            }
+        }
     }
 
     buildTypes {
@@ -40,7 +52,6 @@ android {
 
     buildFeatures {
         viewBinding = true
-        dataBinding = true
     }
 }
 
@@ -51,7 +62,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation(libs.androidx.swiperefreshlayout)
 
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.firestore)
@@ -63,7 +74,7 @@ dependencies {
 
     implementation(libs.room.runtime)
     implementation(libs.firebase.common.ktx)
-    kapt(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
 
     implementation(libs.androidx.navigation.fragment.ktx)
