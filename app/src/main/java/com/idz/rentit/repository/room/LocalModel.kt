@@ -5,5 +5,4 @@ import com.idz.rentit.repository.handlers.PropertyHandler
 class LocalModel {
     val propertyHandler: PropertyHandler
         get() = PropertyHandler.instance()
-
 }

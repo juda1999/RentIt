@@ -15,7 +15,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.main_navhost) as NavHostFragment
         val navController: NavController = navHostFragment.navController
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.main_toolbar)
+        setSupportActionBar(toolbar)
         NavigationUI.setupActionBarWithNavController(this, navController)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

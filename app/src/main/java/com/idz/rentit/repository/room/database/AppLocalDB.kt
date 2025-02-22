@@ -6,13 +6,15 @@ import com.idz.rentit.context.MyApplication
 object AppLocalDB {
 
     @JvmStatic
-    fun getAppDB(): AppLocalDbRepository {
-        return Room.databaseBuilder(
-            MyApplication.appContext,
-            AppLocalDbRepository::class.java,
-            "dbFileName.db"
-        )
-            .fallbackToDestructiveMigration()
-            .build()
+        val getAppDB: AppLocalDbRepository by lazy {
+            val context = MyApplication.Globals.appContext
+                ?: throw IllegalStateException("Application context not available")
+
+            Room.databaseBuilder(
+                context,
+                AppLocalDbRepository::class.java,
+                "rentIt.db"
+            ).fallbackToDestructiveMigration()
+                .build()
+        }
     }
-}

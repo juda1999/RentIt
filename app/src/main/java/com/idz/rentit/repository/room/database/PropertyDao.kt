@@ -14,4 +14,7 @@ interface PropertyDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(properties: Property)
+
+    @Query("SELECT * FROM Property WHERE numberOfRooms LIKE :filter")
+    fun getAllPropertiesByFilter(filter: String): List<Property>
 }

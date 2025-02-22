@@ -1,15 +1,15 @@
-package com.idz.rentIt.fragments
+package com.idz.rentit.fragments
 
 import android.content.Intent
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
-import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.navigation.NavDirections
 import com.idz.rentIt.R
 import com.idz.rentit.GuestsActivity
 import com.idz.rentit.repository.Repository
@@ -33,7 +33,7 @@ abstract class PropertyBaseFragment : Fragment() {
                             Repository.repositoryInstance.getAuthModel().logout { startIntroActivity() }
                         } else {
 //                            val action: NavDirections =
-//                                MovieHomeFragmentDirections.actionGlobalUserProfileFragment()
+//                                PropertyBaseFragmentDirections.actionGlobalUserProfileFragment()
 //                            Navigation.findNavController(view).navigate(action)
                         }
                         return true

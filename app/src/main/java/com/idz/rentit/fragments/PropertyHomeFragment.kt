@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.idz.rentIt.databinding.FragmentPropertyHomeBinding
-import com.idz.rentIt.fragments.PropertyBaseFragment
 import com.idz.rentit.adapters.PropertyAdapter
 import com.idz.rentit.enums.LoadingState
 import com.idz.rentit.notifications.NotificationManager
@@ -40,6 +39,6 @@ class PropertyHomeFragment : PropertyBaseFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        viewModel = ViewModelProvider(this).get(PropertyHomeFragmentViewModel::class.java)
+        viewModel = ViewModelProvider(this)[PropertyHomeFragmentViewModel::class.java]
     }
 }
