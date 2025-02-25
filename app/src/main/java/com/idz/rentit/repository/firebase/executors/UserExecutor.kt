@@ -1,4 +1,4 @@
-package com.example.movieshare.repository.firebase.executors
+package com.idz.rentit.repository.firebase.executors
 
 import android.graphics.Bitmap
 import android.net.Uri

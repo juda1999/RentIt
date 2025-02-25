@@ -1,7 +1,7 @@
 package com.idz.rentit.repository.firebase
 
-import com.example.movieshare.repository.firebase.executors.PropertyExecutor
-import com.example.movieshare.repository.firebase.executors.UserExecutor
+import com.idz.rentit.repository.firebase.executors.PropertyExecutor
+import com.idz.rentit.repository.firebase.executors.UserExecutor
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 
