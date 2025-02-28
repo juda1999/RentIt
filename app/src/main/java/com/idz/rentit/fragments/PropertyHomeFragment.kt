@@ -43,6 +43,7 @@ class PropertyHomeFragment : PropertyBaseFragment() {
             .observe(viewLifecycleOwner) { loadingState ->
                 viewBindings.swipeRefresh.isRefreshing = loadingState == LoadingState.LOADING
             }
+
         return viewBindings.root
     }
 
