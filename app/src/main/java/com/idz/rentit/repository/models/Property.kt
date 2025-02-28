@@ -3,7 +3,6 @@ package com.idz.rentit.repository.models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FieldValue
@@ -33,8 +32,8 @@ data class Property(
 
     @ColumnInfo(index = true)
     var location: String,
-    var numberOfRooms: Int,
-    var price: Int,
+    var numberOfRooms: Long,
+    var price: Long,
     var description: String,
     @ColumnInfo(index = true)
     var userId: String,
@@ -58,8 +57,8 @@ data class Property(
         fun fromJson(json: Map<String?, Any>): Property {
             val propertyId = json[PROPERTY_ID].toString()
             val location = json[LOCATION].toString()
-            val numberOfRooms = json[NUMBER_OF_ROOMS] as Int
-            val price = json[PRICE] as Int
+            val numberOfRooms = json[NUMBER_OF_ROOMS] as Long
+            val price = json[PRICE] as Long
             val description = json[DESCRIPTION].toString()
             val userId = json[UserConstants.USER_ID].toString()
             val imageUrl = json[IMAGE_URL].toString()

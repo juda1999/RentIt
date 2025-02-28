@@ -1,11 +1,8 @@
-package com.example.movieshare.repository.firebase.executors
+package com.idz.rentit.repository.firebase.executors
 
 import android.graphics.Bitmap
 import android.net.Uri
 import android.util.Log
-import com.idz.rentit.constants.UserConstants
-import com.idz.rentit.listeners.authentication.*
-import com.idz.rentit.repository.models.User
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -14,24 +11,45 @@ import com.idz.rentit.constants.PropertyConstants
 import com.idz.rentit.repository.models.Property
 import java.io.ByteArrayOutputStream
 
+
 class PropertyExecutor private constructor() {
     private val db = FirebaseFirestore.getInstance()
     private val storage = FirebaseStorage.getInstance()
 
-    fun getProperties(listener: (properties: MutableList<Property>) -> Unit) {
+//    fun getProperties(listener: (Any) -> Unit) {
+//        db.collection(PropertyConstants.PROPERTY_COLLECTION_NAME)
+//            .get()
+//            .addOnSuccessListener { task ->
+//                val properties = mutableListOf<Property>()
+//                for (document in task.documents) {
+//                    Log.d("TAG", "Document: " + document.data)
+//                    val property = Property.fromJson(document.data!!)
+//                    property.propertyId = document.id
+//                    properties.add(property)
+//                }
+//                listener(properties)
+//            }
+//            .addOnFailureListener { exception ->
+//                Log.d("Error", exception.message.orEmpty())
+//            }
+//    }
+
+    fun getProperties(callback: (List<Property>) -> Unit) {
         db.collection(PropertyConstants.PROPERTY_COLLECTION_NAME)
-            .get()
-            .addOnSuccessListener { task ->
-                val properties = mutableListOf<Property>()
-                for (document in task.documents) {
-                    val property = Property.fromJson(document.data!!)
-                    property.propertyId = document.id
-                    properties.add(property)
+            .get().addOnCompleteListener {
+                when (it.isSuccessful) {
+                    true -> {
+                        val users: MutableList<Property> = mutableListOf()
+                        for (json in it.result) {
+                            val user = Property.fromJson(json.data)
+                            users.add(user)
+                        }
+
+                        callback(users)
+                    }
+
+                    false -> callback(listOf())
                 }
-                listener(properties)
-            }
-            .addOnFailureListener { exception ->
-                Log.d("Error", exception.message.orEmpty())
             }
     }
 
@@ -42,12 +60,12 @@ class PropertyExecutor private constructor() {
             .addOnCompleteListener { task: Task<Void?>? -> listener() }
     }
 
-    fun updateUser(user: User, listener: UpdateUserListener) {
-        db.collection(UserConstants.USER_COLLECTION_NAME)
-            .document(user.userId)
-            .set(user.toJson())
-            .addOnCompleteListener { task: Task<Void?>? -> listener.onComplete() }
-    }
+//    fun updateUser(user: User, listener: UpdateUserListener) {
+//        db.collection(UserConstants.USER_COLLECTION_NAME)
+//            .document(user.userId)
+//            .set(user.toJson())
+//            .addOnCompleteListener { task: Task<Void?>? -> listener.onComplete() }
+//    }
 
     fun uploadPropertyImage(imageBmp: Bitmap, name: String, listener: (String?) -> Unit) {
         val imagesRef = storage.reference.child(IMAGE_FOLDER).child(name)

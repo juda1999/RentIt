@@ -37,16 +37,6 @@ class Repository private constructor() {
         return this.authModel
     }
 
-//    val allMovieCategories: LiveData<List<Any>>?
-//        get() {
-//            if (Objects.isNull(this.movieCategories)) {
-//                this.movieCategories =
-//                    localModel.getMovieCategoryHandler().getAllMovieCategories()
-//                refreshAllMovieCategories()
-//            }
-//            return this.movieCategories
-//        }
-//
     val allProperties: LiveData<List<Property>>?
         get() {
             if (Objects.isNull(this.properties)) {
@@ -91,12 +81,11 @@ class Repository private constructor() {
 //            }
 //    }
 
-    fun refreshAllProperties() { /// do we need this??? and do we need to add local last update
-        NotificationManager.instance().getEventPropertyListLoadingState()
-            .setValue(LoadingState.LOADING)
-        getFirebaseModel().propertyExecutor.getProperties() { properties ->
+    private fun refreshAllProperties() { /// do we need this??? and do we need to add local last update
+        NotificationManager.instance().getEventPropertyListLoadingState().value = LoadingState.LOADING
+        getFirebaseModel().propertyExecutor.getProperties { properties ->
             executor.execute {
-                Log.d("TAG", "Properties: firebase return : " + properties)
+                    Log.d("MOR", "Properties: firebase return : $properties")
                 for (property in properties) {
                     localModel.propertyHandler.addProperty(property)
                 }
