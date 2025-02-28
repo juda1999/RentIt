@@ -81,7 +81,7 @@ class Repository private constructor() {
 //            }
 //    }
 
-    private fun refreshAllProperties() { /// do we need this??? and do we need to add local last update
+     fun refreshAllProperties() { /// do we need this??? and do we need to add local last update
         NotificationManager.instance().getEventPropertyListLoadingState().value = LoadingState.LOADING
         getFirebaseModel().propertyExecutor.getProperties { properties ->
             executor.execute {

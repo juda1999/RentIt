@@ -55,30 +55,33 @@
         android:name="com.idz.rentit.fragments.PropertyHomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_property_home">
-<!--        <action-->
-<!--            android:id="@+id/action_movieHomeFragment_to_movieListFragment"-->
-<!--            app:destination="@id/movieListFragment" />-->
+        <argument
+            android:name="position"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_propertyHomeFragment_to_propertyListFragment"
+            app:destination="@id/propertyListFragment" />
     </fragment>
-<!--    <fragment-->
-<!--        android:id="@+id/movieListFragment"-->
-<!--        android:name="com.example.movieshare.fragments.movie.MovieListFragment"-->
-<!--        android:label="Movie List"-->
-<!--        tools:layout="@layout/fragment_movie_list">-->
-<!--        <argument-->
-<!--            android:name="movieCategoryPosition"-->
-<!--            app:argType="integer" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_movieListFragment_to_movieProfileFragment"-->
-<!--            app:destination="@id/movieProfileFragment" />-->
-<!--    </fragment>-->
-<!--    <fragment-->
-<!--        android:id="@+id/movieProfileFragment"-->
-<!--        android:name="com.example.movieshare.fragments.movie.MovieProfileFragment"-->
-<!--        android:label="Movie Profile"-->
-<!--        tools:layout="@layout/fragment_movie_profile">-->
-<!--        <argument-->
-<!--            android:name="moviePosition"-->
-<!--            app:argType="integer" />-->
+    <fragment
+        android:id="@+id/propertyListFragment"
+        android:name="com.idz.rentit.fragments.PropertyListFragment"
+        android:label="Property List"
+        tools:layout="@layout/fragment_property_list">
+        <argument
+            android:name="position"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_propertyListFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/propertyProfileFragment"
+        android:name="com.idz.rentit.fragments.UserProfileFragment"
+        android:label="User Profile"
+        tools:layout="@layout/fragment_user_profile">
+        <argument
+            android:name="position"
+            app:argType="integer" />
 <!--        <action-->
 <!--            android:id="@+id/action_movieProfileFragment_to_movieCommentListFragment"-->
 <!--            app:destination="@id/movieCommentListFragment" />-->
@@ -88,7 +91,7 @@
 <!--        <action-->
 <!--            android:id="@+id/action_movieProfileFragment_to_userCommentAdditionFragment"-->
 <!--            app:destination="@id/userCommentAdditionFragment" />-->
-<!--    </fragment>-->
+    </fragment>
 <!--    <fragment-->
 <!--        android:id="@+id/movieCommentListFragment"-->
 <!--        android:name="com.idz.rentit.fragments.MovieCommentListFragment"-->
