@@ -80,7 +80,7 @@ class PropertyListFragment : PropertyBaseFragment() {
         val listener = object : OnItemClickListener {
             override fun onItemClick(position: Int?) {
                 val action = PropertyListFragmentDirections
-                    .actionPropertyListFragmentToUserProfileFragment()
+                    .actionPropertyListFragmentToUserProfileFragment(position!!)
                 findNavController().navigate(action)
             }
         }
