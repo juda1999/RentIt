@@ -1,4 +1,4 @@
-package com.idz.rentit.viewholders
+package com.idz.rentit.viewHolders
 
 import android.util.Log
 import android.view.View

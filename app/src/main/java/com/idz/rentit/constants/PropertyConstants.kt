@@ -9,4 +9,5 @@ object PropertyConstants {
     const val DESCRIPTION: String = "description"
     const val IMAGE_URL: String = "imageUrl"
     const val LAST_UPDATE: String = "lastUpdate"
+    const val PROPERTY_LOCAL_LAST_UPDATE: String = "propertyLocalLastUpdate"
 }

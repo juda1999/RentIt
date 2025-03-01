@@ -1,12 +1,13 @@
 package com.idz.rentit.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.idz.rentit.repository.models.Property
 import com.idz.rentIt.R
-import com.idz.rentit.viewholders.PropertyItemViewHolder
-import com.idz.rentit.viewholders.PropertyViewHolder
+import com.idz.rentit.viewHolders.PropertyItemViewHolder
+import com.idz.rentit.viewHolders.PropertyViewHolder
 
 class PropertyAdapter(
     layoutInflater: LayoutInflater,

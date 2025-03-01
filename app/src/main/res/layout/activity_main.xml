@@ -10,6 +10,7 @@
 
     <androidx.appcompat.widget.Toolbar
         app:titleTextColor="@color/white"
+        app:subtitleTextColor="@color/white"
         android:id="@+id/main_toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -19,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.Material3.ActionBar"
-        app:title="My App Title" />
+        />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/main_navhost"

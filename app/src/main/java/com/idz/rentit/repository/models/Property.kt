@@ -14,6 +14,9 @@ import com.idz.rentit.constants.PropertyConstants.NUMBER_OF_ROOMS
 import com.idz.rentit.constants.PropertyConstants.PRICE
 import com.idz.rentit.constants.PropertyConstants.PROPERTY_ID
 import com.idz.rentit.constants.UserConstants
+import com.idz.rentit.context.MyApplication
+import android.content.Context;
+import com.idz.rentit.constants.PropertyConstants.PROPERTY_LOCAL_LAST_UPDATE
 
 @Entity(
     tableName = "property",
@@ -68,5 +71,15 @@ data class Property(
             property.lastUpdate = lastUpdate!!.seconds
             return property
         }
+
+    fun getLocalLastUpdate(): Long {
+        return MyApplication.Globals.appContext!!.getSharedPreferences("TAG", Context.MODE_PRIVATE)
+            .getLong(PROPERTY_LOCAL_LAST_UPDATE, 0)
+    }
+
+    fun setLocalLastUpdate(localLastUpdate: Long) {
+        MyApplication.Globals.appContext?.getSharedPreferences("TAG", Context.MODE_PRIVATE)?.edit()
+            ?.putLong(PROPERTY_LOCAL_LAST_UPDATE, localLastUpdate)?.apply()
+    }
     }
 }

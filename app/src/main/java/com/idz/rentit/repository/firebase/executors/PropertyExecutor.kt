@@ -3,8 +3,12 @@ package com.idz.rentit.repository.firebase.executors
 import android.graphics.Bitmap
 import android.net.Uri
 import android.util.Log
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.gms.tasks.Task
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import com.idz.rentit.constants.PropertyConstants
@@ -16,42 +20,70 @@ class PropertyExecutor private constructor() {
     private val db = FirebaseFirestore.getInstance()
     private val storage = FirebaseStorage.getInstance()
 
-//    fun getProperties(listener: (Any) -> Unit) {
-//        db.collection(PropertyConstants.PROPERTY_COLLECTION_NAME)
-//            .get()
-//            .addOnSuccessListener { task ->
-//                val properties = mutableListOf<Property>()
-//                for (document in task.documents) {
-//                    Log.d("TAG", "Document: " + document.data)
-//                    val property = Property.fromJson(document.data!!)
-//                    property.propertyId = document.id
-//                    properties.add(property)
-//                }
-//                listener(properties)
-//            }
-//            .addOnFailureListener { exception ->
-//                Log.d("Error", exception.message.orEmpty())
-//            }
-//    }
-
-    fun getProperties(callback: (List<Property>) -> Unit) {
+    fun getAllPropertiesSinceLastUpdate(
+        localLastUpdate: Long,
+        listener: (List<Property>) -> Unit
+    ) {
         db.collection(PropertyConstants.PROPERTY_COLLECTION_NAME)
-            .get().addOnCompleteListener {
-                when (it.isSuccessful) {
-                    true -> {
-                        val users: MutableList<Property> = mutableListOf()
-                        for (json in it.result) {
-                            val user = Property.fromJson(json.data)
-                            users.add(user)
-                        }
-
-                        callback(users)
-                    }
-
-                    false -> callback(listOf())
+            .whereGreaterThanOrEqualTo(
+                PropertyConstants.LAST_UPDATE,
+                Timestamp(localLastUpdate, 0)
+            )
+            .get()
+            .addOnSuccessListener(OnSuccessListener<QuerySnapshot> { task: QuerySnapshot ->
+                val properties: MutableList<Property> = ArrayList()
+                for (document in task.documents) {
+                    val property: Property = Property.fromJson(document.data!!)
+                    property.propertyId = (document.id)
+                    properties.add(property)
                 }
+                listener(properties)
+            }).addOnFailureListener(OnFailureListener { task: java.lang.Exception ->
+                Log.d(
+                    "Error",
+                    task.message!!
+                )
+            })
+    }
+
+    fun getProperties(listener: (List<Property>) -> Unit) {
+        db.collection(PropertyConstants.PROPERTY_COLLECTION_NAME)
+            .get()
+            .addOnSuccessListener { task ->
+                val properties = mutableListOf<Property>()
+                for (document in task.documents) {
+                    Log.d("TAG", "Document: " + document.data)
+                    val property = Property.fromJson(document.data!!)
+                    property.propertyId = document.id
+                    properties.add(property)
+                }
+                listener(properties)
+            }
+            .addOnFailureListener { exception ->
+                Log.d("Error", exception.message.orEmpty())
             }
     }
+
+
+
+//    fun getProperties(callback: (List<Property>) -> Unit) {
+//        db.collection(PropertyConstants.PROPERTY_COLLECTION_NAME)
+//            .get().addOnCompleteListener {
+//                when (it.isSuccessful) {
+//                    true -> {
+//                        val users: MutableList<Property> = mutableListOf()
+//                        for (json in it.result) {
+//                            val user = Property.fromJson(json.data)
+//                            users.add(user)
+//                        }
+//
+//                        callback(users)
+//                    }
+//
+//                    false -> callback(listOf())
+//                }
+//            }
+//    }
 
     fun addProperty(property: Property, listener: () -> Unit) {
         db.collection(PropertyConstants.PROPERTY_COLLECTION_NAME)

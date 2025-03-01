@@ -1,5 +1,6 @@
 package com.idz.rentit.repository
 
+import android.graphics.Movie
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
@@ -14,6 +15,7 @@ import com.idz.rentit.repository.room.LocalModel
 import java.util.Objects
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
+
 
 class Repository private constructor() {
     private val localModel: LocalModel = LocalModel()
@@ -37,14 +39,16 @@ class Repository private constructor() {
         return this.authModel
     }
 
-    val allProperties: LiveData<List<Property>>?
+    val allProperties: LiveData<List<Property>>
         get() {
             if (Objects.isNull(this.properties)) {
                 this.properties = localModel.propertyHandler.allProperties
                 refreshAllProperties()
+                Log.d("REPO", "Properties received: ${this.properties!!.value}")
             }
-            return this.properties
+            return this.localModel.propertyHandler.allProperties
         }
+
 
 //    val allMovieComments: LiveData<List<Any>>?
 //        get() {
@@ -83,12 +87,18 @@ class Repository private constructor() {
 
      fun refreshAllProperties() { /// do we need this??? and do we need to add local last update
         NotificationManager.instance().getEventPropertyListLoadingState().value = LoadingState.LOADING
-        getFirebaseModel().propertyExecutor.getProperties { properties ->
+         val localLastUpdate: Long = Property.getLocalLastUpdate()
+        getFirebaseModel().propertyExecutor.getAllPropertiesSinceLastUpdate(localLastUpdate) { properties ->
             executor.execute {
                     Log.d("MOR", "Properties: firebase return : $properties")
+                var propertyGlobalLastUpdate = localLastUpdate
                 for (property in properties) {
                     localModel.propertyHandler.addProperty(property)
+                    if (propertyGlobalLastUpdate < property.lastUpdate!!) {
+                        propertyGlobalLastUpdate = property.lastUpdate!!
+                    }
                 }
+                Property.setLocalLastUpdate(propertyGlobalLastUpdate)
                 NotificationManager.instance()
                     .getEventPropertyListLoadingState().postValue(LoadingState.NOT_LOADING)
             }
