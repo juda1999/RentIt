@@ -54,7 +54,7 @@ class PropertyListFragment : PropertyBaseFragment() {
         viewBindings!!.propertyListFragmentPropertiesList.setAdapter(this.propertyAdapter)
 //        syncPropertiesApiWithRemoteDb()
         this.configureMenuOptions(viewBindings!!.getRoot())
-//        activateItemListListener()
+        activateItemListListener()
         NotificationManager.instance()
             .getEventPropertyListLoadingState()
             .observe(

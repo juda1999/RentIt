@@ -77,7 +77,7 @@
     <fragment
         android:id="@+id/userProfileFragment"
         android:name="com.idz.rentit.fragments.UserProfileFragment"
-        android:label="User Profile"
+        android:label="Profile"
         tools:layout="@layout/fragment_user_profile">
         <argument
             android:name="position"
