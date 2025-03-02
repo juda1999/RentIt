@@ -39,14 +39,14 @@ class Repository private constructor() {
         return this.authModel
     }
 
-    val allProperties: LiveData<List<Property>>
+    val allProperties: LiveData<List<Property>>?
         get() {
             if (Objects.isNull(this.properties)) {
                 this.properties = localModel.propertyHandler.allProperties
                 refreshAllProperties()
                 Log.d("REPO", "Properties received: ${this.properties!!.value}")
             }
-            return this.localModel.propertyHandler.allProperties
+            return this.properties
         }
 
 
@@ -97,6 +97,7 @@ class Repository private constructor() {
                     if (propertyGlobalLastUpdate < property.lastUpdate!!) {
                         propertyGlobalLastUpdate = property.lastUpdate!!
                     }
+                    Log.d("MORRRRR","${localModel.propertyHandler.allProperties.value}")
                 }
                 Property.setLocalLastUpdate(propertyGlobalLastUpdate)
                 NotificationManager.instance()

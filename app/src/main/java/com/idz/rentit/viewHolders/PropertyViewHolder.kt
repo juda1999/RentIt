@@ -1,5 +1,6 @@
 package com.idz.rentit.viewHolders
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,10 +14,10 @@ class PropertyViewHolder(
     listener: OnItemClickListener?
 ) : PropertyItemViewHolder<Property>(itemView, listener) {
 
-    override var propertyItemNumberOfRooms = itemView.findViewById<TextView>(R.id.item_list_row_name_tv)
-    override var propertyItemPrice = itemView.findViewById<TextView>(R.id.item_list_row_rating_tv)
-    override var propertyItemDescription = itemView.findViewById<TextView>(R.id.item_list_row_comment_tv)
-    override var propertyItemImg = itemView.findViewById<ImageView>(R.id.item_list_row_img)
+    override var propertyItemNumberOfRooms: TextView = itemView.findViewById<TextView>(R.id.item_list_row_name_tv)
+    override var propertyItemPrice: TextView = itemView.findViewById<TextView>(R.id.item_list_row_rating_tv)
+    override var propertyItemDescription: TextView = itemView.findViewById<TextView>(R.id.item_list_row_comment_tv)
+    override var propertyItemImg: ImageView = itemView.findViewById<ImageView>(R.id.item_list_row_img)
 
     override fun bindPropertyItem(propertyItem: Property) {
         if (propertyItem.imageUrl.isNotBlank()) {

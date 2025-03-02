@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.idz.rentit.fragments.PropertyHomeFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="whats up"
-        android:textColor="@color/black"
-        >
-    </TextView>
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefresh"
         android:layout_width="409dp"

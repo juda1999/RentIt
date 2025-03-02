@@ -16,18 +16,20 @@ import com.idz.rentit.constants.PropertyConstants.PROPERTY_ID
 import com.idz.rentit.constants.UserConstants
 import com.idz.rentit.context.MyApplication
 import android.content.Context;
+import com.idz.rentit.constants.PropertyConstants.HAS_SHELTER
+import com.idz.rentit.constants.PropertyConstants.IS_FURNISHED
 import com.idz.rentit.constants.PropertyConstants.PROPERTY_LOCAL_LAST_UPDATE
 
 @Entity(
     tableName = "property",
-    foreignKeys = [
-        ForeignKey(
-            entity = User::class,
-            parentColumns = ["userId"],
-            childColumns = ["userId"],
-            onDelete = ForeignKey.CASCADE
-        )
-    ]
+//    foreignKeys = [
+//        ForeignKey(
+//            entity = User::class,
+//            parentColumns = ["userId"],
+//            childColumns = ["userId"],
+//            onDelete = ForeignKey.CASCADE
+//        )
+//    ]
 )
 data class Property(
     @PrimaryKey
@@ -41,6 +43,8 @@ data class Property(
     @ColumnInfo(index = true)
     var userId: String,
     var imageUrl: String,
+    var hasShelter: Boolean = false,
+    var isFurnished: Boolean = false,
     var lastUpdate: Long? = null,
 ) {
     fun toJson(): Map<String, Any> {
@@ -53,6 +57,8 @@ data class Property(
         propertyJSON[UserConstants.USER_ID] = userId
         propertyJSON[LAST_UPDATE] = FieldValue.serverTimestamp()
         propertyJSON[IMAGE_URL] = imageUrl
+        propertyJSON[HAS_SHELTER] = hasShelter
+        propertyJSON[IS_FURNISHED] = isFurnished
         return propertyJSON
     }
 
@@ -65,8 +71,10 @@ data class Property(
             val description = json[DESCRIPTION].toString()
             val userId = json[UserConstants.USER_ID].toString()
             val imageUrl = json[IMAGE_URL].toString()
+            val hasShelter = json[HAS_SHELTER] as Boolean
+            val isFurnished = json[IS_FURNISHED] as Boolean
 
-            val property = Property(propertyId, location, numberOfRooms, price, description, userId, imageUrl)
+            val property = Property(propertyId, location, numberOfRooms, price, description, userId, imageUrl, hasShelter, isFurnished)
             val lastUpdate = json[LAST_UPDATE] as Timestamp?
             property.lastUpdate = lastUpdate!!.seconds
             return property

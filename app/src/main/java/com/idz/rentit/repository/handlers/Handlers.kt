@@ -31,7 +31,7 @@ class PropertyHandler private constructor() {
         try {
             localDB.propertyDao().insertAll(property)
         } catch (e: Exception) {
-            Log.d("TAG", e.message!!)
+            Log.d("ERROR ADDING PROPERTY", e.message!!)
         }
     }
 

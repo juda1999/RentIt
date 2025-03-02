@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.idz.rentit.fragments.PropertyListFragment">
 
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"

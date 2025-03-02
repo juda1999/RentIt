@@ -1,5 +1,6 @@
 package com.idz.rentit.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.RecyclerView
 import com.idz.rentit.listeners.authentication.OnItemClickListener
