@@ -1,6 +1,5 @@
 package com.idz.rentit.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,7 @@ class PropertyAdapter(
 ) : PropertyItemAdapter<Property>(layoutInflater, propertyItemList) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PropertyViewHolder {
-        val view: View = layoutInflater.inflate(R.layout.item_list_row_movie, parent, false)
+        val view: View = layoutInflater.inflate(R.layout.item_list_row_property, parent, false)
         return PropertyViewHolder(view, listener)
     }
 
