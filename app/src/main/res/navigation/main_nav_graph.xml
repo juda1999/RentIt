@@ -5,18 +5,13 @@
     android:id="@+id/nav_graph"
     app:startDestination="@+id/propertyHomeFragment">
 
-<!--    <fragment-->
-<!--        android:id="@+id/userProfileFragment"-->
-<!--        android:name="com.idz.rentit.fragments.UserProfileFragment"-->
-<!--        android:label="My Profile"-->
-<!--        tools:layout="@layout/fragment_user_profile">-->
-<!--        <action-->
-<!--            android:id="@+id/action_profileFragment_to_userCommentListFragment"-->
-<!--            app:destination="@id/userCommentListFragment" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_userProfileFragment_to_userProfileEditionFragment"-->
-<!--            app:destination="@id/userProfileEditionFragment" />-->
-<!--    </fragment>-->
+    <fragment
+        android:id="@+id/addPropertyFragment"
+        android:name="com.idz.rentit.fragments.AddPropertyFragment"
+        android:label="Add Property"
+        tools:layout="@layout/fragment_add_property"
+        >
+    </fragment>
 <!--    <fragment-->
 <!--        android:id="@+id/userCommentListFragment"-->
 <!--        android:name="com.idz.rentit.fragments.UserCommentListFragment"-->
@@ -58,21 +53,19 @@
         <action
             android:id="@+id/action_propertyListFragment_to_userProfileFragment"
             app:destination="@id/userProfileFragment" />
+        <action
+            android:id="@+id/action_propertyListFragment_to_addPropertyFragment"
+            app:destination="@id/addPropertyFragment"
+            />
     </fragment>
     <fragment
         android:id="@+id/userProfileFragment"
         android:name="com.idz.rentit.fragments.UserProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_user_profile">
-<!--        <action-->
-<!--            android:id="@+id/action_movieProfileFragment_to_movieCommentListFragment"-->
-<!--            app:destination="@id/movieCommentListFragment" />-->
-<!--        <argument-->
-<!--            android:name="movieCategoryId"-->
-<!--            app:argType="string" />-->
-<!--        <action-->
-<!--            android:id="@+id/action_movieProfileFragment_to_userCommentAdditionFragment"-->
-<!--            app:destination="@id/userCommentAdditionFragment" />-->
+        <action
+            android:id="@+id/action_userProfileFragment_to_editUserProfileFragment"
+            app:destination="@id/editUserProfileFragment" />
     </fragment>
 <!--    <fragment-->
 <!--        android:id="@+id/movieCommentListFragment"-->
@@ -86,13 +79,13 @@
 <!--    <action-->
 <!--        android:id="@+id/action_global_userProfileFragment"-->
 <!--        app:destination="@id/userProfileFragment" />-->
-<!--    <fragment-->
-<!--        android:id="@+id/userProfileEditionFragment"-->
-<!--        android:name="com.idz.rentit.fragments.UserProfileEditionFragment"-->
-<!--        android:label="Edit Profile"-->
-<!--        tools:layout="@layout/fragment_user_profile_edition">-->
-<!--        <argument-->
-<!--            android:name="userId"-->
-<!--            app:argType="string" />-->
-<!--    </fragment>-->
+    <fragment
+        android:id="@+id/editUserProfileFragment"
+        android:name="com.idz.rentit.fragments.EditUserProfileFragment"
+        android:label="Edit Profile"
+        tools:layout="@layout/fragment_edit_user_profile">
+        <argument
+            android:name="userId"
+            app:argType="string" />
+    </fragment>
 </navigation>

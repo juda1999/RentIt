@@ -14,10 +14,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavDirections
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.idz.rentIt.R
 import com.idz.rentIt.databinding.FragmentUserProfileBinding
+import com.idz.rentit.GuestsActivity
 import com.idz.rentit.IntroActivity
 import com.idz.rentit.repository.Repository
 import com.idz.rentit.repository.models.User
@@ -90,18 +92,11 @@ class UserProfileFragment : Fragment() {
     }
 
     private fun activateButtonsListeners() {
-//        viewBindings.userProfileFragmentCommentsBtn.setOnClickListener { view ->
-//            val action: NavDirections =
-//                UserProfileFragmentDirections
-//                    .actionProfileFragmentToUserCommentListFragment(this.userId)
-//            findNavController(view).navigate(action)
-//        }
-//        viewBindings.userProfileFragmentEditProfileBtn.setOnClickListener { view ->
-//            val action: NavDirections =
-//                UserProfileFragmentDirections
-//                    .actionUserProfileFragmentToUserProfileEditionFragment(this.userId)
-//            findNavController(view).navigate(action)
-//        }
+        viewBindings.userProfileFragmentEditProfileBtn.setOnClickListener { view ->
+            val action: NavDirections =
+                UserProfileFragmentDirections.actionUserProfileFragmentToEditUserProfileFragment(this.userId!!)
+            findNavController(view).navigate(action)
+        }
     }
 
       private fun configureMenuOptions(view: View) {
@@ -116,11 +111,14 @@ class UserProfileFragment : Fragment() {
                     findNavController(view).popBackStack()
                     return true
                 } else {
+                    if (menuItem.itemId == R.id.addPropertyFragment) {
+                        findNavController(view).navigate(R.id.addPropertyFragment)
+                        return true
+                    }
                     if (menuItem.itemId == R.id.logoutMenuItem) {
                         Repository.repositoryInstance.getAuthModel()
                             .logout {
-                                val intent = Intent(context, IntroActivity::class.java)
-                                startActivity(intent)
+                                startIntroActivity()
                             }
                         return true
                     }
@@ -131,5 +129,13 @@ class UserProfileFragment : Fragment() {
                 return false
             }
         }, getViewLifecycleOwner(), Lifecycle.State.RESUMED)
+    }
+
+    protected fun startIntroActivity() {
+        activity?.let {
+            val introActivityIntent = Intent(it, GuestsActivity::class.java)
+            startActivity(introActivityIntent)
+            it.finish()
+        }
     }
 }

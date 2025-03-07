@@ -31,11 +31,20 @@ abstract class PropertyBaseFragment : Fragment() {
                         if (menuItem.itemId == R.id.logoutMenuItem) {
                             Repository.repositoryInstance.getAuthModel().logout { startIntroActivity() }
                         } else {
-                            val action: NavDirections =
-                                PropertyHomeFragmentDirections.actionPropertyListFragmentToUserProfileFragment()
-                            Navigation.findNavController(view).navigate(action)
+                            if (menuItem.itemId == R.id.addPropertyFragment) {
+                                val action: NavDirections =
+                                    PropertyHomeFragmentDirections.actionPropertyListFragmentToAddPropertyFragment()
+                                Navigation.findNavController(view).navigate(action)
+                                return true
+
+                            }
+                            if (menuItem.itemId == R.id.userProfileFragment) {
+                                val action: NavDirections =
+                                    PropertyHomeFragmentDirections.actionPropertyListFragmentToUserProfileFragment()
+                                Navigation.findNavController(view).navigate(action)
+                                return true
+                            }
                         }
-                        return true
                     }
                 }
                 return false
