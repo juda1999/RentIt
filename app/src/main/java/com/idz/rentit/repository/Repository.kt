@@ -1,6 +1,5 @@
 package com.idz.rentit.repository
 
-import android.graphics.Movie
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
@@ -18,18 +17,12 @@ import java.util.concurrent.Executors
 
 
 class Repository private constructor() {
-    private val localModel: LocalModel = LocalModel()
+    val localModel: LocalModel = LocalModel()
     private val firebaseModel: FirebaseModel = FirebaseModel()
     private val authModel: AuthModel = AuthModel()
     val executor: Executor = Executors.newSingleThreadExecutor()
     val mainThreadHandler: Handler = HandlerCompat.createAsync(Looper.getMainLooper())
-//    private var movieCategories: LiveData<List<MovieCategory>>? = null
     private var properties: LiveData<List<Property>>? = null
-//    private var movieComments: LiveData<List<MovieComment>>? = null
-
-    fun getLocalModel(): LocalModel {
-        return this.localModel
-    }
 
     fun getFirebaseModel(): FirebaseModel {
         return this.firebaseModel

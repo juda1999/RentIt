@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.idz.rentIt.databinding.FragmentPropertyHomeBinding
 import com.idz.rentit.adapters.PropertyAdapter
 import com.idz.rentit.enums.LoadingState
-import com.idz.rentit.listeners.authentication.OnItemClickListener
 import com.idz.rentit.notifications.NotificationManager
 import com.idz.rentit.repository.Repository
 import com.idz.rentit.repository.models.Property
@@ -39,17 +38,16 @@ class PropertyHomeFragment : PropertyBaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         val displayMetrics: DisplayMetrics = requireContext().resources.displayMetrics
         val dpWidth = displayMetrics.widthPixels / displayMetrics.density
-        viewBindings.propertyListFragmentPropertyList.setHasFixedSize(true)
-        viewBindings.propertyListFragmentPropertyList.layoutManager =
+        viewBindings.propertyListRecyclerView.setHasFixedSize(true)
+        viewBindings.propertyListRecyclerView.layoutManager =
             GridLayoutManager(requireContext(), (dpWidth / 137).toInt())
-        // Initialize the adapter with an empty list
-        propertyAdapter = PropertyAdapter(layoutInflater, emptyList<Property>())
-        viewBindings.propertyListFragmentPropertyList.adapter = propertyAdapter
+        // Initialize the adapter with an empty mutable list
+        propertyAdapter = PropertyAdapter(layoutInflater, mutableListOf<Property>())
+        viewBindings.propertyListRecyclerView.adapter = propertyAdapter
         viewModel.getPropertyList().observe(viewLifecycleOwner) { properties ->
             // Update the adapter with the new data
             Log.d("PropertyHomeFragment", "Properties received: ${properties.size}")
-            propertyAdapter.propertyItemList = properties
-            propertyAdapter.notifyDataSetChanged()
+            propertyAdapter.updatePropertyList(properties)
         }
         activateItemListListener()
         NotificationManager.instance()
@@ -69,13 +67,10 @@ class PropertyHomeFragment : PropertyBaseFragment() {
     }
 
     private fun activateItemListListener() {
-        val listener = object : OnItemClickListener {
-            override fun onItemClick(position: Int?) {
-                val action = PropertyHomeFragmentDirections
-                    .actionPropertyHomeFragmentToPropertyListFragment(position!!)
-                findNavController().navigate(action)
-            }
+        this.propertyAdapter.setOnItemClickListener { position ->
+            val action = PropertyHomeFragmentDirections
+                .actionPropertyListFragmentToUserProfileFragment(position!!)
+            findNavController().navigate(action)
         }
-        this.propertyAdapter.setOnItemClickListener(listener)
     }
 }

@@ -1,22 +1,20 @@
 package com.idz.rentit.viewHolders
 
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.idz.rentIt.R
-import com.idz.rentit.listeners.authentication.OnItemClickListener
 import com.idz.rentit.repository.models.Property
 import com.squareup.picasso.Picasso
 
 class PropertyViewHolder(
     itemView: View,
-    listener: OnItemClickListener?
+    listener: ((Int?) -> Unit)? // Change the type here
 ) : PropertyItemViewHolder<Property>(itemView, listener) {
 
-    override var propertyItemNumberOfRooms: TextView = itemView.findViewById<TextView>(R.id.item_list_row_name_tv)
-    override var propertyItemPrice: TextView = itemView.findViewById<TextView>(R.id.item_list_row_rating_tv)
-    override var propertyItemDescription: TextView = itemView.findViewById<TextView>(R.id.item_list_row_comment_tv)
+    override var propertyItemLocation: TextView = itemView.findViewById<TextView>(R.id.item_list_row_location)
+    override var propertyItemDescription: TextView = itemView.findViewById<TextView>(R.id.item_list_row_description)
+    override var propertyItemPrice: TextView = itemView.findViewById<TextView>(R.id.item_list_row_price)
     override var propertyItemImg: ImageView = itemView.findViewById<ImageView>(R.id.item_list_row_img)
 
     override fun bindPropertyItem(propertyItem: Property) {
@@ -27,7 +25,11 @@ class PropertyViewHolder(
         } else {
             propertyItemImg.setImageResource(R.drawable.avatar)
         }
-        propertyItemNumberOfRooms.text = propertyItem.numberOfRooms.toString()
-        propertyItemPrice.text = propertyItem.price.toString()
+        propertyItemLocation.text = propertyItem.location
+        propertyItemPrice.text = "rent is $${propertyItem.price}"
+        propertyItemDescription.text = propertyItem.description
+        itemView.setOnClickListener {
+            listener?.invoke(adapterPosition)
+        }
     }
 }
