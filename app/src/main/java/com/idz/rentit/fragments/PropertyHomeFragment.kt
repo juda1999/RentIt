@@ -36,11 +36,9 @@ class PropertyHomeFragment : PropertyBaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val displayMetrics: DisplayMetrics = requireContext().resources.displayMetrics
-        val dpWidth = displayMetrics.widthPixels / displayMetrics.density
         viewBindings.propertyListRecyclerView.setHasFixedSize(true)
-        viewBindings.propertyListRecyclerView.layoutManager =
-            GridLayoutManager(requireContext(), (dpWidth / 137).toInt())
+        viewBindings.propertyListRecyclerView.layoutManager = GridLayoutManager(requireContext(), 1)
+
         // Initialize the adapter with an empty mutable list
         propertyAdapter = PropertyAdapter(layoutInflater, mutableListOf<Property>())
         viewBindings.propertyListRecyclerView.adapter = propertyAdapter

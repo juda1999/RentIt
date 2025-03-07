@@ -26,7 +26,7 @@ class PropertyViewHolder(
             propertyItemImg.setImageResource(R.drawable.avatar)
         }
         propertyItemLocation.text = propertyItem.location
-        propertyItemPrice.text = "rent is $${propertyItem.price}"
+        propertyItemPrice.text = "rent is ${propertyItem.price}$"
         propertyItemDescription.text = propertyItem.description
         itemView.setOnClickListener {
             listener?.invoke(adapterPosition)

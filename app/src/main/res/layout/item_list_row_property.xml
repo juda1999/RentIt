@@ -2,10 +2,11 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
-    app:cardBackgroundColor="@color/grey"
+    android:layout_height="400dp"
     app:cardCornerRadius="1dp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    android:theme="@style/CardView.Light"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +16,7 @@
         <ImageView
             android:id="@+id/item_list_row_img"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="300dp"
             android:contentDescription="'property-photo'"
             android:scaleType="centerCrop"
             app:srcCompat="@drawable/avatar" />
@@ -26,7 +27,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
-            android:textColor="@color/white"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Location"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -39,8 +42,10 @@
                 android:id="@+id/item_list_row_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="1dp"
-                android:textColor="@color/white"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
+                android:text="Description"
+                android:fontFamily="sans-serif-condensed-light"
                 android:textSize="19sp" />
         </LinearLayout>
 
@@ -48,9 +53,12 @@
             android:id="@+id/item_list_row_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
+            android:text="Price"
+            android:fontFamily="sans-serif-condensed-light"
+            android:layout_marginStart="4dp"
+
             android:textSize="17sp" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
