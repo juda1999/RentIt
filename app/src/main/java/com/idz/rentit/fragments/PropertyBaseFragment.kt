@@ -20,7 +20,6 @@ abstract class PropertyBaseFragment : Fragment() {
         val parentActivity = activity
         parentActivity?.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menu.removeItem(R.id.userCommentAdditionFragment)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -32,9 +31,9 @@ abstract class PropertyBaseFragment : Fragment() {
                         if (menuItem.itemId == R.id.logoutMenuItem) {
                             Repository.repositoryInstance.getAuthModel().logout { startIntroActivity() }
                         } else {
-//                            val action: NavDirections =
-//                                PropertyBaseFragmentDirections.actionGlobalUserProfileFragment()
-//                            Navigation.findNavController(view).navigate(action)
+                            val action: NavDirections =
+                                PropertyHomeFragmentDirections.actionPropertyListFragmentToUserProfileFragment()
+                            Navigation.findNavController(view).navigate(action)
                         }
                         return true
                     }

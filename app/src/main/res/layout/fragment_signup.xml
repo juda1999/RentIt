@@ -78,7 +78,6 @@
             android:maxLines="1"
             android:inputType="textPersonName"
             android:hint="First Name"
-            android:fontFamily="@font/grand_hotel"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,7 +100,6 @@
             android:maxLines="1"
             android:inputType="textPersonName"
             android:hint="Last Name"
-            android:fontFamily="@font/grand_hotel"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,7 +122,6 @@
             android:maxLines="1"
             android:inputType="textEmailAddress"
             android:hint="Email"
-            android:fontFamily="@font/grand_hotel"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -147,7 +144,6 @@
             android:maxLines="1"
             android:inputType="textPassword"
             android:hint="Password"
-            android:fontFamily="@font/grand_hotel"
             />
     </com.google.android.material.textfield.TextInputLayout>
 

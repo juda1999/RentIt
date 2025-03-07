@@ -199,7 +199,6 @@ class SignUpFragment : Fragment() {
         val parentActivity: FragmentActivity? = getActivity()
         parentActivity?.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menu.removeItem(R.id.userCommentAdditionFragment)
                 menu.removeItem(R.id.userProfileFragment)
                 menu.removeItem(R.id.logoutMenuItem)
             }

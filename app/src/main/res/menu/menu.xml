@@ -12,10 +12,4 @@
         android:icon="@drawable/logout_image"
         android:title="logout"
         app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/userCommentAdditionFragment"
-        android:icon="@drawable/add_image"
-        android:title="Add movie comment"
-        app:showAsAction="ifRoom" />
 </menu>

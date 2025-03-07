@@ -62,7 +62,6 @@ class IntroActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
-        menu.removeItem(R.id.userCommentAdditionFragment)
         menu.removeItem(R.id.userProfileFragment)
         menu.removeItem(R.id.logoutMenuItem)
         return super.onCreateOptionsMenu(menu)

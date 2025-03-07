@@ -55,9 +55,6 @@
         android:name="com.idz.rentit.fragments.PropertyHomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_property_home">
-        <argument
-            android:name="position"
-            app:argType="integer" />
         <action
             android:id="@+id/action_propertyListFragment_to_userProfileFragment"
             app:destination="@id/userProfileFragment" />
@@ -67,9 +64,6 @@
         android:name="com.idz.rentit.fragments.UserProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_user_profile">
-        <argument
-            android:name="position"
-            app:argType="integer" />
 <!--        <action-->
 <!--            android:id="@+id/action_movieProfileFragment_to_movieCommentListFragment"-->
 <!--            app:destination="@id/movieCommentListFragment" />-->

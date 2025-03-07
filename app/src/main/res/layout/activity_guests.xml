@@ -20,6 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.Material3.ActionBar"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:title="My App Title" />
 
     <androidx.fragment.app.FragmentContainerView
