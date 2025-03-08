@@ -147,6 +147,20 @@
         </LinearLayout>
     </LinearLayout>
 
+
+    <ImageButton
+        android:id="@+id/cameraButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="84dp"
+        android:src="@drawable/camera_image"
+        app:layout_constraintBottom_toTopOf="@+id/add_property_fragment_upload_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toggle_buttons_layout"
+        app:layout_constraintVertical_bias="0.0" />
+
     <Button
         android:id="@+id/add_property_fragment_upload_btn"
         android:layout_width="match_parent"
@@ -164,4 +178,19 @@
         app:layout_constraintStart_toEndOf="@+id/toggle_buttons_layout"
         app:layout_constraintTop_toBottomOf="@+id/toggle_buttons_layout"
         app:layout_constraintVertical_bias="0.908" />
+
+    <TextView
+        android:id="@+id/add_property_fragment_furnished_text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/grand_hotel"
+        android:gravity="center"
+        android:text="Add photos:"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/cameraButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toggle_buttons_layout"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
