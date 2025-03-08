@@ -76,7 +76,7 @@ class AddPropertyFragment : Fragment() {
             }
 
             val property = Property(
-                propertyId = "1",
+                propertyId = "2",
                 userId = userId.toString(),
                 location = viewBindings.addPropertyFragmentLocationInputEt.text.toString(),
                 description = viewBindings.addPropertyFragmentDescriptionInputEt.text.toString(),

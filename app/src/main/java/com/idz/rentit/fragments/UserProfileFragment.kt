@@ -105,6 +105,7 @@ class UserProfileFragment : Fragment() {
         parentActivity.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menu.removeItem(R.id.userProfileFragment)
+                menu.removeItem(R.id.filterFragment)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
