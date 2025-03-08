@@ -2,27 +2,27 @@ package com.idz.rentit.repository
 
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.core.os.HandlerCompat
+import androidx.lifecycle.LiveData
+import com.idz.rentit.enums.LoadingState
+import com.idz.rentit.notifications.NotificationManager
 import com.idz.rentit.repository.firebase.AuthModel
 import com.idz.rentit.repository.firebase.FirebaseModel
 import com.idz.rentit.repository.models.*
 import com.idz.rentit.repository.room.LocalModel
+import java.util.Objects
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
+
 class Repository private constructor() {
-    private val localModel: LocalModel = LocalModel()
+    val localModel: LocalModel = LocalModel()
     private val firebaseModel: FirebaseModel = FirebaseModel()
     private val authModel: AuthModel = AuthModel()
     val executor: Executor = Executors.newSingleThreadExecutor()
     val mainThreadHandler: Handler = HandlerCompat.createAsync(Looper.getMainLooper())
-//    private var movieCategories: LiveData<List<MovieCategory>>? = null
-//    private var movies: LiveData<List<Movie>>? = null
-//    private var movieComments: LiveData<List<MovieComment>>? = null
-
-    fun getLocalModel(): LocalModel {
-        return this.localModel
-    }
+    private var properties: LiveData<List<Property>>? = null
 
     fun getFirebaseModel(): FirebaseModel {
         return this.firebaseModel
@@ -32,24 +32,16 @@ class Repository private constructor() {
         return this.authModel
     }
 
-//    val allMovieCategories: LiveData<List<Any>>?
-//        get() {
-//            if (Objects.isNull(this.movieCategories)) {
-//                this.movieCategories =
-//                    localModel.getMovieCategoryHandler().getAllMovieCategories()
-//                refreshAllMovieCategories()
-//            }
-//            return this.movieCategories
-//        }
-//
-//    val allMovies: LiveData<List<Movie>>?
-//        get() {
-//            if (Objects.isNull(this.movies)) {
-//                this.movies = localModel.getMovieHandler().getAllMovies()
-//                refreshAllMovies()
-//            }
-//            return this.movies
-//        }
+    val allProperties: LiveData<List<Property>>?
+        get() {
+            if (Objects.isNull(this.properties)) {
+                this.properties = localModel.propertyHandler.allProperties
+                refreshAllProperties()
+                Log.d("REPO", "Properties received: ${this.properties!!.value}")
+            }
+            return this.properties
+        }
+
 
 //    val allMovieComments: LiveData<List<Any>>?
 //        get() {
@@ -86,26 +78,26 @@ class Repository private constructor() {
 //            }
 //    }
 
-//    fun refreshAllMovies() {
-//        NotificationManager.instance().getEventMovieListLoadingState().setValue(LOADING)
-//        val localLastUpdate: Long = Movie.getLocalLastUpdate()
-//        getFirebaseModel().getMovieExecutor()
-//            .getAllMoviesSinceLastUpdate(localLastUpdate) { movies ->
-//                executor.execute {
-//                    Log.d("TAG", "Movie: firebase return : " + movies.size())
-//                    var movieGlobalLastUpdate = localLastUpdate
-//                    for (movie in movies) {
-//                        localModel.getMovieHandler().addMovie(movie)
-//                        if (movieGlobalLastUpdate < movie.getMovieLastUpdate()) {
-//                            movieGlobalLastUpdate = movie.getMovieLastUpdate()
-//                        }
-//                    }
-//                    Movie.setLocalLastUpdate(movieGlobalLastUpdate)
-//                    NotificationManager.instance()
-//                        .getEventMovieListLoadingState().postValue(NOT_LOADING)
-//                }
-//            }
-//    }
+     fun refreshAllProperties() { /// do we need this??? and do we need to add local last update
+        NotificationManager.instance().getEventPropertyListLoadingState().value = LoadingState.LOADING
+         val localLastUpdate: Long = Property.getLocalLastUpdate()
+        getFirebaseModel().propertyExecutor.getAllPropertiesSinceLastUpdate(localLastUpdate) { properties ->
+            executor.execute {
+                    Log.d("MOR", "Properties: firebase return : $properties")
+                var propertyGlobalLastUpdate = localLastUpdate
+                for (property in properties) {
+                    localModel.propertyHandler.addProperty(property)
+                    if (propertyGlobalLastUpdate < property.lastUpdate!!) {
+                        propertyGlobalLastUpdate = property.lastUpdate!!
+                    }
+                    Log.d("MORRRRR","${localModel.propertyHandler.allProperties.value}")
+                }
+                Property.setLocalLastUpdate(propertyGlobalLastUpdate)
+                NotificationManager.instance()
+                    .getEventPropertyListLoadingState().postValue(LoadingState.NOT_LOADING)
+            }
+        }
+    }
 
 //    fun refreshAllMovieComments() {
 //        NotificationManager.instance().getEventMovieCommentListLoadingState().setValue(LOADING)
@@ -131,7 +123,7 @@ class Repository private constructor() {
 
     fun register(addUserListener: () -> Unit, user: User, password: String) {
         authModel.register(user.email, password) { uid: String ->
-            user.setUserId(uid)
+            user.userId = uid
             firebaseModel.userExecutor.addUser(user, addUserListener)
         }
     }

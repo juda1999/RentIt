@@ -1,7 +1,7 @@
 package com.idz.rentit.repository.firebase
 
-//import com.idz.rentit.repository.firebase.executors.*
-import com.example.movieshare.repository.firebase.executors.UserExecutor
+import com.idz.rentit.repository.firebase.executors.PropertyExecutor
+import com.idz.rentit.repository.firebase.executors.UserExecutor
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 
@@ -17,11 +17,12 @@ class FirebaseModel {
 //    val movieCategoryExecutor: MovieCategoryExecutor
 //        get() = MovieCategoryExecutor.instance()
 //
-//    val movieExecutor: MovieExecutor
-//        get() = MovieExecutor.instance()
 //
 //    val movieCommentExecutor: MovieCommentExecutor
 //        get() = MovieCommentExecutor.instance()
+
+    val propertyExecutor: PropertyExecutor
+        get() = PropertyExecutor.instance();
 
     val userExecutor: UserExecutor
         get() = UserExecutor.instance()

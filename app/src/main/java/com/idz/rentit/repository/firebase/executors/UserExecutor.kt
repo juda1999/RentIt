@@ -1,10 +1,9 @@
-package com.example.movieshare.repository.firebase.executors
+package com.idz.rentit.repository.firebase.executors
 
 import android.graphics.Bitmap
 import android.net.Uri
 import com.idz.rentit.constants.UserConstants
 import com.idz.rentit.listeners.authentication.*
-//import com.idz.rentit.listeners.movies.GetMovieItemListener
 import com.idz.rentit.repository.models.User
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FieldPath
@@ -18,30 +17,32 @@ class UserExecutor private constructor() {
     private val db = FirebaseFirestore.getInstance()
     private val storage = FirebaseStorage.getInstance()
 
-//    fun getUserById(id: String?, listener: GetMovieItemListener<User?>) {
-//        db.collection(UserConstants.USER_COLLECTION_NAME)
-//            .whereEqualTo(FieldPath.documentId(), id)
-//            .get()
-//            .addOnSuccessListener { task: QuerySnapshot ->
-//                var user: User? = null
-//                val jsonDocument = task.documents
-//                if (!jsonDocument.isEmpty()) {
-//                    user = User.fromJson(jsonDocument[0].data)
-//                }
-//                listener.onComplete(user)
-//            }
-//    }
+    fun getUserById(id: String?, listener: (User) -> Unit) {
+        db.collection(UserConstants.USER_COLLECTION_NAME)
+            .whereEqualTo(FieldPath.documentId(), id)
+            .get()
+            .addOnSuccessListener { task: QuerySnapshot ->
+                var user: User? = null
+                val jsonDocument = task.documents
+                if (jsonDocument.isNotEmpty()) {
+                    user = jsonDocument[0].data?.let { User.fromJson(it) }
+                }
+                if (user != null) {
+                    listener(user)
+                }
+            }
+    }
 
     fun addUser(user: User, listener: () -> Unit) {
         db.collection(UserConstants.USER_COLLECTION_NAME)
-            .document(user.getUserId())
+            .document(user.userId)
             .set(user.toJson())
             .addOnCompleteListener { task: Task<Void?>? -> listener() }
     }
 
     fun updateUser(user: User, listener: UpdateUserListener) {
         db.collection(UserConstants.USER_COLLECTION_NAME)
-            .document(user.getUserId())
+            .document(user.userId)
             .set(user.toJson())
             .addOnCompleteListener { task: Task<Void?>? -> listener.onComplete() }
     }

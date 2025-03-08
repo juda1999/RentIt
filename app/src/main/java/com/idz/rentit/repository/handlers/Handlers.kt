@@ -1,52 +1,48 @@
-package com.example.movieshare.repository.room.handlers
+package com.idz.rentit.repository.handlers
 
 import android.os.Looper
 import android.util.Log
 import androidx.core.os.HandlerCompat
 import androidx.lifecycle.LiveData
 import com.idz.rentit.listeners.authentication.GetPropertyItemListListener
-import com.idz.rentit.listeners.authentication.GetPropertyItemListener
 import com.idz.rentit.repository.models.Property
-//import com.idz.rentit.repository.room.localdb.AppLocalDB
-//import com.idz.rentit.repository.room.localdb.AppLocalDbRepository
+import com.idz.rentit.repository.room.database.AppLocalDB
+import com.idz.rentit.repository.room.database.AppLocalDbRepository
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
 class PropertyHandler private constructor() {
     private val executor: Executor = Executors.newSingleThreadExecutor()
     private val mainThreadHandler = HandlerCompat.createAsync(Looper.getMainLooper())
-//    private val localDB: AppLocalDbRepository = AppLocalDB.appDB
+    private val localDB: AppLocalDbRepository = AppLocalDB.getAppDB
 
-//    val allProperties: LiveData<List<Property>>?
-//        get() = localDB.propertyDao()?.allProperties
+    val allProperties: LiveData<List<Property>>
+        get() = localDB.propertyDao().getAllProperties()
 
-    fun getAllPropertiesByFilter(filter: String, listener: GetPropertyItemListListener<Property?>) {
+    fun getAllPropertiesByFilter(price: Double,
+                                 location: String,
+                                 hasShelter: Boolean,
+                                 isFurnished: Boolean,
+                                 listener: GetPropertyItemListListener<Property?>) {
         executor.execute {
-//            val properties: List<Property> =
-//                localDB.propertyDao().getAllPropertiesByFilter(filter)
-//            mainThreadHandler.post { listener.onComplete(properties) }
-        }
-    }
-
-    fun getMovieByName(name: String, listener: GetPropertyItemListener<Property?>) {
-        executor.execute {
-//            val property: Property? = localDB.propertyDao()?.getPropertyByName(name)
-//            mainThreadHandler.post { listener.onComplete(null) }
+            val properties: List<Property> =
+                localDB.propertyDao().getAllPropertiesByFilter(price,location,hasShelter,isFurnished)
+            mainThreadHandler.post { listener.onComplete(properties) }
         }
     }
 
     fun addProperty(property: Property) {
         try {
-//            localDB.propertyDao().insertAll(property)
+            localDB.propertyDao().insertAll(property)
         } catch (e: Exception) {
-            Log.d("TAG", e.message!!)
+            Log.d("ERROR ADDING PROPERTY", e.message!!)
         }
     }
 
     companion object {
-        private val movieHandlerInstance = PropertyHandler()
+        private val propertyHandlerInstance = PropertyHandler()
         fun instance(): PropertyHandler {
-            return movieHandlerInstance
+            return propertyHandlerInstance
         }
     }
 }

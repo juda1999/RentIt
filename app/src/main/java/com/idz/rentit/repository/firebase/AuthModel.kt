@@ -33,9 +33,9 @@ class AuthModel {
             }
     }
 
-    fun logout(logoutListener: LogoutListener) {
+    fun logout(logoutListener: () -> Unit) {
         firebaseAuth.signOut()
-        logoutListener.onComplete()
+        logoutListener()
     }
 
     val isSignedIn: Boolean

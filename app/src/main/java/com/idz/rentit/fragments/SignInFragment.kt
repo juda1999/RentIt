@@ -65,7 +65,7 @@ class SignInFragment : Fragment() {
             UserUtils.setErrorIfPasswordIsInvalid(viewBindings.signInFragmentPasswordInputEt)
 
             val loginSuccessListener =  LoginOnSuccessListener {
-                 fun onSuccess() {
+                 fun onComplete() {
                     val intent = Intent(activity, MainActivity::class.java).apply {
                         flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     }
@@ -124,7 +124,6 @@ class SignInFragment : Fragment() {
         val parentActivity: FragmentActivity = requireActivity()
         parentActivity.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menu.removeItem(R.id.userCommentAdditionFragment)
                 menu.removeItem(R.id.userProfileFragment)
                 menu.removeItem(R.id.logoutMenuItem)
             }

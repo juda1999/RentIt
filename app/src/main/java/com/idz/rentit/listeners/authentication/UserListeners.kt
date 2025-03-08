@@ -20,10 +20,6 @@ fun interface LoginOnSuccessListener {
     fun onComplete()
 }
 
-interface LogoutListener {
-    fun onComplete()
-}
-
 interface RegisterListener {
     fun onComplete(uid: String?)
 }

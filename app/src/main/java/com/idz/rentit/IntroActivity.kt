@@ -27,7 +27,6 @@ class IntroActivity : AppCompatActivity() {
     private lateinit var fifth: View
     private lateinit var sixth: View
     private lateinit var a: TextView
-    private lateinit var slogan: TextView
 
     private lateinit var topAnimation: Animation
     private lateinit var bottomAnimation: Animation
@@ -63,7 +62,6 @@ class IntroActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
-        menu.removeItem(R.id.userCommentAdditionFragment)
         menu.removeItem(R.id.userProfileFragment)
         menu.removeItem(R.id.logoutMenuItem)
         return super.onCreateOptionsMenu(menu)
@@ -81,7 +79,6 @@ class IntroActivity : AppCompatActivity() {
         fifth = findViewById(R.id.fifth_line)
         sixth = findViewById(R.id.sixth_line)
         a = findViewById(R.id.a)
-        slogan = findViewById(R.id.tagLine)
     }
 
     private fun createAnimation() {
@@ -98,7 +95,6 @@ class IntroActivity : AppCompatActivity() {
         fifth.startAnimation(topAnimation)
         sixth.startAnimation(topAnimation)
         a.startAnimation(middleAnimation)
-        slogan.startAnimation(bottomAnimation)
     }
 
     private fun isLogin() {

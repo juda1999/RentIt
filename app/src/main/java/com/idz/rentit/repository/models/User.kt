@@ -1,7 +1,7 @@
 package com.idz.rentit.repository.models
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FieldValue
@@ -14,50 +14,25 @@ import com.idz.rentit.constants.UserConstants.USER_LAST_UPDATE
 import java.util.Objects
 
 @Entity
-class User {
+data class User(
     @PrimaryKey
-    private lateinit var userId: String
-    var firstName: String
-    var lastName: String
-    var email: String
-    var imageUrl: String? = null
+    @ColumnInfo(index = true)
+    var userId: String,
+    var firstName: String,
+    var lastName: String,
+    var email: String,
+    var imageUrl: String? = null,
     var userLastUpdate: Long? = null
-
-    constructor(firstName: String, lastName: String, email: String) {
-        this.firstName = firstName
-        this.lastName = lastName
-        this.email = email
-    }
-
-    @Ignore
-    constructor(
-        userId: String, firstName: String, lastName: String,
-        email: String, imageUrl: String?
-    ) {
-        this.userId = userId
-        this.firstName = firstName
-        this.lastName = lastName
-        this.email = email
-        this.imageUrl = imageUrl
-    }
-
+) {
     fun toJson(): Map<String, Any?> {
         val userJson: MutableMap<String, Any?> = HashMap()
-        userJson[USER_ID] = getUserId()
+        userJson[USER_ID] = userId
         userJson[USER_FIRST_NAME] = firstName
         userJson[USER_LAST_NAME] = lastName
         userJson[USER_EMAIL] = email
         userJson[USER_IMAGE_URL] = imageUrl
         userJson[USER_LAST_UPDATE] = FieldValue.serverTimestamp()
         return userJson
-    }
-
-    fun getUserId(): String {
-        return userId!!
-    }
-
-    fun setUserId(userId: String) {
-        this.userId = userId
     }
 
     companion object {
