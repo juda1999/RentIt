@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.idz.rentit.repository.models.Property
 import com.idz.rentit.repository.models.User
 
-@Database(entities = [Property::class, User::class], exportSchema = true, version = 4)
+@Database(entities = [Property::class, User::class], exportSchema = true, version = 5)
 abstract class AppLocalDbRepository : RoomDatabase() {
     abstract fun propertyDao(): PropertyDao
     abstract fun userDao(): UserDao

@@ -10,6 +10,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.navigation.NavDirections
+import androidx.navigation.Navigation.findNavController
 import com.idz.rentIt.R
 import com.idz.rentit.GuestsActivity
 import com.idz.rentit.repository.Repository
@@ -20,6 +21,8 @@ abstract class PropertyBaseFragment : Fragment() {
         val parentActivity = activity
         parentActivity?.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menu.removeItem(R.id.addPropertyFragment)
+
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
@@ -31,19 +34,8 @@ abstract class PropertyBaseFragment : Fragment() {
                         if (menuItem.itemId == R.id.logoutMenuItem) {
                             Repository.repositoryInstance.getAuthModel().logout { startIntroActivity() }
                         } else {
-                            if (menuItem.itemId == R.id.addPropertyFragment) {
-                                val action: NavDirections =
-                                    PropertyHomeFragmentDirections.actionPropertyListFragmentToAddPropertyFragment()
-                                Navigation.findNavController(view).navigate(action)
+                            findNavController(view).navigate(R.id.userProfileFragment)
                                 return true
-
-                            }
-                            if (menuItem.itemId == R.id.userProfileFragment) {
-                                val action: NavDirections =
-                                    PropertyHomeFragmentDirections.actionPropertyListFragmentToUserProfileFragment()
-                                Navigation.findNavController(view).navigate(action)
-                                return true
-                            }
                         }
                     }
                 }

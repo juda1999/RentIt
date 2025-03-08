@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
+import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.idz.rentIt.R
@@ -112,8 +113,12 @@ class UserProfileFragment : Fragment() {
                     return true
                 } else {
                     if (menuItem.itemId == R.id.addPropertyFragment) {
-                        findNavController(view).navigate(R.id.addPropertyFragment)
+                        val action: NavDirections =
+                            UserProfileFragmentDirections.actionUserProfileFragmentToAddPropertyFragment(userId!!)
+                        AddPropertyFragment()
+                        findNavController(view).navigate(action)
                         return true
+
                     }
                     if (menuItem.itemId == R.id.logoutMenuItem) {
                         Repository.repositoryInstance.getAuthModel()

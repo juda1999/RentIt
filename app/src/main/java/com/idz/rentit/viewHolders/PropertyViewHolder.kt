@@ -20,10 +20,10 @@ class PropertyViewHolder(
     override fun bindPropertyItem(propertyItem: Property) {
         if (propertyItem.imageUrl.isNotBlank()) {
             Picasso.get().load(propertyItem.imageUrl)
-                .placeholder(R.drawable.avatar)
+                .placeholder(R.drawable.home)
                 .into(propertyItemImg)
         } else {
-            propertyItemImg.setImageResource(R.drawable.avatar)
+            propertyItemImg.setImageResource(R.drawable.home)
         }
         propertyItemLocation.text = propertyItem.location
         propertyItemPrice.text = "rent is ${propertyItem.price}$"

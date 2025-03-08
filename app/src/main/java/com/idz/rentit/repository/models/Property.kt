@@ -37,7 +37,6 @@ data class Property(
 
     @ColumnInfo(index = true)
     var location: String,
-    var numberOfRooms: Long,
     var price: Long,
     var description: String,
     @ColumnInfo(index = true)
@@ -51,7 +50,6 @@ data class Property(
         val propertyJSON: MutableMap<String, Any> = HashMap()
         propertyJSON[PROPERTY_ID] = this.propertyId
         propertyJSON[LOCATION] = location
-        propertyJSON[NUMBER_OF_ROOMS] = numberOfRooms
         propertyJSON[PRICE] = price
         propertyJSON[DESCRIPTION] = description
         propertyJSON[UserConstants.USER_ID] = userId
@@ -66,7 +64,6 @@ data class Property(
         fun fromJson(json: Map<String?, Any>): Property {
             val propertyId = json[PROPERTY_ID].toString()
             val location = json[LOCATION].toString()
-            val numberOfRooms = json[NUMBER_OF_ROOMS] as Long
             val price = json[PRICE] as Long
             val description = json[DESCRIPTION].toString()
             val userId = json[UserConstants.USER_ID].toString()
@@ -74,7 +71,7 @@ data class Property(
             val hasShelter = json[HAS_SHELTER] as Boolean
             val isFurnished = json[IS_FURNISHED] as Boolean
 
-            val property = Property(propertyId, location, numberOfRooms, price, description, userId, imageUrl, hasShelter, isFurnished)
+            val property = Property(propertyId, location, price, description, userId, imageUrl, hasShelter, isFurnished)
             val lastUpdate = json[LAST_UPDATE] as Timestamp?
             property.lastUpdate = lastUpdate!!.seconds
             return property
