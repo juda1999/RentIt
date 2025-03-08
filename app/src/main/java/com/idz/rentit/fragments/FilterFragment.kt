@@ -8,6 +8,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.NumberPicker
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
@@ -22,6 +23,7 @@ import com.idz.rentit.repository.models.Property
 
 
 class FilterFragment : Fragment() {
+    private lateinit var numberPicker: NumberPicker
     private lateinit var viewBindings: FragmentFilterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,8 +37,17 @@ class FilterFragment : Fragment() {
     ): View {
         viewBindings = FragmentFilterBinding.inflate(inflater, container, false)
         configureMenuOptions(viewBindings.root)
+        numberPicker = viewBindings.filterPriceInput
+        configureNumberPicker()
         activateButtonsListeners()
         return viewBindings.root
+    }
+
+    private fun configureNumberPicker() {
+        numberPicker.minValue = 100
+        numberPicker.maxValue = 10000
+        numberPicker.value = 100
+        numberPicker.wrapSelectorWheel = false
     }
 
     private fun activateButtonsListeners() {
