@@ -15,6 +15,14 @@ interface PropertyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(properties: Property)
 
-    @Query("SELECT * FROM Property WHERE price LIKE :filter")
-    fun getAllPropertiesByFilter(filter: String): List<Property>
+    @Query("SELECT * FROM Property WHERE price <= :price AND " +
+            "location LIKE '%' || :location || '%' AND " +
+            "hasShelter IS :hasShelter AND " +
+            "isFurnished IS :isFurnished")
+    fun getAllPropertiesByFilter(
+        price: Double,
+        location: String,
+        hasShelter: Boolean,
+        isFurnished: Boolean
+    ): List<Property>
 }

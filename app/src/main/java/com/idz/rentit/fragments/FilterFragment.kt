@@ -11,10 +11,14 @@ import android.view.ViewGroup
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LiveData
 import androidx.navigation.Navigation
 import com.idz.rentIt.R
 import com.idz.rentIt.databinding.FragmentFilterBinding
 import com.idz.rentIt.databinding.FragmentSigninBinding
+import com.idz.rentit.listeners.authentication.GetPropertyItemListListener
+import com.idz.rentit.repository.Repository
+import com.idz.rentit.repository.models.Property
 
 
 class FilterFragment : Fragment() {
@@ -31,7 +35,28 @@ class FilterFragment : Fragment() {
     ): View {
         viewBindings = FragmentFilterBinding.inflate(inflater, container, false)
         configureMenuOptions(viewBindings.root)
+        activateButtonsListeners()
         return viewBindings.root
+    }
+
+    private fun activateButtonsListeners() {
+        viewBindings.filterFragmentApplyBtn.setOnClickListener {
+            val listener = object : GetPropertyItemListListener<Property> {
+                    // This is called when the filtering is complete
+//                    Repository.repositoryInstance.localModel.propertyHandler.allProperties = properties
+//                    Navigation.findNavController(requireView()).popBackStack()
+
+                override fun onComplete(movieItemList: List<Property>?) {
+                    TODO("Not yet implemented")
+                }
+            }
+//            val filteredProperties = Repository.repositoryInstance.localModel.propertyHandler.getAllPropertiesByFilter(
+//            viewBindings.filterPriceInput.value.toDouble(),
+//            viewBindings.filterFragmentLocationInputEt.text.toString(),
+//            viewBindings.filterFragmentShelterInput.isChecked,
+//            viewBindings.filterFragmentFurnishedInput.isChecked,
+//           listener)
+        }
     }
 
     private fun configureMenuOptions(view: View) {

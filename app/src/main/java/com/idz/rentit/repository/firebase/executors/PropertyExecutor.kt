@@ -64,40 +64,12 @@ class PropertyExecutor private constructor() {
             }
     }
 
-
-
-//    fun getProperties(callback: (List<Property>) -> Unit) {
-//        db.collection(PropertyConstants.PROPERTY_COLLECTION_NAME)
-//            .get().addOnCompleteListener {
-//                when (it.isSuccessful) {
-//                    true -> {
-//                        val users: MutableList<Property> = mutableListOf()
-//                        for (json in it.result) {
-//                            val user = Property.fromJson(json.data)
-//                            users.add(user)
-//                        }
-//
-//                        callback(users)
-//                    }
-//
-//                    false -> callback(listOf())
-//                }
-//            }
-//    }
-
     fun addProperty(property: Property, listener: () -> Unit) {
         db.collection(PropertyConstants.PROPERTY_COLLECTION_NAME)
             .document(property.propertyId)
             .set(property.toJson())
             .addOnCompleteListener { task: Task<Void?>? -> listener() }
     }
-
-//    fun updateUser(user: User, listener: UpdateUserListener) {
-//        db.collection(UserConstants.USER_COLLECTION_NAME)
-//            .document(user.userId)
-//            .set(user.toJson())
-//            .addOnCompleteListener { task: Task<Void?>? -> listener.onComplete() }
-//    }
 
     fun uploadPropertyImage(imageBmp: Bitmap, name: String, listener: (String?) -> Unit) {
         val imagesRef = storage.reference.child(IMAGE_FOLDER).child(name)

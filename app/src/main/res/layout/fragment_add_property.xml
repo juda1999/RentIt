@@ -80,11 +80,12 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <NumberPicker
-        android:id="@+id/add_property_number_picker"
+        android:id="@+id/add_property_fragment_price_input"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_property_fragment_description_input_layout" />
 
@@ -97,7 +98,7 @@
         android:weightSum="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_property_number_picker">
+        app:layout_constraintTop_toBottomOf="@+id/add_property_fragment_price_input">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -202,4 +203,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toggle_buttons_layout"
         app:layout_constraintVertical_bias="0.009" />
+
+    <TextView
+        android:id="@+id/add_property_fragment_shelter_text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/grand_hotel"
+        android:gravity="center"
+        android:text="monthly rent in $:"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/add_property_fragment_price_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_property_fragment_description_input_layout"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

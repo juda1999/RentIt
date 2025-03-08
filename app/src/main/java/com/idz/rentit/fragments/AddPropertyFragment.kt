@@ -38,7 +38,7 @@ class AddPropertyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         viewBindings = FragmentAddPropertyBinding.inflate(inflater, container, false)
-        numberPicker = viewBindings.addPropertyNumberPicker
+        numberPicker = viewBindings.addPropertyFragmentPriceInput
         configureNumberPicker()
         activateButtonsListeners()
         configureMenuOptions(viewBindings.root)

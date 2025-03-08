@@ -19,10 +19,14 @@ class PropertyHandler private constructor() {
     val allProperties: LiveData<List<Property>>
         get() = localDB.propertyDao().getAllProperties()
 
-    fun getAllPropertiesByFilter(filter: String, listener: GetPropertyItemListListener<Property?>) {
+    fun getAllPropertiesByFilter(price: Double,
+                                 location: String,
+                                 hasShelter: Boolean,
+                                 isFurnished: Boolean,
+                                 listener: GetPropertyItemListListener<Property?>) {
         executor.execute {
             val properties: List<Property> =
-                localDB.propertyDao().getAllPropertiesByFilter(filter)
+                localDB.propertyDao().getAllPropertiesByFilter(price,location,hasShelter,isFurnished)
             mainThreadHandler.post { listener.onComplete(properties) }
         }
     }
