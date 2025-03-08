@@ -95,6 +95,7 @@ class AddPropertyFragment : Fragment() {
     }
 
     private fun navigateToHomePageAfterAddProperty() {
+        Repository.repositoryInstance.refreshAllProperties()
         findNavController().navigate(R.id.action_addPropertyFragment_to_propertyHomeFragment)
     }
 

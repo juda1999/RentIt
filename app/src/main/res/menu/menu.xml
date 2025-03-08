@@ -13,8 +13,15 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/filterFragment"
+        android:icon="@drawable/filter"
+        android:title="filter"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/logoutMenuItem"
         android:icon="@drawable/logout_image"
         android:title="logout"
         app:showAsAction="ifRoom" />
+
 </menu>

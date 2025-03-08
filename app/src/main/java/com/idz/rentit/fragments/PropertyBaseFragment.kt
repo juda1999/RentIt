@@ -22,21 +22,22 @@ abstract class PropertyBaseFragment : Fragment() {
         parentActivity?.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menu.removeItem(R.id.addPropertyFragment)
-
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 if (menuItem.itemId == android.R.id.home) {
-                    Navigation.findNavController(view).popBackStack()
+                    findNavController(view).popBackStack()
                     return true
                 } else {
-                    if (view != null) {
+                    if (menuItem.itemId == R.id.filterFragment) {
+                        findNavController(view).navigate(R.id.filterFragment)
+                        return true
+                    }
                         if (menuItem.itemId == R.id.logoutMenuItem) {
                             Repository.repositoryInstance.getAuthModel().logout { startIntroActivity() }
                         } else {
                             findNavController(view).navigate(R.id.userProfileFragment)
                                 return true
-                        }
                     }
                 }
                 return false

@@ -17,39 +17,6 @@
         android:id="@+id/action_addPropertyFragment_to_propertyHomeFragment"
         app:destination="@id/propertyHomeFragment" />
     </fragment>
-<!--    <fragment-->
-<!--        android:id="@+id/userCommentListFragment"-->
-<!--        android:name="com.idz.rentit.fragments.UserCommentListFragment"-->
-<!--        android:label="My Comments"-->
-<!--        tools:layout="@layout/fragment_user_comment_list">-->
-<!--        <action-->
-<!--            android:id="@+id/action_userCommentListFragment_to_userCommentEditionFragment"-->
-<!--            app:destination="@id/userCommentEditionFragment" />-->
-<!--        <argument-->
-<!--            android:name="userId"-->
-<!--            app:argType="string" />-->
-<!--    </fragment>-->
-<!--    <fragment-->
-<!--        android:id="@+id/userCommentEditionFragment"-->
-<!--        android:name="com.idz.rentit.fragments.UserCommentEditionFragment"-->
-<!--        android:label="Edit Comment"-->
-<!--        tools:layout="@layout/fragment_user_comment_edition">-->
-<!--        <argument-->
-<!--            android:name="movieCommentPosition"-->
-<!--            app:argType="integer" />-->
-<!--        <argument-->
-<!--            android:name="userId"-->
-<!--            app:argType="string" />-->
-<!--    </fragment>-->
-<!--    <fragment-->
-<!--        android:id="@+id/userCommentAdditionFragment"-->
-<!--        android:name="com.example.movieshare.fragments.user.UserCommentAdditionFragment"-->
-<!--        android:label="Add Comment"-->
-<!--        tools:layout="@layout/fragment_user_comment_addition">-->
-<!--        <argument-->
-<!--            android:name="movieName"-->
-<!--            app:argType="string" />-->
-<!--    </fragment>-->
     <fragment
         android:id="@+id/propertyHomeFragment"
         android:name="com.idz.rentit.fragments.PropertyHomeFragment"
@@ -76,18 +43,6 @@
             app:destination="@id/addPropertyFragment" />
 
     </fragment>
-<!--    <fragment-->
-<!--        android:id="@+id/movieCommentListFragment"-->
-<!--        android:name="com.idz.rentit.fragments.MovieCommentListFragment"-->
-<!--        android:label="Comments"-->
-<!--        tools:layout="@layout/fragment_movie_comment_list">-->
-<!--        <argument-->
-<!--            android:name="movieId"-->
-<!--            app:argType="string" />-->
-<!--    </fragment>-->
-<!--    <action-->
-<!--        android:id="@+id/action_global_userProfileFragment"-->
-<!--        app:destination="@id/userProfileFragment" />-->
     <fragment
         android:id="@+id/editUserProfileFragment"
         android:name="com.idz.rentit.fragments.EditUserProfileFragment"
@@ -96,6 +51,14 @@
         <argument
             android:name="userId"
             app:argType="string" />
-
+    </fragment>
+    <fragment
+    android:id="@+id/filterFragment"
+    android:name="com.idz.rentit.fragments.FilterFragment"
+    android:label="Filter"
+    tools:layout="@layout/fragment_filter">
+    <action
+        android:id="@+id/action_filterFragment_to_propertyHomeFragment"
+        app:destination="@id/propertyHomeFragment" />
     </fragment>
 </navigation>
