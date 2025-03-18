@@ -13,7 +13,6 @@ import androidx.navigation.Navigation.findNavController
 import com.idz.rentIt.R
 import com.idz.rentIt.databinding.FragmentEditUserProfileBinding
 import com.idz.rentit.constants.UserConstants.USER_IMAGE_PROFILE_EXTENSION
-import com.idz.rentit.listeners.authentication.UpdateUserListener
 import com.idz.rentit.repository.Repository
 import com.idz.rentit.utils.InputValidator
 import com.idz.rentit.utils.UserUtils
@@ -21,7 +20,7 @@ import com.idz.rentit.viewModels.EditUserProfileFragmentViewModel
 import com.squareup.picasso.Picasso
 import java.util.Objects
 
-class EditUserProfileFragment : UserCommentFormFragment() {
+class EditUserProfileFragment : PropertyBaseFragment() {
     private var viewBindings: FragmentEditUserProfileBinding? = null
     private var userId: String? = null
     private var viewModel: EditUserProfileFragmentViewModel? = null
@@ -62,11 +61,11 @@ class EditUserProfileFragment : UserCommentFormFragment() {
         Repository.repositoryInstance.getFirebaseModel().userExecutor
             .getUserById(this.userId) { user ->
                 viewModel?.user = user
-                displayUserMovieCommentDetails()
+                displayUserDetails()
             }
     }
 
-    protected override fun displayUserMovieCommentDetails() {
+    fun displayUserDetails() {
         if (Objects.nonNull(viewModel?.user)) {
             viewBindings?.userProfileEditionFragmentFirstnameInputEt?.setText(
                 viewModel?.user?.firstName
@@ -75,7 +74,7 @@ class EditUserProfileFragment : UserCommentFormFragment() {
                 viewModel?.user?.lastName
             )
             loadUserProfileImage()
-            setUserCommentPropertiesState()
+            setUserPropertiesState()
         }
     }
 
@@ -89,12 +88,12 @@ class EditUserProfileFragment : UserCommentFormFragment() {
         }
     }
 
-    protected override fun setUserCommentPropertiesState() {
+    private fun setUserPropertiesState() {
         viewBindings?.userProfileEditionFragmentFirstnameInputEt?.isFocusable = true
         viewBindings?.userProfileEditionFragmentLastnameInputEt?.isFocusable = true
     }
 
-    protected override fun activateButtonsListeners() {
+    private fun activateButtonsListeners() {
         setFirstNameEditTextOnKeyListener()
         setLastNameEditTextOnKeyListener()
         setProfileImageViewOnClickListener()
@@ -136,7 +135,8 @@ class EditUserProfileFragment : UserCommentFormFragment() {
         Repository.repositoryInstance.getFirebaseModel().userExecutor
             .uploadUserImage(
                 profileImage,
-                (viewModel?.user?.email ) + USER_IMAGE_PROFILE_EXTENSION
+                (viewModel?.user?.email ) + USER_IMAGE_PROFILE_EXTENSION,
+                requireContext()
             ) { url ->
                 if (Objects.nonNull(url)) {
                     viewModel?.user?.imageUrl = (url)
@@ -147,13 +147,11 @@ class EditUserProfileFragment : UserCommentFormFragment() {
 
     private fun updateUser(view: View) {
         Repository.repositoryInstance.getFirebaseModel().userExecutor
-            .updateUser(viewModel?.user!!, object : UpdateUserListener {
-                 override fun onComplete() {
-                    UpdateUserProfileDialogFragment()
-                        .show(requireActivity().getSupportFragmentManager(), "TAG")
-                    findNavController(view).popBackStack()
-                }
-            })
+            .updateUser(viewModel?.user!!) {
+                UpdateUserProfileDialogFragment()
+                    .show(requireActivity().getSupportFragmentManager(), "TAG")
+                findNavController(view).popBackStack()
+            }
     }
 
     private val isFormValid: Boolean

@@ -3,6 +3,7 @@ package com.idz.rentit.fragments
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -77,6 +78,7 @@ class UserProfileFragment : Fragment() {
     }
 
     private fun loadUserProfileImage() {
+        Log.d("jude", viewModel?.getUser()?.imageUrl.toString())
         if (Objects.nonNull(viewModel?.getUser()?.imageUrl)) {
             Picasso.get().load(viewModel?.getUser()?.imageUrl)
                 .placeholder(R.drawable.avatar)
@@ -115,11 +117,10 @@ class UserProfileFragment : Fragment() {
                 } else {
                     if (menuItem.itemId == R.id.addPropertyFragment) {
                         val action: NavDirections =
-                            UserProfileFragmentDirections.actionUserProfileFragmentToAddPropertyFragment(userId!!)
-                        AddPropertyFragment()
+                            UserProfileFragmentDirections.actionUserProfileFragmentToAddPropertyFragment(null)
+//                        AddPropertyFragment()
                         findNavController(view).navigate(action)
                         return true
-
                     }
                     if (menuItem.itemId == R.id.logoutMenuItem) {
                         Repository.repositoryInstance.getAuthModel()

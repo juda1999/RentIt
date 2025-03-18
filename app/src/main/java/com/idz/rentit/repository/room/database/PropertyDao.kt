@@ -12,6 +12,9 @@ interface PropertyDao {
     @Query("SELECT * FROM Property")
     fun getAllProperties(): LiveData<List<Property>>
 
+    @Query("DELETE FROM Property WHERE propertyId = :propertyId")
+    fun deletePropertyById(propertyId: String)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(properties: Property)
 

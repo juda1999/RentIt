@@ -38,11 +38,9 @@ class PropertyHomeFragment : PropertyBaseFragment() {
         viewBindings.propertyListRecyclerView.setHasFixedSize(true)
         viewBindings.propertyListRecyclerView.layoutManager = GridLayoutManager(requireContext(), 1)
 
-        // Initialize the adapter with an empty mutable list
         propertyAdapter = PropertyAdapter(layoutInflater, mutableListOf<Property>())
         viewBindings.propertyListRecyclerView.adapter = propertyAdapter
         viewModel.getPropertyList().observe(viewLifecycleOwner) { properties ->
-            // Update the adapter with the new data
             Log.d("PropertyHomeFragment", "Properties received: ${properties.size}")
             propertyAdapter.updatePropertyList(properties)
         }
@@ -64,9 +62,9 @@ class PropertyHomeFragment : PropertyBaseFragment() {
     }
 
     private fun activateItemListListener() {
-        this.propertyAdapter.setOnItemClickListener {
+        this.propertyAdapter.setOnItemClickListener { position, property ->
             val action = PropertyHomeFragmentDirections
-                .actionPropertyListFragmentToUserProfileFragment()
+                .actionPropertyListFragmentToPropertyProfile(property!!)
             findNavController().navigate(action)
         }
     }

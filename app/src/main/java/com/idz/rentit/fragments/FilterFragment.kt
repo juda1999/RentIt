@@ -1,5 +1,6 @@
 package com.idz.rentit.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,28 +9,26 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.NumberPicker
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.idz.rentIt.R
 import com.idz.rentIt.databinding.FragmentFilterBinding
-import com.idz.rentIt.databinding.FragmentSigninBinding
-import com.idz.rentit.listeners.authentication.GetPropertyItemListListener
 import com.idz.rentit.repository.Repository
-import com.idz.rentit.repository.models.Property
+import com.idz.rentit.viewModels.CitiesViewModel
 
 
 class FilterFragment : Fragment() {
     private lateinit var numberPicker: NumberPicker
     private lateinit var viewBindings: FragmentFilterBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    private lateinit var citiesViewModel: CitiesViewModel
+    private lateinit var cities: List<String>;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,9 +37,24 @@ class FilterFragment : Fragment() {
         viewBindings = FragmentFilterBinding.inflate(inflater, container, false)
         configureMenuOptions(viewBindings.root)
         numberPicker = viewBindings.filterPriceInput
+        citiesViewModel.fetchCities()
+        citiesViewModel.cities.observe(viewLifecycleOwner, Observer { cityList ->
+            this.cities = cityList
+            populateCitySpinner();
+        })
         configureNumberPicker()
         activateButtonsListeners()
         return viewBindings.root
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        this.citiesViewModel = ViewModelProvider(this)[CitiesViewModel::class.java]
+    }
+
+    private fun populateCitySpinner() {
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, this.cities)
+        viewBindings.locationAutocompletTextView.setAdapter(adapter)
     }
 
     private fun configureNumberPicker() {
@@ -51,22 +65,23 @@ class FilterFragment : Fragment() {
     }
 
     private fun activateButtonsListeners() {
+        viewBindings.filterFragmentClearBtn.setOnClickListener {
+            Repository.repositoryInstance.applyFilter(null, null, null, null)
+            Repository.repositoryInstance.setFilteredProperties()
+            Repository.repositoryInstance.allFilteredProperties.observe(viewLifecycleOwner, Observer {
+                findNavController().navigateUp()
+            })
+        }
         viewBindings.filterFragmentApplyBtn.setOnClickListener {
-            val listener = object : GetPropertyItemListListener<Property> {
-                    // This is called when the filtering is complete
-//                    Repository.repositoryInstance.localModel.propertyHandler.allProperties = properties
-//                    Navigation.findNavController(requireView()).popBackStack()
-
-                override fun onComplete(movieItemList: List<Property>?) {
-                    TODO("Not yet implemented")
-                }
-            }
-//            val filteredProperties = Repository.repositoryInstance.localModel.propertyHandler.getAllPropertiesByFilter(
-//            viewBindings.filterPriceInput.value.toDouble(),
-//            viewBindings.filterFragmentLocationInputEt.text.toString(),
-//            viewBindings.filterFragmentShelterInput.isChecked,
-//            viewBindings.filterFragmentFurnishedInput.isChecked,
-//           listener)
+            val price = viewBindings.filterPriceInput.value.toDouble()
+            val location = viewBindings.locationAutocompletTextView.text.toString()
+            val shelter = viewBindings.filterFragmentShelterInput.isChecked
+            val furnished = viewBindings.filterFragmentFurnishedInput.isChecked
+            Repository.repositoryInstance.applyFilter(price, location, shelter, furnished)
+            Repository.repositoryInstance.setFilteredProperties()
+            Repository.repositoryInstance.allFilteredProperties.observe(viewLifecycleOwner, Observer {
+                findNavController().navigateUp()
+            })
         }
     }
 

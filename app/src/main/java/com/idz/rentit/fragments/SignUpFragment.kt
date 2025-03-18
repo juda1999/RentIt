@@ -135,7 +135,7 @@ class SignUpFragment : Fragment() {
 
     private fun uploadUserProfilePhoto(profileImage: Bitmap, user: User) {
         Repository.repositoryInstance.getFirebaseModel().userExecutor
-            .uploadUserImage(profileImage, user.email + UserConstants.USER_IMAGE_PROFILE_EXTENSION) { url: String? ->
+            .uploadUserImage(profileImage, user.email + UserConstants.USER_IMAGE_PROFILE_EXTENSION, requireContext()) { url: String? ->
                 if (Objects.nonNull(url)) {
                     user.imageUrl = url
                 }

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.idz.rentit.fragments.PropertyProfileFragment">
+
+    <TextView
+        android:id="@+id/profile_fragment_headline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="100dp"
+        android:fontFamily="@font/grand_hotel"
+        android:gravity="center"
+        android:text="Property"
+        android:textColor="@color/black"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/property_profile_fragment_img"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/home"
+        app:layout_constraintBottom_toTopOf="@+id/property_profile_fragment_location_input_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_fragment_headline" />
+
+    <LinearLayout
+        android:id="@+id/property_profile_fragment_location_input_layout"
+        android:layout_width="387dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/property_profile_fragment_img">
+
+        <TextView
+            android:id="@+id/property_profile_fragment_location_label"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fontFamily="@font/grand_hotel"
+            android:gravity="center_vertical"
+            android:paddingEnd="8dp"
+            android:text="City:"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/property_profile_fragment_location_value"
+            android:layout_width="337dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fontFamily="@font/grand_hotel"
+            android:gravity="center_vertical"
+            android:text="New York"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/property_profile_fragment_description_input_layout"
+        android:layout_width="387dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/property_profile_fragment_location_input_layout">
+
+        <TextView
+            android:id="@+id/property_profile_fragment_description_label"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fontFamily="@font/grand_hotel"
+            android:gravity="center_vertical"
+            android:paddingEnd="8dp"
+            android:text="Description:"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/property_profile_fragment_description_value"
+            android:layout_width="280dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fontFamily="@font/grand_hotel"
+            android:gravity="center_vertical"
+            android:text="New York"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/property_profile_fragment_user_layout"
+        android:layout_width="387dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/property_profile_fragment_description_input_layout">
+
+        <TextView
+            android:id="@+id/property_profile_fragment_user_label"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fontFamily="@font/grand_hotel"
+            android:gravity="center_vertical"
+            android:paddingEnd="10dp"
+            android:text="Owner Name:"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/property_profile_fragment_user_value"
+            android:layout_width="280dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fontFamily="@font/grand_hotel"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/property_profile_fragment_price_input"
+        android:layout_width="91dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/property_profile_fragment_user_layout" />
+
+    <LinearLayout
+        android:id="@+id/toggle_buttons_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/property_profile_fragment_price_input">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/property_profile_fragment_shelter_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/grand_hotel"
+                android:gravity="center"
+                android:text="Shelter?"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/property_profile_fragment_shelter_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/property_profile_fragment_furnished_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/grand_hotel"
+                android:gravity="center"
+                android:text="Furnished?"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/property_profile_fragment_furnished_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/property_profile_fragment_edit_btn"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/black"
+        android:fontFamily="@font/grand_hotel"
+        android:text="Edit property!"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/toggle_buttons_layout"
+        app:layout_constraintStart_toEndOf="@+id/toggle_buttons_layout"
+        app:layout_constraintTop_toBottomOf="@+id/toggle_buttons_layout"
+        app:layout_constraintVertical_bias="0.908" />
+
+    <TextView
+        android:id="@+id/property_profile_fragment_shelter_text2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/grand_hotel"
+        android:gravity="center"
+        android:text="monthly rent:"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/property_profile_fragment_price_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/property_profile_fragment_description_input_layout"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

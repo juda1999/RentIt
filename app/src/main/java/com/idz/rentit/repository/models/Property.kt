@@ -19,6 +19,7 @@ import android.content.Context;
 import com.idz.rentit.constants.PropertyConstants.HAS_SHELTER
 import com.idz.rentit.constants.PropertyConstants.IS_FURNISHED
 import com.idz.rentit.constants.PropertyConstants.PROPERTY_LOCAL_LAST_UPDATE
+import java.io.Serializable
 
 @Entity(
     tableName = "property",
@@ -45,7 +46,7 @@ data class Property(
     var hasShelter: Boolean = false,
     var isFurnished: Boolean = false,
     var lastUpdate: Long? = null,
-) {
+): Serializable {
     fun toJson(): Map<String, Any> {
         val propertyJSON: MutableMap<String, Any> = HashMap()
         propertyJSON[PROPERTY_ID] = this.propertyId

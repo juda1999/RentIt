@@ -20,16 +20,15 @@ class AuthModel {
     }
 
     fun login(
-        email: String, password: String,
-        onSuccessListener: LoginOnSuccessListener,
-        onFailureListener: LoginOnFailureListener
+        email: String,
+        password: String,
+        onSuccessListener: () -> Unit,
+        onFailureListener: (String) -> Unit
     ) {
         firebaseAuth.signInWithEmailAndPassword(email, password)
-            .addOnSuccessListener { task: AuthResult? -> onSuccessListener.onComplete() }
+            .addOnSuccessListener { task: AuthResult? -> onSuccessListener() }
             .addOnFailureListener { command: Exception ->
-                onFailureListener.onComplete(
-                    command.message
-                )
+                onFailureListener(command.message ?: "")
             }
     }
 

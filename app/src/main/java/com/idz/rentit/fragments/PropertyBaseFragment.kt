@@ -30,7 +30,10 @@ abstract class PropertyBaseFragment : Fragment() {
                     return true
                 } else {
                     if (menuItem.itemId == R.id.filterFragment) {
-                        findNavController(view).navigate(R.id.filterFragment)
+                        val action: NavDirections =
+                            PropertyHomeFragmentDirections.actionPropertyListFragmentToFilterFragment()
+                        findNavController(view).navigate(action)
+//                        findNavController(view).navigate(R.id.filterFragment)
                         return true
                     }
                         if (menuItem.itemId == R.id.logoutMenuItem) {

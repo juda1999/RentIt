@@ -9,13 +9,28 @@
         android:id="@+id/addPropertyFragment"
         android:name="com.idz.rentit.fragments.AddPropertyFragment"
         android:label="Add Property"
-        tools:layout="@layout/fragment_add_property"
-        >  <argument
-        android:name="userId"
-        app:argType="string" />
+        tools:layout="@layout/fragment_add_property">
+        <argument
+            app:nullable="true"
+            android:name="property"
+            app:argType="com.idz.rentit.repository.models.Property" />
         <action
-        android:id="@+id/action_addPropertyFragment_to_propertyHomeFragment"
-        app:destination="@id/propertyHomeFragment" />
+            android:id="@+id/action_addPropertyFragment_to_propertyHomeFragment"
+            app:destination="@id/propertyHomeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/propertyProfile"
+        android:name="com.idz.rentit.fragments.PropertyProfileFragment"
+        android:label="Property Profile"
+        tools:layout="@layout/fragment_property_profile"
+        >
+        <action
+            android:id="@+id/action_propertyProfileFragment_to_addPropertyFragment"
+            app:destination="@id/addPropertyFragment" />
+        <argument
+        android:name="property"
+        app:argType="com.idz.rentit.repository.models.Property" />
     </fragment>
     <fragment
         android:id="@+id/propertyHomeFragment"
@@ -26,9 +41,14 @@
             android:id="@+id/action_propertyListFragment_to_userProfileFragment"
             app:destination="@id/userProfileFragment" />
         <action
+            android:id="@+id/action_propertyListFragment_to_propertyProfile"
+            app:destination="@id/propertyProfile" />
+        <action
             android:id="@+id/action_propertyListFragment_to_addPropertyFragment"
-            app:destination="@id/addPropertyFragment"
-            />
+            app:destination="@id/addPropertyFragment" />
+        <action
+            android:id="@+id/action_propertyListFragment_to_filterFragment"
+            app:destination="@id/filterFragment" />
     </fragment>
     <fragment
         android:id="@+id/userProfileFragment"
@@ -41,7 +61,6 @@
         <action
             android:id="@+id/action_userProfileFragment_to_addPropertyFragment"
             app:destination="@id/addPropertyFragment" />
-
     </fragment>
     <fragment
         android:id="@+id/editUserProfileFragment"
@@ -57,5 +76,8 @@
     android:name="com.idz.rentit.fragments.FilterFragment"
     android:label="Filter"
     tools:layout="@layout/fragment_filter">
+        <action
+            android:id="@+id/action_filter_fragment_to_properties_home"
+            app:destination="@id/propertyHomeFragment" />
     </fragment>
 </navigation>
