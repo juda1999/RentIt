@@ -76,6 +76,8 @@ class AddPropertyFragment : Fragment() {
         viewBindings.addPropertyFragmentDeleteBtn.setOnClickListener {
             Repository.repositoryInstance.getFirebaseModel().propertyExecutor.deleteProperty(this.editingProperty!!.propertyId) {
                 this.navigateToHomePageAfterAddProperty()
+                Repository.repositoryInstance.localModel.propertyHandler.deleteProperty(this.editingProperty!!.propertyId)
+
             }
         }
         viewBindings.signUpFragmentHeadline.setText("Edit property")

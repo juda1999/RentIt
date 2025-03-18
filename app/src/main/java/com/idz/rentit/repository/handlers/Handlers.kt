@@ -1,10 +1,14 @@
 package com.idz.rentit.repository.handlers
 
 import android.util.Log
+import androidx.activity.result.launch
 import androidx.lifecycle.LiveData
 import com.idz.rentit.repository.models.Property
 import com.idz.rentit.repository.room.database.AppLocalDB
 import com.idz.rentit.repository.room.database.AppLocalDbRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class PropertyHandler private constructor() {
     private val localDB: AppLocalDbRepository = AppLocalDB.getAppDB
@@ -21,10 +25,14 @@ class PropertyHandler private constructor() {
     }
 
     fun deleteProperty(id: String) {
-        try {
-//            localDB.propertyDao().deletePropertyById(id)
-        } catch (e: Exception) {
-            Log.d("ERROR Deleting property", e.message!!)
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                Log.d("Juda", "Attempting to delete property with ID: $id")
+                localDB.propertyDao().deletePropertyById(id)
+                Log.d("Juda", "Property with ID: $id deleted successfully")
+            } catch (e: Exception) {
+                Log.e("Juda", "Error deleting property with ID: $id", e)
+            }
         }
     }
 
