@@ -5,11 +5,19 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.MenuProvider
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.idz.rentIt.R
 import com.idz.rentIt.databinding.FragmentEditUserProfileBinding
 import com.idz.rentit.constants.UserConstants.USER_IMAGE_PROFILE_EXTENSION
@@ -176,5 +184,36 @@ class EditUserProfileFragment : PropertyBaseFragment() {
         UserUtils.setErrorIfLastNameIsInvalid(viewBindings!!.userProfileEditionFragmentLastnameInputEt)
             false
         }
+    }
+
+    override fun configureMenuOptions(view: View) {
+        val parentActivity: FragmentActivity = requireActivity()
+        parentActivity.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menu.removeItem(R.id.userProfileFragment)
+                menu.removeItem(R.id.addPropertyFragment)
+                menu.removeItem(R.id.filterFragment)
+                menu.removeItem(R.id.userPropertyFragment)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                if (menuItem.itemId == R.id.propertyHomeFragment) {
+                    findNavController(view).popBackStack()
+                    return true
+                } else {
+                    if (menuItem.itemId == R.id.logoutMenuItem) {
+                        Repository.repositoryInstance.getAuthModel()
+                            .logout {
+                                startIntroActivity()
+                            }
+                        return true
+                    }
+                    if (menuItem.itemId == android.R.id.home) {
+                        findNavController().popBackStack()
+                        return true
+                    }                }
+                return false
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 }

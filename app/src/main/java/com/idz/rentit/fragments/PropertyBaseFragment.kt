@@ -17,7 +17,7 @@ import com.idz.rentit.repository.Repository
 
 abstract class PropertyBaseFragment : Fragment() {
 
-    protected fun configureMenuOptions(view: View) {
+    protected open fun configureMenuOptions(view: View) {
         val parentActivity = activity
         parentActivity?.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -30,15 +30,16 @@ abstract class PropertyBaseFragment : Fragment() {
                     return true
                 } else {
                     if (menuItem.itemId == R.id.filterFragment) {
-                        val action: NavDirections =
-                            PropertyHomeFragmentDirections.actionPropertyListFragmentToFilterFragment()
-                        findNavController(view).navigate(action)
-//                        findNavController(view).navigate(R.id.filterFragment)
+                        findNavController(view).navigate(R.id.filterFragment)
                         return true
                     }
                         if (menuItem.itemId == R.id.logoutMenuItem) {
-                            Repository.repositoryInstance.getAuthModel().logout { startIntroActivity() }
-                        } else {
+                            Repository.repositoryInstance.getAuthModel().logout { startIntroActivity() }}
+                           else if(menuItem.itemId == R.id.userPropertyFragment) {
+                                findNavController(view).navigate(R.id.userPropertiesFragment)
+                                return true
+                            }
+                        else {
                             findNavController(view).navigate(R.id.userProfileFragment)
                                 return true
                     }

@@ -3,6 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/userPropertyFragment"
+        android:icon="@drawable/building"
+        android:title="my properties"
+        app:showAsAction="ifRoom"
+    />
+    <item
         android:id="@+id/addPropertyFragment"
         android:icon="@drawable/add_image"
         android:title=""

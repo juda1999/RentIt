@@ -49,6 +49,8 @@
         <action
             android:id="@+id/action_propertyListFragment_to_filterFragment"
             app:destination="@id/filterFragment" />
+        <action android:id="@+id/action_propertyListFragment_to_userPropertiesFragment"
+            app:destination="@id/userPropertiesFragment" />
     </fragment>
     <fragment
         android:id="@+id/userProfileFragment"
@@ -79,5 +81,16 @@
         <action
             android:id="@+id/action_filter_fragment_to_properties_home"
             app:destination="@id/propertyHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userPropertiesFragment"
+        android:name="com.idz.rentit.fragments.UserPropertiesFragment"
+        android:label="My Properties"
+        tools:layout="@layout/fragment_user_properties"
+        >
+        <action android:id="@+id/action_userPropertiesFragment_to_propertyProfileFragment"
+            app:destination="@id/propertyProfile" />
+        <action android:id="@+id/action_userPropertiesFragment_to_addPropertyFragment"
+            app:destination="@id/addPropertyFragment" />
     </fragment>
 </navigation>

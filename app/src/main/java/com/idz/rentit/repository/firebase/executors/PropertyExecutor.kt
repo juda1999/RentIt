@@ -79,10 +79,7 @@ class PropertyExecutor private constructor() {
         db.collection(PropertyConstants.PROPERTY_COLLECTION_NAME)
             .document(id)
             .delete()
-            .addOnSuccessListener {
-                Log.d("Juda", "succes delete")
-                Repository.repositoryInstance.localModel.propertyHandler.deleteProperty(id)
-            }
+            .addOnCompleteListener { task: Task<Void?>? -> listener() }
     }
 
     fun uploadPropertyImage(imageBmp: Bitmap, name: String,  context: Context, listener: (String?) -> Unit) {

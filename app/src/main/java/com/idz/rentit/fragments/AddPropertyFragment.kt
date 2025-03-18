@@ -76,6 +76,8 @@ class AddPropertyFragment : Fragment() {
         viewBindings.addPropertyFragmentDeleteBtn.setOnClickListener {
             Repository.repositoryInstance.getFirebaseModel().propertyExecutor.deleteProperty(this.editingProperty!!.propertyId) {
                 this.navigateToHomePageAfterAddProperty()
+                Repository.repositoryInstance.localModel.propertyHandler.deleteProperty(this.editingProperty!!.propertyId)
+
             }
         }
         viewBindings.signUpFragmentHeadline.setText("Edit property")
@@ -157,6 +159,8 @@ class AddPropertyFragment : Fragment() {
                 menu.removeItem(R.id.userProfileFragment)
                 menu.removeItem(R.id.propertyHomeFragment)
                 menu.removeItem(R.id.addPropertyFragment)
+                menu.removeItem(R.id.filterFragment)
+                menu.removeItem(R.id.userPropertyFragment)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
