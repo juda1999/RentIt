@@ -16,7 +16,7 @@
         android:text="RentIt"
         android:textColor="@color/black"
         android:textSize="45sp"
-        app:layout_constraintBottom_toTopOf="@+id/add_property_fragment_location_input_layout"
+        app:layout_constraintBottom_toTopOf="@+id/locationAutocompleteLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -38,7 +38,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/add_property_fragment_location_input_layout"
+        android:id="@+id/locationAutocompleteLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -49,14 +49,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_up_fragment_headline">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/filter_fragment_location_input_et"
+        <AutoCompleteTextView
+            android:id="@+id/locationAutocompletTextView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:hint="Location"
             android:inputType="text"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <NumberPicker
         android:id="@+id/filter_price_input"
@@ -66,7 +67,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_property_fragment_location_input_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/locationAutocompleteLayout" />
 
     <LinearLayout
         android:id="@+id/toggle_buttons_layout"
@@ -169,12 +170,12 @@
         android:layout_marginTop="63dp"
         android:fontFamily="@font/grand_hotel"
         android:gravity="center"
-        android:text="monthly rent in $:"
+        android:text="monthly rent less then:"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/filter_price_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/add_property_fragment_location_input_layout"
+        app:layout_constraintTop_toTopOf="@+id/locationAutocompleteLayout"
         app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

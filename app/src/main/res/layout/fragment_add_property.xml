@@ -49,13 +49,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_up_fragment_headline">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/add_property_fragment_location_input_et"
+        <AutoCompleteTextView
+            android:id="@+id/add_property_fragment_location_input_autocomplete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Location"
-            android:inputType="text"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -153,7 +153,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/camera_image"
-        app:layout_constraintBottom_toTopOf="@+id/add_property_fragment_upload_btn"
+        app:layout_constraintBottom_toTopOf="@+id/add_property_fragment_delete_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.293"
         app:layout_constraintStart_toStartOf="parent"
@@ -178,13 +178,29 @@
         app:layout_constraintTop_toBottomOf="@+id/toggle_buttons_layout"
         app:layout_constraintVertical_bias="0.908" />
 
+    <Button
+        android:visibility="gone"
+        android:id="@+id/add_property_fragment_delete_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/grand_hotel"
+        android:text="Delete Property"
+        android:textColor="@color/white"
+        android:textColorLink="#BA1717"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/add_property_fragment_upload_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <ImageView
         android:id="@+id/add_property_fragment_img"
         android:layout_width="200dp"
         android:layout_height="100dp"
         android:scaleType="fitCenter"
         android:src="@drawable/home"
-        app:layout_constraintBottom_toTopOf="@+id/add_property_fragment_upload_btn"
+        app:layout_constraintBottom_toTopOf="@+id/add_property_fragment_delete_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toggle_buttons_layout" />

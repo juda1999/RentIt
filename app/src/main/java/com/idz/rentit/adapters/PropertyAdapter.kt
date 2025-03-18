@@ -13,8 +13,8 @@ class PropertyAdapter(
     val layoutInflater: LayoutInflater,
     private val propertyItemList: MutableList<Property> // Mutable list
 ) : RecyclerView.Adapter<PropertyItemViewHolder<Property>>() {
-    var listener: ((Int?) -> Unit)? = null
-    fun setOnItemClickListener(listener: ((Int?) -> Unit)?) {
+    var listener: ((Int?, Property?) -> Unit)? = null
+    fun setOnItemClickListener(listener: ((Int?, Property?) -> Unit)?) {
         this.listener = listener
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PropertyViewHolder {
@@ -31,7 +31,6 @@ class PropertyAdapter(
         return propertyItemList.size
     }
 
-    // Method to update the list
     fun updatePropertyList(newPropertyList: List<Property>) {
         propertyItemList.clear()
         propertyItemList.addAll(newPropertyList)

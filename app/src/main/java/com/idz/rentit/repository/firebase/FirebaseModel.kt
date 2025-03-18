@@ -14,13 +14,6 @@ class FirebaseModel {
         db.firestoreSettings = settings
     }
 
-//    val movieCategoryExecutor: MovieCategoryExecutor
-//        get() = MovieCategoryExecutor.instance()
-//
-//
-//    val movieCommentExecutor: MovieCommentExecutor
-//        get() = MovieCommentExecutor.instance()
-
     val propertyExecutor: PropertyExecutor
         get() = PropertyExecutor.instance();
 

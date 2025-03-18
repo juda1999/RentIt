@@ -1,17 +1,16 @@
 package com.idz.rentit.repository.firebase.executors
 
+import android.content.Context
 import android.graphics.Bitmap
-import android.net.Uri
 import com.idz.rentit.constants.UserConstants
-import com.idz.rentit.listeners.authentication.*
 import com.idz.rentit.repository.models.User
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.UploadTask
-import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
 
 class UserExecutor private constructor() {
     private val db = FirebaseFirestore.getInstance()
@@ -40,34 +39,38 @@ class UserExecutor private constructor() {
             .addOnCompleteListener { task: Task<Void?>? -> listener() }
     }
 
-    fun updateUser(user: User, listener: UpdateUserListener) {
+    fun updateUser(user: User, listener: () -> Unit) {
         db.collection(UserConstants.USER_COLLECTION_NAME)
             .document(user.userId)
             .set(user.toJson())
-            .addOnCompleteListener { task: Task<Void?>? -> listener.onComplete() }
+            .addOnCompleteListener { task: Task<Void?>? -> listener() }
     }
 
-    fun uploadUserImage(imageBmp: Bitmap, name: String, listener: (String?) -> Unit) {
-        val imagesRef = storage.reference.child(IMAGE_FOLDER).child(name)
+    fun uploadUserImage(imageBmp: Bitmap, name: String, context: Context, listener: (String?) -> Unit) {
+            val file = File(context.filesDir, name)
+            FileOutputStream(file).use { imageBmp.compress(Bitmap.CompressFormat.JPEG, 100, it) }
 
-        val byteArrayOutputStream = ByteArrayOutputStream()
-        imageBmp.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
-        val data = byteArrayOutputStream.toByteArray()
+            listener(file.absolutePath)
+//            val imagesRef = storage.reference.child(IMAGE_FOLDER).child(name)
 
-        val uploadTask = imagesRef.putBytes(data)
-        uploadTask.addOnFailureListener { exception: Exception? ->
-            listener(null)
+//            val byteArrayOutputStream = ByteArrayOutputStream()
+//            imageBmp.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+//            val data = byteArrayOutputStream.toByteArray()
+//
+//            val uploadTask = imagesRef.putBytes(data)
+//            uploadTask.addOnFailureListener { exception: Exception? ->
+//                listener(null)
+//            }
+//                .addOnSuccessListener { taskSnapshot: UploadTask.TaskSnapshot? ->
+//                    imagesRef.downloadUrl
+//                        .addOnFailureListener { uri: Exception? -> listener(null) }
+//                        .addOnSuccessListener { uri: Uri -> listener(uri.toString()) }
+//                }
         }
-            .addOnSuccessListener { taskSnapshot: UploadTask.TaskSnapshot? ->
-                imagesRef.downloadUrl
-                    .addOnFailureListener { uri: Exception? -> listener(null) }
-                    .addOnSuccessListener { uri: Uri -> listener(uri.toString()) }
-            }
-    }
 
     companion object {
         private val userExecutorInstance = UserExecutor()
-        const val IMAGE_FOLDER: String = "users"
+        val IMAGE_FOLDER: String = "users"
         fun instance(): UserExecutor {
             return userExecutorInstance
         }

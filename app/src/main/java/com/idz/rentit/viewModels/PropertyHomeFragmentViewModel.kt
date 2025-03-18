@@ -8,7 +8,7 @@ import com.idz.rentit.repository.models.Property
 import kotlin.math.log
 
 class PropertyHomeFragmentViewModel : ViewModel() {
-    private val propertyList: LiveData<List<Property>> = Repository.repositoryInstance.allProperties!!
+    private val propertyList: LiveData<List<Property>> = Repository.repositoryInstance.allFilteredProperties
 
     fun getPropertyList(): LiveData<List<Property>> {
         return propertyList

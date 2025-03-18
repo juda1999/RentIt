@@ -1,5 +1,6 @@
 package com.idz.rentit.repository.firebase.executors
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
 import android.util.Log
@@ -12,8 +13,11 @@ import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import com.idz.rentit.constants.PropertyConstants
+import com.idz.rentit.repository.Repository
 import com.idz.rentit.repository.models.Property
 import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
 
 
 class PropertyExecutor private constructor() {
@@ -71,22 +75,35 @@ class PropertyExecutor private constructor() {
             .addOnCompleteListener { task: Task<Void?>? -> listener() }
     }
 
-    fun uploadPropertyImage(imageBmp: Bitmap, name: String, listener: (String?) -> Unit) {
-        val imagesRef = storage.reference.child(IMAGE_FOLDER).child(name)
-
-        val byteArrayOutputStream = ByteArrayOutputStream()
-        imageBmp.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
-        val data = byteArrayOutputStream.toByteArray()
-
-        val uploadTask = imagesRef.putBytes(data)
-        uploadTask.addOnFailureListener { exception: Exception? ->
-            listener(null)
-        }
-            .addOnSuccessListener { taskSnapshot: UploadTask.TaskSnapshot? ->
-                imagesRef.downloadUrl
-                    .addOnFailureListener { uri: Exception? -> listener(null) }
-                    .addOnSuccessListener { uri: Uri -> listener(uri.toString()) }
+    fun deleteProperty(id: String, listener: () -> Unit) {
+        db.collection(PropertyConstants.PROPERTY_COLLECTION_NAME)
+            .document(id)
+            .delete()
+            .addOnSuccessListener {
+                Log.d("Juda", "succes delete")
+                Repository.repositoryInstance.localModel.propertyHandler.deleteProperty(id)
             }
+    }
+
+    fun uploadPropertyImage(imageBmp: Bitmap, name: String,  context: Context, listener: (String?) -> Unit) {
+        val file = File(context.filesDir, name)
+        FileOutputStream(file).use { imageBmp.compress(Bitmap.CompressFormat.JPEG, 100, it) }
+        listener(file.absolutePath)
+//        val imagesRef = storage.reference.child(IMAGE_FOLDER).child(name)
+//
+//        val byteArrayOutputStream = ByteArrayOutputStream()
+//        imageBmp.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+//        val data = byteArrayOutputStream.toByteArray()
+//
+//        val uploadTask = imagesRef.putBytes(data)
+//        uploadTask.addOnFailureListener { exception: Exception? ->
+//            listener(null)
+//        }
+//            .addOnSuccessListener { taskSnapshot: UploadTask.TaskSnapshot? ->
+//                imagesRef.downloadUrl
+//                    .addOnFailureListener { uri: Exception? -> listener(null) }
+//                    .addOnSuccessListener { uri: Uri -> listener(uri.toString()) }
+//            }
     }
 
     companion object {
