@@ -43,7 +43,7 @@ class FilterFragment : Fragment() {
             populateCitySpinner();
         })
         configureNumberPicker()
-        activateButtonsListeners()
+        activateButtonsListeners(viewBindings.root)
         return viewBindings.root
     }
 
@@ -64,7 +64,7 @@ class FilterFragment : Fragment() {
         numberPicker.wrapSelectorWheel = false
     }
 
-    private fun activateButtonsListeners() {
+    private fun activateButtonsListeners(view: View) {
         viewBindings.filterFragmentClearBtn.setOnClickListener {
             Repository.repositoryInstance.applyFilter(null, null, null, null)
             Repository.repositoryInstance.setFilteredProperties()
@@ -80,7 +80,7 @@ class FilterFragment : Fragment() {
             Repository.repositoryInstance.applyFilter(price, location, shelter, furnished)
             Repository.repositoryInstance.setFilteredProperties()
             Repository.repositoryInstance.allFilteredProperties.observe(viewLifecycleOwner, Observer {
-                findNavController().navigateUp()
+                Navigation.findNavController(view).popBackStack()
             })
         }
     }

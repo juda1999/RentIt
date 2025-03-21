@@ -77,13 +77,13 @@ class PropertyProfileFragment: Fragment() {
     }
 
     private fun loadImage(url: String?, placeholder: Int, item: ImageView) {
-        url?.let {
-            Picasso.get().load(it).transform(RoundedTransformation(30, 0))
-                .placeholder(placeholder)
-                .into(item)
-        } ?: run {
-            item.setImageResource(placeholder)
-        }
+//        url?.let {
+//            Picasso.get().load(it).transform(RoundedTransformation(30, 0))
+//                .placeholder(placeholder)
+//                .into(item)
+//        } ?: run {
+//            item.setImageResource(placeholder)
+//        }
     }
 
     private fun activateButtonsListeners() {

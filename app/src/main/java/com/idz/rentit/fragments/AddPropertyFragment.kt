@@ -171,6 +171,10 @@ class AddPropertyFragment : Fragment() {
                         }
                     return true
                 } else {
+                    if (menuItem.itemId == R.id.propertyHomeFragment) {
+                        findNavController().popBackStack()
+                        return true
+                    }
                     if (menuItem.itemId == android.R.id.home) {
                         findNavController().popBackStack()
                         return true
