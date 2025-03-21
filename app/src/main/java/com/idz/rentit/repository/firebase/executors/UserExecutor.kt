@@ -2,6 +2,8 @@ package com.idz.rentit.repository.firebase.executors
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.net.Uri
+import android.util.Log
 import com.idz.rentit.constants.UserConstants
 import com.idz.rentit.repository.models.User
 import com.google.android.gms.tasks.Task
@@ -9,6 +11,8 @@ import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 
@@ -52,7 +56,7 @@ class UserExecutor private constructor() {
 
             listener(file.absolutePath)
 //            val imagesRef = storage.reference.child(IMAGE_FOLDER).child(name)
-
+//
 //            val byteArrayOutputStream = ByteArrayOutputStream()
 //            imageBmp.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
 //            val data = byteArrayOutputStream.toByteArray()
@@ -60,6 +64,7 @@ class UserExecutor private constructor() {
 //            val uploadTask = imagesRef.putBytes(data)
 //            uploadTask.addOnFailureListener { exception: Exception? ->
 //                listener(null)
+//                Log.e("StorageException", "Upload failed: ${exception?.message}")
 //            }
 //                .addOnSuccessListener { taskSnapshot: UploadTask.TaskSnapshot? ->
 //                    imagesRef.downloadUrl
