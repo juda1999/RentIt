@@ -143,8 +143,7 @@ class EditUserProfileFragment : PropertyBaseFragment() {
         Repository.repositoryInstance.getFirebaseModel().userExecutor
             .uploadUserImage(
                 profileImage,
-                (viewModel?.user?.email ) + USER_IMAGE_PROFILE_EXTENSION,
-                requireContext()
+                (viewModel?.user?.email ) + USER_IMAGE_PROFILE_EXTENSION
             ) { url ->
                 if (Objects.nonNull(url)) {
                     viewModel?.user?.imageUrl = (url)

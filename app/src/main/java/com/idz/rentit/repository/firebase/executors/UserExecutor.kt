@@ -50,27 +50,23 @@ class UserExecutor private constructor() {
             .addOnCompleteListener { task: Task<Void?>? -> listener() }
     }
 
-    fun uploadUserImage(imageBmp: Bitmap, name: String, context: Context, listener: (String?) -> Unit) {
-            val file = File(context.filesDir, name)
-            FileOutputStream(file).use { imageBmp.compress(Bitmap.CompressFormat.JPEG, 100, it) }
+    fun uploadUserImage(imageBmp: Bitmap, name: String, listener: (String?) -> Unit) {
+            val imagesRef = storage.reference.child(IMAGE_FOLDER).child(name)
 
-            listener(file.absolutePath)
-//            val imagesRef = storage.reference.child(IMAGE_FOLDER).child(name)
-//
-//            val byteArrayOutputStream = ByteArrayOutputStream()
-//            imageBmp.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
-//            val data = byteArrayOutputStream.toByteArray()
-//
-//            val uploadTask = imagesRef.putBytes(data)
-//            uploadTask.addOnFailureListener { exception: Exception? ->
-//                listener(null)
-//                Log.e("StorageException", "Upload failed: ${exception?.message}")
-//            }
-//                .addOnSuccessListener { taskSnapshot: UploadTask.TaskSnapshot? ->
-//                    imagesRef.downloadUrl
-//                        .addOnFailureListener { uri: Exception? -> listener(null) }
-//                        .addOnSuccessListener { uri: Uri -> listener(uri.toString()) }
-//                }
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            imageBmp.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+            val data = byteArrayOutputStream.toByteArray()
+
+            val uploadTask = imagesRef.putBytes(data)
+            uploadTask.addOnFailureListener { exception: Exception? ->
+                listener(null)
+                Log.e("StorageException", "Upload failed: ${exception?.message}")
+            }
+                .addOnSuccessListener { taskSnapshot: UploadTask.TaskSnapshot? ->
+                    imagesRef.downloadUrl
+                        .addOnFailureListener { uri: Exception? -> listener(null) }
+                        .addOnSuccessListener { uri: Uri -> listener(uri.toString()) }
+                }
         }
 
     companion object {

@@ -155,10 +155,10 @@
         android:src="@drawable/camera_image"
         app:layout_constraintBottom_toTopOf="@+id/add_property_fragment_delete_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.293"
+        app:layout_constraintHorizontal_bias="0.155"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/add_property_fragment_img"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.095" />
 
     <Button
         android:id="@+id/add_property_fragment_upload_btn"
