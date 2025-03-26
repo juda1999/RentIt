@@ -27,11 +27,9 @@ class PropertyHandler private constructor() {
     fun deleteProperty(id: String) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                Log.d("Juda", "Attempting to delete property with ID: $id")
                 localDB.propertyDao().deletePropertyById(id)
-                Log.d("Juda", "Property with ID: $id deleted successfully")
             } catch (e: Exception) {
-                Log.e("Juda", "Error deleting property with ID: $id", e)
+                Log.e("Delete Property", "Error deleting property with ID: $id", e)
             }
         }
     }

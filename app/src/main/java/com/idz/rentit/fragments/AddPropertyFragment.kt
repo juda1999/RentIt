@@ -90,7 +90,7 @@ class AddPropertyFragment : Fragment() {
         if (editingProperty?.imageUrl != null) {
             Picasso.get().load(editingProperty?.imageUrl)
                 .placeholder(R.drawable.home)
-                .into(viewBindings?.addPropertyFragmentImg)
+                .into(viewBindings.addPropertyFragmentImg)
         }
     }
     private fun populateCitySpinner() {

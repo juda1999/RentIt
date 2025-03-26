@@ -1,6 +1,5 @@
 package com.idz.rentit.repository.firebase.executors
 
-import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
 import android.util.Log
@@ -13,8 +12,6 @@ import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.FileOutputStream
 
 class UserExecutor private constructor() {
     private val db = FirebaseFirestore.getInstance()

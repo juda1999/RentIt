@@ -42,25 +42,4 @@ object UserUtils {
             true
         }
     }
-
-    fun setErrorIfBiggerThan(rating: TextInputEditText, maxRating: Int): Boolean {
-        val ratingValue = rating.text.toString().toIntOrNull()
-        return if (ratingValue == null || ratingValue < 0 || ratingValue > maxRating) {
-//            rating.error = MOVIE_COMMENT_COMMENT_INVALID
-            false
-        } else {
-            rating.error = null
-            true
-        }
-    }
-
-    fun setErrorIfEmpty(rating: TextInputEditText): Boolean {
-        return if (InputValidator.isFieldEmpty(rating.text)) {
-//            rating.error = MOVIE_COMMENT_RATING_INVALID
-            false
-        } else {
-            rating.error = null
-            true
-        }
-    }
 }

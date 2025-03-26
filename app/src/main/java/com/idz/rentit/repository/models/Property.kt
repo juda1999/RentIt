@@ -2,7 +2,6 @@ package com.idz.rentit.repository.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FieldValue
@@ -10,7 +9,6 @@ import com.idz.rentit.constants.PropertyConstants.DESCRIPTION
 import com.idz.rentit.constants.PropertyConstants.IMAGE_URL
 import com.idz.rentit.constants.PropertyConstants.LAST_UPDATE
 import com.idz.rentit.constants.PropertyConstants.LOCATION
-import com.idz.rentit.constants.PropertyConstants.NUMBER_OF_ROOMS
 import com.idz.rentit.constants.PropertyConstants.PRICE
 import com.idz.rentit.constants.PropertyConstants.PROPERTY_ID
 import com.idz.rentit.constants.UserConstants
@@ -22,15 +20,7 @@ import com.idz.rentit.constants.PropertyConstants.PROPERTY_LOCAL_LAST_UPDATE
 import java.io.Serializable
 
 @Entity(
-    tableName = "property",
-//    foreignKeys = [
-//        ForeignKey(
-//            entity = User::class,
-//            parentColumns = ["userId"],
-//            childColumns = ["userId"],
-//            onDelete = ForeignKey.CASCADE
-//        )
-//    ]
+    tableName = "property"
 )
 data class Property(
     @PrimaryKey

@@ -16,14 +16,6 @@ object InputValidator {
         return (text != null && text.length >= 8)
     }
 
-    fun isNumber(text: Editable?): Boolean {
-        try {
-            text.toString().toInt()
-            return (isFieldEmpty(text) || text.toString().toInt() > 0)
-        } catch (e: NumberFormatException) {
-            return false
-        }
-    }
 
     fun isEmailValid(text: Editable?): Boolean {
         return (text != null && Patterns.EMAIL_ADDRESS.matcher(text).matches())

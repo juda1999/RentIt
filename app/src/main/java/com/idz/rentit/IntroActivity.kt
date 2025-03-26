@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
 import android.view.animation.Animation
@@ -65,10 +64,6 @@ class IntroActivity : AppCompatActivity() {
         menu.removeItem(R.id.userProfileFragment)
         menu.removeItem(R.id.logoutMenuItem)
         return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
     }
 
     private fun setDataMembers() {
