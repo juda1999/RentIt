@@ -201,6 +201,9 @@ class SignUpFragment : Fragment() {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menu.removeItem(R.id.userProfileFragment)
                 menu.removeItem(R.id.logoutMenuItem)
+                menu.removeItem(R.id.addPropertyFragment)
+                menu.removeItem(R.id.filterFragment)
+                menu.removeItem(R.id.userPropertyFragment)
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {

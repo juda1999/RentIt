@@ -69,7 +69,7 @@ class FilterFragment : Fragment() {
             Repository.repositoryInstance.applyFilter(null, null, null, null)
             Repository.repositoryInstance.setFilteredProperties()
             Repository.repositoryInstance.allFilteredProperties.observe(viewLifecycleOwner, Observer {
-                findNavController().navigateUp()
+                findNavController().navigate(R.id.propertyHomeFragment)
             })
         }
         viewBindings.filterFragmentApplyBtn.setOnClickListener {
