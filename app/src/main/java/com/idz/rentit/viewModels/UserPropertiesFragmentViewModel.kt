@@ -12,9 +12,5 @@ class UserPropertiesFragmentViewModel: ViewModel() {
 
     fun getPropertyList(userId: String): LiveData<List<Property>> {
         return propertyList.map { properties -> properties.filter { it.userId == userId } }
-
-//        return Transformations.map(propertyList) { properties: List<Property> ->
-//            properties.filter { it.userId == userId }
-//        }
     }
 }

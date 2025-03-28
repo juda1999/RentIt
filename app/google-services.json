@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "1034929845680",
-    "project_id": "rentit-78cc7",
-    "storage_bucket": "rentit-78cc7.firebasestorage.app"
+    "project_number": "38855506497",
+    "project_id": "rentit-fc2cc",
+    "storage_bucket": "rentit-fc2cc.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1034929845680:android:c782ab8337b5c38d4ed275",
+        "mobilesdk_app_id": "1:38855506497:android:71c158a413ac80c4e724c0",
         "android_client_info": {
           "package_name": "com.idz.rentIt"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCAwvAZVYpX_9E7Sbmzi7LL_sUdG0m9EQc"
+          "current_key": "AIzaSyDiWy6VgRjZ2dqBVtz5SFvzSDILQzo5lM0"
         }
       ],
       "services": {

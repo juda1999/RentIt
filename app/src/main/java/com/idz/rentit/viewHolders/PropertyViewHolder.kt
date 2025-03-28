@@ -10,7 +10,7 @@ import com.squareup.picasso.Picasso
 
 class PropertyViewHolder(
     itemView: View,
-    listener: ((Int?, Property?) -> Unit)? // Change the type here
+    listener: ((Int?, Property?) -> Unit)?
 ) : PropertyItemViewHolder<Property>(itemView, listener) {
 
     override var propertyItemLocation: TextView = itemView.findViewById(R.id.item_list_row_location)

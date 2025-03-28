@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -27,6 +28,7 @@ import com.idz.rentit.repository.Repository
 import com.idz.rentit.repository.models.Property
 import com.idz.rentit.viewModels.AddPropertyFragmentViewModel
 import com.idz.rentit.viewModels.CitiesViewModel
+import com.squareup.picasso.Picasso
 import java.util.Objects
 import java.util.UUID
 
@@ -86,10 +88,10 @@ class AddPropertyFragment : Fragment() {
         viewBindings.addPropertyFragmentShelterInput.isChecked = editingProperty?.hasShelter ?: false
         viewBindings.addPropertyFragmentFurnishedInput.isChecked = editingProperty?.isFurnished ?: false
         if (editingProperty?.imageUrl != null) {
-            //add photo
+            Picasso.get().load(editingProperty?.imageUrl)
+                .placeholder(R.drawable.home)
+                .into(viewBindings.addPropertyFragmentImg)
         }
-
-
     }
     private fun populateCitySpinner() {
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, this.cities)
@@ -114,18 +116,15 @@ class AddPropertyFragment : Fragment() {
     }
 
     private fun activateButtonsListeners() {
+        viewBindings.cameraButton.setOnClickListener {
+            viewModel.cameraLauncher?.launch(null)
+        }
         viewBindings.addPropertyFragmentUploadBtn.setOnClickListener {
             val propertyId = editingProperty?.propertyId ?: UUID.randomUUID().toString()
             Repository.repositoryInstance.getFirebaseModel().propertyExecutor.uploadPropertyImage(
                 (viewBindings.addPropertyFragmentImg.drawable as BitmapDrawable).bitmap,
-                propertyId,
-                requireContext()
+                propertyId
             ) { propertyImage ->
-//            var propertyImage: String = null.toString()
-//            if (viewModel.isPropertyPictureSelected) {
-//                propertyImage = (viewBindings.addPropertyFragmentImg.drawable as BitmapDrawable).bitmap.toString()
-//            }
-
                 val property = Property(
                     propertyId = propertyId,
                     userId = userId.toString(),
@@ -139,10 +138,6 @@ class AddPropertyFragment : Fragment() {
                 Repository.repositoryInstance.getFirebaseModel().propertyExecutor.addProperty(
                     property
                 ) { this.navigateToHomePageAfterAddProperty() }
-
-                viewBindings.cameraButton.setOnClickListener {
-                    viewModel.cameraLauncher?.launch(null)
-                }
             }
         }
     }

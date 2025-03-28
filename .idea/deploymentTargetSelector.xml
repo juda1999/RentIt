@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-02-28T10:53:42.662244Z">
+        <DropdownSelection timestamp="2025-03-20T18:36:05.229621400Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=/Users/mor/.android/avd/RentIt.avd" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\yehoo\.android\avd\Pixel_9_Pro_API_30.avd" />
             </handle>
           </Target>
         </DropdownSelection>

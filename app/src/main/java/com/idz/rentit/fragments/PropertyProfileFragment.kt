@@ -18,14 +18,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
-import com.example.movieshare.utils.RoundedTransformation
 import com.idz.rentIt.R
 import com.idz.rentIt.databinding.FragmentPropertyProfileBinding
 import com.idz.rentit.GuestsActivity
 import com.idz.rentit.repository.Repository
 import com.idz.rentit.repository.models.Property
 import com.idz.rentit.viewModels.PropertyProfileFragmentViewModel
-import com.squareup.picasso.Picasso
 
 class PropertyProfileFragment: Fragment() {
     private var property: Property? = null

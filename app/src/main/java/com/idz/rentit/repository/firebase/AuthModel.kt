@@ -1,6 +1,5 @@
 package com.idz.rentit.repository.firebase
 
-import com.idz.rentit.listeners.authentication.*
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth

@@ -9,10 +9,6 @@ class SignUpFragmentViewModel : ViewModel() {
     private var cameraLauncher: ActivityResultLauncher<Void?>? = null
     private var isProfilePictureSelected: Boolean = false
 
-    fun getNavController(): NavController? {
-        return navController
-    }
-
     fun setNavController(navController: NavController?) {
         this.navController = navController
     }
